@@ -6,7 +6,7 @@ on:
 
 jobs:
   on-develop-branch-check:
-    runs-on: hay-mac
+    runs-on: Linux
     outputs:
       on_develop: ${{ steps.contains_tag.outputs.retval }}
     steps:
