@@ -7,7 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "bump-patch": "npm version patch; git push --follow-tags",
+    "bump-minor": "npm version minor; git push --follow-tags",
+    "bump-major": "npm version major; git push --follow-tags"
   },
   "jest": {
     "preset": "jest-expo"
