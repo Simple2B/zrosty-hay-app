@@ -26,7 +26,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.simple2b.zrostyhayapp",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro",

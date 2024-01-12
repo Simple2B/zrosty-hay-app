@@ -16,6 +16,11 @@
   },
   "submit": {
     "production": {
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft",
+        "serviceAccountKeyPath": "./google-creds.json"
+      },
       "ios": {
         "appleId": "istacat.info@gmail.com",
         "ascAppId": "6474616613"
