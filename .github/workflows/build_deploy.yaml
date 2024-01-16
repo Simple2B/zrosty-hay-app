@@ -20,7 +20,7 @@ jobs:
           tag: "${{ github.ref }}"
 
   adroid-build-deploy:
-    name: EAS build and deploy
+    name: Android build and deploy
     runs-on: Linux
     needs:
       - on-develop-branch-check
@@ -66,7 +66,7 @@ jobs:
         run: eas submit -p android --non-interactive --path=builds/build-and-latest.aab
 
   ios-build-deploy:
-    name: EAS build and deploy
+    name: IOS build and deploy
     runs-on: hay-mac
     needs:
       - on-develop-branch-check
