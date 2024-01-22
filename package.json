@@ -15,7 +15,9 @@
     "sb-watch": "sb-rn-watcher",
     "sb": "STORYBOOK_ENABLED='true' expo start",
     "and-build-dev": "eas build -p android --non-interactive --output=builds/build-and-latest.apk --profile=development --local",
-    "ios-build-dev": "eas build -p ios --non-interactive --output=builds/build-ios-latest.tar.gz --profile=development --local"
+    "ios-build-dev": "eas build -p ios --non-interactive --output=builds/build-ios-latest.tar.gz --profile=development --local",
+    "update-openapi-json": "./scripts/update-openapi-json.sh",
+    "gen-api": "yarn orval --config ./orval.config.ts"
   },
   "jest": {
     "preset": "jest-expo"
