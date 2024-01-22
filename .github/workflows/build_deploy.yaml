@@ -60,6 +60,12 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Lint
+        run: yarn lint
+
+      - name: Check types
+        run: yarn type-check
+
       - name: build android
         run: eas build --platform android --local --non-interactive --output=builds/build-and-latest.aab
       - name: submit android
@@ -105,6 +111,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Check types
+        run: yarn type-check
 
       - name: build ios
         run: eas build --platform ios --local --non-interactive --output=builds/build-ios-latest.ipa

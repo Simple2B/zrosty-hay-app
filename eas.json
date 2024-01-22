@@ -1,31 +1,31 @@
 {
-  "cli": {
-    "version": ">= 5.9.3",
-    "appVersionSource": "remote"
-  },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {
-      "autoIncrement": true
-    }
-  },
-  "submit": {
-    "production": {
-      "android": {
-        "track": "internal",
-        "releaseStatus": "draft",
-        "serviceAccountKeyPath": "./google-creds.json"
-      },
-      "ios": {
-        "appleId": "istacat.info@gmail.com",
-        "ascAppId": "6474616613"
-      }
-    }
-  }
+	"cli": {
+		"version": ">= 5.9.3",
+		"appVersionSource": "remote"
+	},
+	"build": {
+		"development": {
+			"developmentClient": true,
+			"distribution": "internal"
+		},
+		"preview": {
+			"distribution": "internal"
+		},
+		"production": {
+			"autoIncrement": true
+		}
+	},
+	"submit": {
+		"production": {
+			"android": {
+				"track": "internal",
+				"releaseStatus": "draft",
+				"serviceAccountKeyPath": "./google-creds.json"
+			},
+			"ios": {
+				"appleId": "istacat.info@gmail.com",
+				"ascAppId": "6474616613"
+			}
+		}
+	}
 }
