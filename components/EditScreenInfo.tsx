@@ -1,18 +1,20 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+
+import { Text } from 'react-native';
 
 import Colors from '../constants/Colors';
 import { ExternalLink } from './ExternalLink';
 import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import { View } from './Themed';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 export default function EditScreenInfo({ path }: { path: string }) {
+	const { styles } = useStyles(styleSheet);
+
 	return (
 		<View>
 			<View style={styles.getStartedContainer}>
-				<Text style={styles.getStartedText} lightColor='rgba(0,0,0,0.8)' darkColor='rgba(255,255,255,0.8)'>
-					Open up the code for this screen:
-				</Text>
+				<Text style={styles.getStartedText}>Open up the code for this screen:</Text>
 
 				<View
 					style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
@@ -22,7 +24,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
 					<MonoText>{path}</MonoText>
 				</View>
 
-				<Text style={styles.getStartedText} lightColor='rgba(0,0,0,0.8)' darkColor='rgba(255,255,255,0.8)'>
+				<Text style={styles.getStartedText}>
 					Change any of the text, save the file, and your app will automatically update.
 				</Text>
 			</View>
@@ -32,7 +34,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
 					style={styles.helpLink}
 					href='https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
 				>
-					<Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
+					<Text style={styles.helpLinkText}>
 						Tap here if your app doesn't automatically update after making changes
 					</Text>
 				</ExternalLink>
@@ -41,10 +43,12 @@ export default function EditScreenInfo({ path }: { path: string }) {
 	);
 }
 
-const styles = StyleSheet.create({
+//This is just a usage example. In real components this stylesheet code should be kept in a separate ComponentName.styles.ts file.
+const styleSheet = createStyleSheet((theme) => ({
 	getStartedContainer: {
 		alignItems: 'center',
-		marginHorizontal: 50,
+		marginHorizontal: theme.paddings.xxl,
+		backgroundColor: theme.colors.sun,
 	},
 	homeScreenFilename: {
 		marginVertical: 7,
@@ -69,4 +73,4 @@ const styles = StyleSheet.create({
 	helpLinkText: {
 		textAlign: 'center',
 	},
-});
+}));
