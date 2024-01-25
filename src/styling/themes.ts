@@ -5,6 +5,7 @@ export const lightTheme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
+		borderColor: "#0000002E",
 		// These colors overrides default values from react navigation themes.
 		//  They will influence the default look of navigation-related primitives.
 		text: '#333', // The text color of various elements.
@@ -27,6 +28,7 @@ export const darkTheme = {
 	...DarkTheme,
 	colors: {
 		...DarkTheme.colors,
+		borderColor: "#0000002E",
 		text: '#333',
 		background: '#ffffff',
 		primary: '#2F5233',
