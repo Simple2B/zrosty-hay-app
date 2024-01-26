@@ -5,13 +5,13 @@ export const styleSheet = createStyleSheet((theme) => ({
 		position: 'relative',
 		flex: 1,
 		justifyContent: 'center',
-		padding: theme.size.xl,
 	},
 	innerContainer: {
 		flex: theme.size.xl,
 		justifyContent: 'center',
 		alignItems: 'center',
 		gap: theme.size.xl,
+		paddingHorizontal: theme.size.xl,
 	},
 
 	innerTop: {
