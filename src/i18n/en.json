@@ -1,1 +1,11 @@
-{}
+{
+	"login": {
+		"title": "Welcome to\n",
+		"growName": "Grow Hub!",
+		"subTitle": "Your pocket guide for plant care",
+		"linkText": "Log in as a guest"
+	},
+	"components": {
+		"authBotton": "Log in with"
+	}
+}

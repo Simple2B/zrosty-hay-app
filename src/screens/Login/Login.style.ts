@@ -25,6 +25,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	},
 
 	title: {
+		textAlign: 'center',
 		fontSize: theme.size.xxl,
 		fontWeight: theme.fontWeight.bold,
 	},
