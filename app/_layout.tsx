@@ -20,7 +20,7 @@ export const unstable_settings = {
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-Constants.expoConfig?.extra?.storybookEnabled.trim() !== 'true' &&
+Constants.expoConfig?.extra?.storybookEnabled?.trim() !== 'true' &&
   SplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
@@ -52,9 +52,9 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)/index" />
+        <Stack.Screen name="(tabs)/plants" />
       </Stack>
     </ThemeProvider>
   );
@@ -62,7 +62,7 @@ function RootLayoutNav() {
 
 let AppEntryPoint = RootLayout;
 
-if (Constants.expoConfig?.extra?.storybookEnabled.trim() === 'true') {
+if (Constants.expoConfig?.extra?.storybookEnabled?.trim() === 'true') {
   AppEntryPoint = require('../.storybook').default;
 }
 

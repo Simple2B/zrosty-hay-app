@@ -55,8 +55,8 @@ try {
 const getStories = () => {
   return {
     "./.storybook/stories/Button/Button.stories.js": require("./stories/Button/Button.stories.js"),
+    "./components/buttons/AuthButton/AuthButton.stories.tsx": require("../components/buttons/AuthButton/AuthButton.stories.tsx"),
     "./components/FancyTitle/FancyTitle.stories.tsx": require("../components/FancyTitle/FancyTitle.stories.tsx"),
-    "./components/ui/AuthButton.stories.tsx": require("../components/ui/AuthButton.stories.tsx"),
   };
 };
 
