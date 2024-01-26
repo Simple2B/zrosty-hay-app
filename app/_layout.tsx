@@ -10,60 +10,59 @@ import { useColorScheme } from 'react-native';
 import { darkTheme, lightTheme } from '@src/styling/themes';
 
 export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+	// Catch any errors thrown by the Layout component.
+	ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+	// Ensure that reloading on `/modal` keeps a back button present.
+	initialRouteName: '(tabs)',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-Constants.expoConfig?.extra?.storybookEnabled?.trim() !== 'true' &&
-  SplashScreen.preventAutoHideAsync();
+Constants.expoConfig?.extra?.storybookEnabled?.trim() !== 'true' && SplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
-  const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
-  });
+	const [loaded, error] = useFonts({
+		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+		...FontAwesome.font,
+	});
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+	// Expo Router uses Error Boundaries to catch errors in the navigation tree.
+	useEffect(() => {
+		if (error) throw error;
+	}, [error]);
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+	useEffect(() => {
+		if (loaded) {
+			SplashScreen.hideAsync();
+		}
+	}, [loaded]);
 
-  if (!loaded) {
-    return null;
-  }
+	if (!loaded) {
+		return null;
+	}
 
-  return <RootLayoutNav />;
+	return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+	const colorScheme = useColorScheme();
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)/index" />
-        <Stack.Screen name="(tabs)/plants" />
-      </Stack>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
+			<Stack screenOptions={{ headerShown: false }}>
+				<Stack.Screen name='(tabs)/index' />
+				<Stack.Screen name='(tabs)/plants' />
+			</Stack>
+		</ThemeProvider>
+	);
 }
 
 let AppEntryPoint = RootLayout;
 
 if (Constants.expoConfig?.extra?.storybookEnabled?.trim() === 'true') {
-  AppEntryPoint = require('../.storybook').default;
+	AppEntryPoint = require('../.storybook').default;
 }
 
 export default AppEntryPoint;
