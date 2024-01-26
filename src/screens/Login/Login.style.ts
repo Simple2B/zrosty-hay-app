@@ -2,7 +2,6 @@ import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
 	container: {
-		position: 'relative',
 		flex: 1,
 		justifyContent: 'center',
 	},
@@ -46,6 +45,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		textAlignVertical: 'center',
 		textDecorationLine: 'underline',
 		textDecorationColor: theme.colors.notification,
+		paddingBottom: theme.size.md,
 	},
 
 	topLeaf: {
