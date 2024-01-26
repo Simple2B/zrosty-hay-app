@@ -1,10 +1,12 @@
-import { spacings } from './spacings';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { sizes } from './sizes';
+import { fontWeights } from './fontweights';
 
 export const lightTheme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
+		borderGrey: '#0000002E',
 		// These colors overrides default values from react navigation themes.
 		//  They will influence the default look of navigation-related primitives.
 		text: '#333', // The text color of various elements.
@@ -19,14 +21,15 @@ export const lightTheme = {
 		leaf: '#94C874',
 		soil: '#B4ADFF',
 	},
-	margins: spacings,
-	paddings: spacings,
+	fontWeight: fontWeights,
+	size: sizes,
 } as const;
 
 export const darkTheme = {
 	...DarkTheme,
 	colors: {
 		...DarkTheme.colors,
+		borderGrey: '#0000002E',
 		text: '#333',
 		background: '#ffffff',
 		primary: '#2F5233',
@@ -38,6 +41,6 @@ export const darkTheme = {
 		leaf: '#94C874',
 		soil: '#B4ADFF',
 	},
-	margins: spacings,
-	paddings: spacings,
+	fontWeight: fontWeights,
+	size: sizes,
 } as const;
