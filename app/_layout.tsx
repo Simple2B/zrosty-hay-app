@@ -46,14 +46,16 @@ function RootLayout() {
 	return <RootLayoutNav />;
 }
 
+const screenOptions = { headerShown: false };
+
 function RootLayoutNav() {
 	const colorScheme = useColorScheme();
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
-			<Stack screenOptions={{ headerShown: false }}>
-				<Stack.Screen name='(tabs)/index' />
-				<Stack.Screen name='(tabs)/plants' />
+			<Stack screenOptions={screenOptions}>
+				<Stack.Screen name='(screens)/index' />
+				<Stack.Screen name='(screens)/plants' />
 			</Stack>
 		</ThemeProvider>
 	);

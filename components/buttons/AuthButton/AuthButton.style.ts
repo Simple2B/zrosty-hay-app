@@ -7,7 +7,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		alignItems: 'center',
 		alignSelf: 'stretch',
 		gap: theme.size.md,
-		height: 56,
+		height: theme.size.xl + theme.size.xl + theme.size.sm,
 		borderWidth: 1,
 		borderColor: theme.colors.borderGrey,
 		borderRadius: theme.size.lg + theme.size.xxs,
