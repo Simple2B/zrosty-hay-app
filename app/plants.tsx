@@ -1,4 +1,4 @@
-import PlantsScreen from 'components/screens/Plants/Plants';
+import PlantsScreen from '@src/screens/Plants/Plants';
 
 export default function Plants() {
 	return <PlantsScreen />;

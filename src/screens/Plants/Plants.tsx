@@ -1,5 +1,5 @@
 import { useStyles } from 'react-native-unistyles';
-import { Text, View } from 'components/Themed';
+import { Text, View } from '@src/components/Themed';
 import { styleSheet } from './Plant.style';
 
 export default function PlantsScreen() {

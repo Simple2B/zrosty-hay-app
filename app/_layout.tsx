@@ -54,8 +54,8 @@ function RootLayoutNav() {
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
 			<Stack screenOptions={screenOptions}>
-				<Stack.Screen name='(screens)/index' />
-				<Stack.Screen name='(screens)/plants' />
+				<Stack.Screen name='index' />
+				<Stack.Screen name='plants' />
 			</Stack>
 		</ThemeProvider>
 	);
