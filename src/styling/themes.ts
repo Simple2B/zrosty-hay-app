@@ -1,7 +1,6 @@
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { sizes } from './sizes';
 import { fontWeights } from './fontweights';
-import { widths } from './widths';
 
 export const lightTheme = {
 	...DefaultTheme,
@@ -22,7 +21,6 @@ export const lightTheme = {
 		leaf: '#94C874',
 		soil: '#B4ADFF',
 	},
-	width: widths,
 	fontWeight: fontWeights,
 	size: sizes,
 } as const;
@@ -43,7 +41,6 @@ export const darkTheme = {
 		leaf: '#94C874',
 		soil: '#B4ADFF',
 	},
-	width: widths,
 	fontWeight: fontWeights,
 	size: sizes,
 } as const;
