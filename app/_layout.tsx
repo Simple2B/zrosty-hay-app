@@ -8,6 +8,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 import { darkTheme, lightTheme } from '@src/styling/themes';
+import '@src/i18n/i18n';
 
 export {
 	// Catch any errors thrown by the Layout component.
