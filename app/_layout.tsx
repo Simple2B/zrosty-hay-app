@@ -7,7 +7,10 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+
 import { darkTheme, lightTheme } from '@src/styling/themes';
+import { StackScreenName } from '@src/navigation/navigators.types';
+import '@src/i18n/i18n';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -16,7 +19,7 @@ export {
 
 export const unstable_settings = {
 	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: '(tabs)',
+	initialRouteName: StackScreenName.index,
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -54,8 +57,8 @@ function RootLayoutNav() {
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
 			<Stack screenOptions={screenOptions}>
-				<Stack.Screen name='(screens)/index' />
-				<Stack.Screen name='(screens)/plants' />
+				<Stack.Screen name='index' />
+				<Stack.Screen name='plants' />
 			</Stack>
 		</ThemeProvider>
 	);
