@@ -1,8 +1,11 @@
 import Svg, { Path } from 'react-native-svg';
+import { styleSheet } from './common.style';
+import { useStyles } from 'react-native-unistyles';
 
 export const SunIcon = () => {
+	const { styles } = useStyles(styleSheet);
 	return (
-		<Svg width='12' height='13' viewBox='0 0 12 13' fill='none'>
+		<Svg width={styles.smallIcon.width} height={styles.smallIcon.width} viewBox='0 0 12 13' fill='none'>
 			<Path
 				d='M5.99992 0C6.27606 0 6.49992 0.223858 6.49992 0.5V1.16667C6.49992 1.44281 6.27606 1.66667 5.99992 1.66667C5.72378 1.66667 5.49992 1.44281 5.49992 1.16667V0.5C5.49992 0.223858 5.72378 0 5.99992 0Z'
 				fill='#FED969'
