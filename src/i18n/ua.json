@@ -6,6 +6,12 @@
 		"linkText": "Увійти як гість"
 	},
 	"components": {
-		"authBotton": "Увійти з"
+		"authBotton": "Увійти з",
+		"categoryButton": {
+			"rooms": "Кімнатні",
+			"gardens": "Садові",
+			"vegetables": "Овочі",
+			"fruits": "Фрукти"
+		}
 	}
 }
