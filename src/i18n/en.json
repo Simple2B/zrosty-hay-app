@@ -6,6 +6,12 @@
 		"linkText": "Log in as a guest"
 	},
 	"components": {
-		"authBotton": "Log in with"
+		"authBotton": "Log in with",
+		"categoryButton": {
+			"rooms": "Rooms",
+			"gardens": "Gardens",
+			"vegetables": "Vegetables",
+			"fruits": "Fruits"
+		}
 	}
 }

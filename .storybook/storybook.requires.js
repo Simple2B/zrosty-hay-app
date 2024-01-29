@@ -18,10 +18,10 @@ global.STORIES = [
   },
   {
     titlePrefix: "",
-    directory: "./components",
+    directory: "./src",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:components(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -55,6 +55,8 @@ try {
 const getStories = () => {
   return {
     "./.storybook/stories/Button/Button.stories.js": require("./stories/Button/Button.stories.js"),
+    "./src/components/buttons/AuthButton/AuthButton.stories.tsx": require("../src/components/buttons/AuthButton/AuthButton.stories.tsx"),
+    "./src/components/buttons/СategoryButton/CategoryButton.stories.tsx": require("../src/components/buttons/СategoryButton/CategoryButton.stories.tsx"),
   };
 };
 
