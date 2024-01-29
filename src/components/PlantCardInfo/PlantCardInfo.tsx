@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { FunctionComponent, SVGAttributes } from 'react';
 import { Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCardInfo.style';
 import { View } from '../Themed';
-import { ICON_MAPPER } from '@src/icons/iconMap';
 
 type PlantCardInfoProps = {
 	title: string;
-	icon: 'sun' | 'plant' | 'ruler' | 'rainDrop' | 'thermometer';
+	SvgIcon: FunctionComponent<SVGAttributes<SVGElement>>;
 };
 
-export const PlantCardInfo = ({ title, icon }: PlantCardInfoProps) => {
+export const PlantCardInfo = ({ title, SvgIcon }: PlantCardInfoProps) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
 		<View style={styles.container}>
-			{ICON_MAPPER[icon]}
-			<Text style={styles.plantDesription}>{title}</Text>
+			<SvgIcon width={16} height={16} />
+			<Text style={styles.plantDescription}>{title}</Text>
 		</View>
 	);
 };

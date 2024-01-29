@@ -8,7 +8,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		alignSelf: 'stretch',
 	},
 
-	plantDesription: {
+	plantDescription: {
 		fontSize: theme.size.md,
 		lineHeight: theme.size.md + theme.size.xs,
 	},

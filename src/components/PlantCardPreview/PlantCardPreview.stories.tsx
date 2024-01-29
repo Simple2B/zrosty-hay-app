@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 
 import { PlantCardPreview } from './PlantCardPreview';
 import { View } from 'react-native';
