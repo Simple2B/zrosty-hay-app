@@ -31,13 +31,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	return (
 		<View style={styles.container}>
 			<Image
-				style={{
-					width: 142,
-					height: 170,
-					borderBottomLeftRadius: 32,
-					borderTopLeftRadius: 32,
-					objectFit: 'cover',
-				}}
+				style={styles.plantImage}
 				resizeMode='contain'
 				source={{
 					uri: photo?.urlPath || '',

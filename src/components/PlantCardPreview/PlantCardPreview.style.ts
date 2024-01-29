@@ -28,4 +28,11 @@ export const styleSheet = createStyleSheet((theme) => ({
 		flexDirection: 'column',
 		gap: theme.size.sm,
 	},
+	plantImage: {
+		width: 142,
+		height: 170,
+		borderBottomLeftRadius: 32,
+		borderTopLeftRadius: 32,
+		objectFit: 'cover',
+	},
 }));
