@@ -5,31 +5,16 @@ import { styleSheet } from './PlantCardPreview.style';
 import { View } from '../Themed';
 import { PlantCardInfo } from '../PlantCardInfo/PlantCardInfo';
 import { CARE_TYPES, WATERING_TYPES } from './PlantCardPreview.constants';
+import { Plant } from '@src/api/model/plant';
 
 type PlantCardPreviewProps = {
-	name: string;
-	isSunLoving: boolean;
-	minSize: number;
-	maxSize: number;
-	photo: string;
-	minTemperature: number;
-	maxTemperature: number;
-	careType: 'easy' | 'normal' | 'hard';
-	watering: 'easy' | 'normal' | 'hard';
+	plantInfo: Plant;
 };
 
-export const PlantCardPreview = ({
-	name,
-	isSunLoving,
-	minSize,
-	maxSize,
-	photo,
-	minTemperature,
-	maxTemperature,
-	careType,
-	watering,
-}: PlantCardPreviewProps) => {
+export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	const { styles } = useStyles(styleSheet);
+	const { careType, isSunLoving, maxSize, maxTemperature, minSize, minTemperature, name, photo, uuid, watering } =
+		plantInfo;
 
 	const isSunLovingText = isSunLoving ? 'Багато сонця' : 'Мало сонця';
 	const temperatureText = `${minTemperature} - ${maxTemperature} °C`;
@@ -50,7 +35,7 @@ export const PlantCardPreview = ({
 				}}
 				resizeMode='contain'
 				source={{
-					uri: photo,
+					uri: photo?.urlPath || '',
 				}}
 			/>
 			<View style={styles.infoBlock}>

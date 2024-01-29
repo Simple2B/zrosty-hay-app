@@ -3,6 +3,7 @@ import React from 'react';
 
 import { PlantCardPreview } from './PlantCardPreview';
 import { View } from 'react-native';
+import { CareType } from '@src/api/model';
 
 export default {
 	title: 'ui/PlantCardPreview',
@@ -20,16 +21,22 @@ export default {
 
 const Template: ComponentStory<typeof PlantCardPreview> = (args) => <PlantCardPreview {...args} />;
 
-export const Story = Template.bind({});
-Story.args = {
+const plantInfo = {
+	uuid: '1',
 	name: 'Monstera',
 	isSunLoving: true,
 	minSize: 20,
 	maxSize: 30,
-	photo:
-		'https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_Medium-Monstera-Deliciosa_Medium_Isabella_Aqua_Variant.jpg?v=1697816323',
+	photo: {
+		urlPath:
+			'https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_Medium-Monstera-Deliciosa_Medium_Isabella_Aqua_Variant.jpg?v=1697816323',
+		originalName: 'monstera.jpg',
+	},
 	minTemperature: 20,
 	maxTemperature: 30,
-	careType: 'easy',
-	watering: 'normal',
+	careType: CareType.easy,
+	watering: CareType.normal,
 };
+
+export const Story = Template.bind({});
+Story.args = { plantInfo };

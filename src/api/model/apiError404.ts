@@ -5,4 +5,6 @@
  * OpenAPI spec version: 0.1.8
  */
 
-export type BodyAPILoginGrantType = string | null;
+export interface ApiError404 {
+  detail: string;
+}

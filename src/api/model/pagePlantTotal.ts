@@ -5,4 +5,4 @@
  * OpenAPI spec version: 0.1.8
  */
 
-export type BodyAPILoginGrantType = string | null;
+export type PagePlantTotal = number | null;

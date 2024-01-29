@@ -4,5 +4,6 @@
  * FastAPI
  * OpenAPI spec version: 0.1.8
  */
+import type { Photo } from './photo';
 
-export type BodyAPILoginGrantType = string | null;
+export type PlantPhoto = Photo | null;

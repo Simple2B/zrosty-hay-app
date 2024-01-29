@@ -16,48 +16,12 @@ import {
   CareType
 } from '.././model'
 
-export const getAPIGetCurrentUserProfileMock = () => ({activated: faker.helpers.arrayElement([faker.datatype.boolean(), undefined]), email: faker.word.sample(), id: faker.number.int({min: undefined, max: undefined}), username: faker.word.sample()})
-
-export const getAPILoginMock = () => ({access_token: faker.word.sample(), token_type: faker.helpers.arrayElement([faker.word.sample(), undefined])})
-
-export const getAPIGetTokenMock = () => ({access_token: faker.word.sample(), token_type: faker.helpers.arrayElement([faker.word.sample(), undefined])})
-
 export const getAPIGetAllMock = () => ({items: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({careType: faker.helpers.arrayElement(Object.values(CareType)), isSunLoving: faker.datatype.boolean(), maxSize: faker.number.int({min: undefined, max: undefined}), maxTemperature: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}),{}]), minSize: faker.number.int({min: undefined, max: undefined}), minTemperature: faker.helpers.arrayElement([faker.number.int({min: undefined, max: undefined}),{}]), name: faker.word.sample(), photo: faker.helpers.arrayElement([{originalName: faker.helpers.arrayElement([faker.word.sample(),{}]), urlPath: faker.word.sample()},{}]), uuid: faker.word.sample(), watering: faker.helpers.arrayElement(Object.values(CareType))})), page: faker.helpers.arrayElement([faker.number.int({min: 1, max: undefined}),{}]), pages: faker.helpers.arrayElement([faker.helpers.arrayElement([faker.number.int({min: 0, max: undefined}),{}]), undefined]), size: faker.helpers.arrayElement([faker.number.int({min: 1, max: undefined}),{}]), total: faker.helpers.arrayElement([faker.number.int({min: 0, max: undefined}),{}])})
 
 export const getAPIGetMock = () => ({features: faker.word.sample(), generalInfo: faker.word.sample(), humidityPercentage: faker.number.int({min: undefined, max: undefined}), isSunLoving: faker.datatype.boolean(), maxSize: faker.number.int({min: undefined, max: undefined}), minSize: faker.number.int({min: undefined, max: undefined}), name: faker.word.sample(), photos: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({originalName: faker.helpers.arrayElement([faker.word.sample(),{}]), urlPath: faker.word.sample()})), temperatureInfo: faker.word.sample(), uuid: faker.word.sample(), wateringInfo: faker.word.sample(), waterVolume: faker.number.int({min: undefined, max: undefined})})
 
-export const getApiMock = () => [
-http.get('*/api/users/me', async () => {
-        await delay(1000);
-        return new HttpResponse(JSON.stringify(getAPIGetCurrentUserProfileMock()),
-          { 
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        )
-      }),http.post('*/api/auth/login', async () => {
-        await delay(1000);
-        return new HttpResponse(JSON.stringify(getAPILoginMock()),
-          { 
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        )
-      }),http.post('*/api/auth/token', async () => {
-        await delay(1000);
-        return new HttpResponse(JSON.stringify(getAPIGetTokenMock()),
-          { 
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        )
-      }),http.get('*/api/plants/', async () => {
+export const getPlantsMock = () => [
+http.get('*/api/plants/', async () => {
         await delay(1000);
         return new HttpResponse(JSON.stringify(getAPIGetAllMock()),
           { 
@@ -70,16 +34,6 @@ http.get('*/api/users/me', async () => {
       }),http.get('*/api/plants/:uuid', async () => {
         await delay(1000);
         return new HttpResponse(JSON.stringify(getAPIGetMock()),
-          { 
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        )
-      }),http.get('*/api/list-endpoints/', async () => {
-        await delay(1000);
-        return new HttpResponse(null,
           { 
             status: 200,
             headers: {
