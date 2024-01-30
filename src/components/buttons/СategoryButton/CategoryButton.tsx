@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-
-import { styleSheet } from './CategoryButton.style';
-import { PlantCategory } from '@src/api/model';
 import { SvgXml } from 'react-native-svg';
+
+import { PlantCategory } from '@src/api/model';
 import { sizes } from '@src/styling/sizes';
+import { styleSheet } from './CategoryButton.style';
 
 type CategoryButtonProps = {
 	category: PlantCategory;
