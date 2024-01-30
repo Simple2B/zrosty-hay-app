@@ -1,13 +1,13 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
-	container: {
+	wrapper: {
 		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
-	title: {
-		fontSize: theme.size.xxl,
-		fontWeight: theme.fontWeight.bold,
+	header: {
+		flex: 3,
+	},
+	plants: {
+		flex: 6,
 	},
 }));

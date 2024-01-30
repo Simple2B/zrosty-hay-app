@@ -2,9 +2,8 @@ import { useStyles } from 'react-native-unistyles';
 
 import { Link } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View, Text } from 'react-native';
 
-import { View, Text } from '@src/components/Themed';
 import { AuthButton } from '@src/components/buttons/AuthButton/AuthButton';
 import { AuthBtnType } from '@src/components/buttons/AuthButton/AuthButton.constans';
 import TopLeaf from '@assets/icons/topLeaf.svg';
