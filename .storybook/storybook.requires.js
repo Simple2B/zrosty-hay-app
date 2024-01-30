@@ -57,6 +57,7 @@ const getStories = () => {
     "./.storybook/stories/Button/Button.stories.js": require("./stories/Button/Button.stories.js"),
     "./src/components/buttons/AuthButton/AuthButton.stories.tsx": require("../src/components/buttons/AuthButton/AuthButton.stories.tsx"),
     "./src/components/buttons/СategoryButton/CategoryButton.stories.tsx": require("../src/components/buttons/СategoryButton/CategoryButton.stories.tsx"),
+    "./src/components/inputs/SearchInput/SearchInput.stories.tsx": require("../src/components/inputs/SearchInput/SearchInput.stories.tsx"),
   };
 };
 

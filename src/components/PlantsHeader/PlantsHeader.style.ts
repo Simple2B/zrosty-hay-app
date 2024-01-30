@@ -2,11 +2,14 @@ import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
 	wrapper: {
-		flex: 3,
-		paddingHorizontal: theme.size.lg,
+		flex: 2,
+		justifyContent: 'center',
+		alignItems: 'center',
 		gap: theme.size.md,
-		borderWidth: 3,
-		borderBottomEndRadius: theme.size.xxl,
-		borderBottomStartRadius: theme.size.xxl,
+		paddingTop: theme.size.lg,
+		paddingHorizontal: theme.size.lg,
+		paddingBottom: theme.size.lg,
+		borderBottomLeftRadius: theme.size.xxl,
+		borderBottomRightRadius: theme.size.xxl,
 	},
 }));
