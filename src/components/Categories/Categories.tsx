@@ -1,8 +1,6 @@
 import { useStyles } from 'react-native-unistyles';
 import { useTranslation } from 'react-i18next';
 
-import { sizes } from '@src/styling/sizes';
-import { PlantCategory } from '@src/api/model';
 import { styleSheet } from './Categories.style';
 import { View, Text } from '../Themed';
 
@@ -15,7 +13,7 @@ export const Categories = () => {
 
 	return (
 		<View>
-			<Text>{t('')}</Text>
+			<Text>{t('categories')}</Text>
 		</View>
 	);
 };

@@ -7,11 +7,6 @@
 	},
 	"components": {
 		"authBotton": "Увійти з",
-		"categoryButton": {
-			"rooms": "Кімнатні",
-			"garden": "Садові",
-			"vegetables": "Овочі",
-			"fruits": "Фрукти"
-		}
+		"categories": "Категорії"
 	}
 }

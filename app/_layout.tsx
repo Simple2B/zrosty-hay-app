@@ -1,16 +1,15 @@
 import '@src/styling/unistyles';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { ThemeProvider } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-import { darkTheme, lightTheme } from '@src/styling/themes';
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
+import { queryClient } from '@src/queryClient';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -45,22 +44,23 @@ function RootLayout() {
 	if (!loaded) {
 		return null;
 	}
-
-	return <RootLayoutNav />;
+	return (
+		<QueryClientProvider client={queryClient}>
+			<RootLayoutNav />;
+		</QueryClientProvider>
+	);
 }
 
 const screenOptions = { headerShown: false };
 
 function RootLayoutNav() {
-	const colorScheme = useColorScheme();
-
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? darkTheme : lightTheme}>
+		<QueryClientProvider client={queryClient}>
 			<Stack screenOptions={screenOptions}>
 				<Stack.Screen name='index' />
 				<Stack.Screen name='plants' />
 			</Stack>
-		</ThemeProvider>
+		</QueryClientProvider>
 	);
 }
 

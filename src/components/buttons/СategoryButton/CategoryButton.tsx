@@ -4,7 +4,6 @@ import { useStyles } from 'react-native-unistyles';
 import { useTranslation } from 'react-i18next';
 
 import { styleSheet } from './CategoryButton.style';
-import { sizes } from '@src/styling/sizes';
 import { PlantCategory } from '@src/api/model';
 
 type CategoryButtonProps = {
@@ -14,7 +13,6 @@ type CategoryButtonProps = {
 };
 
 export const CategoryButton = ({ category, onPress, isActive }: CategoryButtonProps) => {
-	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 
 	const handleOnPres = () => {
@@ -25,7 +23,7 @@ export const CategoryButton = ({ category, onPress, isActive }: CategoryButtonPr
 		<TouchableOpacity style={styles.wrapper(isActive)} onPress={handleOnPres}>
 			{/* <category.svgIcon width={sizes.md} height={sizes.md} /> */}
 
-			<Text style={styles.text}>{t(`components.categoryButton.${category.name}`)}</Text>
+			<Text style={styles.text}>{category.name}</Text>
 		</TouchableOpacity>
 	);
 };

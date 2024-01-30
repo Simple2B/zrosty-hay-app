@@ -7,11 +7,6 @@
 	},
 	"components": {
 		"authBotton": "Log in with",
-		"categoryButton": {
-			"rooms": "Rooms",
-			"garden": "Gardens",
-			"vegetables": "Vegetables",
-			"fruits": "Fruits"
-		}
+		"categories": "Categories"
 	}
 }
