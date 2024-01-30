@@ -1,11 +1,11 @@
 import React from 'react';
+import FastImage from 'react-native-fast-image';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCardPreview.style';
 import { PlantCardInfo } from '../PlantCardInfo/PlantCardInfo';
 import { Plant } from '@src/api/model/plant';
-import FastImage from 'react-native-fast-image';
 
 import SunIcon from '@assets/icons/plantCard/sun.svg';
 import RainDropIcon from '@assets/icons/plantCard/rainDrop.svg';
