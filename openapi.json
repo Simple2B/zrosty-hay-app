@@ -1,6 +1,6 @@
 {
 	"openapi": "3.1.0",
-	"info": { "title": "FastAPI", "version": "0.1.6" },
+	"info": { "title": "FastAPI", "version": "0.1.9" },
 	"paths": {
 		"/api/users/me": {
 			"get": {
@@ -63,6 +63,106 @@
 				}
 			}
 		},
+		"/api/plants/": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get All",
+				"description": "Returns the plants",
+				"operationId": "API-get_all",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "query",
+						"required": false,
+						"schema": { "type": "string", "maxLength": 64, "default": "", "title": "Name" }
+					},
+					{
+						"name": "category_uuids",
+						"in": "query",
+						"required": false,
+						"schema": { "type": "array", "items": { "type": "string" }, "default": [], "title": "Category Uuids" }
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"schema": { "type": "integer", "minimum": 1, "description": "Page number", "default": 1, "title": "Page" },
+						"description": "Page number"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"maximum": 100,
+							"minimum": 1,
+							"description": "Page size",
+							"default": 50,
+							"title": "Size"
+						},
+						"description": "Page size"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Page_Plant_" } } }
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+					}
+				}
+			}
+		},
+		"/api/plants/categories": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get Categories",
+				"description": "Returns the plants",
+				"operationId": "API-get_categories",
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": { "$ref": "#/components/schemas/PlantCategory" },
+									"type": "array",
+									"title": "Response Api-Get Categories"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/plants/{uuid}": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get",
+				"description": "Returns the plants",
+				"operationId": "API-get",
+				"parameters": [
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlantDetail" } } }
+					},
+					"404": {
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+					}
+				}
+			}
+		},
 		"/api/list-endpoints/": {
 			"get": {
 				"tags": ["API"],
@@ -86,6 +186,12 @@
 	},
 	"components": {
 		"schemas": {
+			"ApiError404": {
+				"properties": { "detail": { "type": "string", "title": "Detail" } },
+				"type": "object",
+				"required": ["detail"],
+				"title": "ApiError404"
+			},
 			"Auth": {
 				"properties": {
 					"username": { "type": "string", "title": "Username" },
@@ -111,12 +217,104 @@
 				"required": ["username", "password"],
 				"title": "Body_API-login"
 			},
+			"CareType": { "type": "string", "enum": ["easy", "normal", "hard"], "title": "CareType" },
 			"HTTPValidationError": {
 				"properties": {
 					"detail": { "items": { "$ref": "#/components/schemas/ValidationError" }, "type": "array", "title": "Detail" }
 				},
 				"type": "object",
 				"title": "HTTPValidationError"
+			},
+			"Page_Plant_": {
+				"properties": {
+					"items": { "items": { "$ref": "#/components/schemas/Plant" }, "type": "array", "title": "Items" },
+					"total": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Total" },
+					"page": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Page" },
+					"size": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Size" },
+					"pages": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Pages" }
+				},
+				"type": "object",
+				"required": ["items", "total", "page", "size"],
+				"title": "Page[Plant]"
+			},
+			"Photo": {
+				"properties": {
+					"urlPath": { "type": "string", "title": "Urlpath" },
+					"originalName": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Originalname" }
+				},
+				"type": "object",
+				"required": ["urlPath", "originalName"],
+				"title": "Photo"
+			},
+			"Plant": {
+				"properties": {
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
+					"minSize": { "type": "number", "title": "Minsize" },
+					"maxSize": { "type": "number", "title": "Maxsize" },
+					"photo": { "anyOf": [{ "$ref": "#/components/schemas/Photo" }, { "type": "null" }] },
+					"minTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Mintemperature" },
+					"maxTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Maxtemperature" },
+					"careType": { "$ref": "#/components/schemas/CareType" },
+					"watering": { "$ref": "#/components/schemas/CareType" }
+				},
+				"type": "object",
+				"required": [
+					"uuid",
+					"name",
+					"isSunLoving",
+					"minSize",
+					"maxSize",
+					"photo",
+					"minTemperature",
+					"maxTemperature",
+					"careType",
+					"watering"
+				],
+				"title": "Plant"
+			},
+			"PlantCategory": {
+				"properties": {
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"svgIcon": { "type": "string", "title": "Svgicon" }
+				},
+				"type": "object",
+				"required": ["uuid", "name", "svgIcon"],
+				"title": "PlantCategory"
+			},
+			"PlantDetail": {
+				"properties": {
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
+					"minSize": { "type": "number", "title": "Minsize" },
+					"maxSize": { "type": "number", "title": "Maxsize" },
+					"features": { "type": "string", "title": "Features" },
+					"generalInfo": { "type": "string", "title": "Generalinfo" },
+					"temperatureInfo": { "type": "string", "title": "Temperatureinfo" },
+					"wateringInfo": { "type": "string", "title": "Wateringinfo" },
+					"waterVolume": { "type": "number", "title": "Watervolume" },
+					"humidityPercentage": { "type": "number", "title": "Humiditypercentage" },
+					"photos": { "items": { "$ref": "#/components/schemas/Photo" }, "type": "array", "title": "Photos" }
+				},
+				"type": "object",
+				"required": [
+					"uuid",
+					"name",
+					"isSunLoving",
+					"minSize",
+					"maxSize",
+					"features",
+					"generalInfo",
+					"temperatureInfo",
+					"wateringInfo",
+					"waterVolume",
+					"humidityPercentage",
+					"photos"
+				],
+				"title": "PlantDetail"
 			},
 			"Token": {
 				"properties": {
