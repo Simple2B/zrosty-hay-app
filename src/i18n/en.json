@@ -13,19 +13,17 @@
 			"vegetables": "Vegetables",
 			"fruits": "Fruits"
 		},
-		"plantCardPreview": {
-			"isSunLoving": "Sun loving",
-			"notSunLoving": "Not sun loving",
-			"watering": {
-				"easy": "Infrequent watering",
-				"normal": "Moderate watering",
-				"hard": "Frequent watering"
-			},
-			"care": {
-				"easy": "Easy care",
-				"normal": "Normal care",
-				"hard": "Hard care"
-			}
+		"isSunLoving": "Sun loving",
+		"notSunLoving": "Not sun loving",
+		"watering": {
+			"easy": "Infrequent watering",
+			"normal": "Moderate watering",
+			"hard": "Frequent watering"
+		},
+		"care": {
+			"easy": "Easy care",
+			"normal": "Normal care",
+			"hard": "Hard care"
 		}
 	}
 }
