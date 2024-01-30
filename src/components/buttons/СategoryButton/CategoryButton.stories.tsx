@@ -28,6 +28,6 @@ const Template: ComponentStory<typeof CategoryButton> = (args) => <CategoryButto
 export const Story = Template.bind({});
 Story.args = {
 	category: Categorys.room,
-	SvgIcon: Room as React.FC<SvgProps>,
+	SvgIcon: Room,
 	onPress: (category: Categorys) => console.log(`click, ${category}`),
 };

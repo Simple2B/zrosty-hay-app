@@ -5,4 +5,6 @@
  * OpenAPI spec version: 0.1.9
  */
 
-export type BodyAPILoginClientId = string | null;
+export interface ApiError404 {
+  detail: string;
+}

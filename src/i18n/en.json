@@ -9,7 +9,7 @@
 		"authBotton": "Log in with",
 		"categoryButton": {
 			"rooms": "Rooms",
-			"gardens": "Gardens",
+			"garden": "Gardens",
 			"vegetables": "Vegetables",
 			"fruits": "Fruits"
 		}
