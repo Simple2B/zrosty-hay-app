@@ -1,8 +1,7 @@
 import React, { FunctionComponent, SVGAttributes } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCardInfo.style';
-import { View } from '../Themed';
 import { sizes } from '@src/styling/sizes';
 
 type PlantCardInfoProps = {

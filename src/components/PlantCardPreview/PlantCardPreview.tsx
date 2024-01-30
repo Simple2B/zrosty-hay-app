@@ -5,8 +5,13 @@ import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCardPreview.style';
 import { PlantCardInfo } from '../PlantCardInfo/PlantCardInfo';
 import { Plant } from '@src/api/model/plant';
-import { CardDescriptionIcons, cartDescriptionToSvg } from './PlantCardPreview.constants';
 import FastImage from 'react-native-fast-image';
+
+import SunIcon from '@assets/icons/plantCard/sun.svg';
+import RainDropIcon from '@assets/icons/plantCard/rainDrop.svg';
+import RulerIcon from '@assets/icons/plantCard/ruler.svg';
+import PlantIcon from '@assets/icons/plantCard/plant.svg';
+import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
 
 type PlantCardPreviewProps = {
 	plantInfo: Plant;
@@ -40,11 +45,11 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 
 			<View style={styles.infoBlock}>
 				<Text style={styles.plantName}>{name}</Text>
-				<PlantCardInfo title={isSunLovingText} SvgIcon={cartDescriptionToSvg[CardDescriptionIcons.sun]} />
-				<PlantCardInfo title={wateringText} SvgIcon={cartDescriptionToSvg[CardDescriptionIcons.rainDrop]} />
-				<PlantCardInfo title={temperatureText} SvgIcon={cartDescriptionToSvg[CardDescriptionIcons.thermometer]} />
-				<PlantCardInfo title={careTypeText} SvgIcon={cartDescriptionToSvg[CardDescriptionIcons.plant]} />
-				<PlantCardInfo title={sizeText} SvgIcon={cartDescriptionToSvg[CardDescriptionIcons.ruler]} />
+				<PlantCardInfo title={isSunLovingText} SvgIcon={SunIcon} />
+				<PlantCardInfo title={wateringText} SvgIcon={RainDropIcon} />
+				<PlantCardInfo title={temperatureText} SvgIcon={ThermometerIcon} />
+				<PlantCardInfo title={careTypeText} SvgIcon={PlantIcon} />
+				<PlantCardInfo title={sizeText} SvgIcon={RulerIcon} />
 			</View>
 		</TouchableOpacity>
 	);
