@@ -1,7 +1,7 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
-	container: {
+	cardWrapper: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
@@ -9,14 +9,17 @@ export const styleSheet = createStyleSheet((theme) => ({
 		heigh: 170,
 		gap: theme.size.lg + theme.size.xxs,
 		borderRadius: theme.size.xxl,
+		backgroundColor: theme.colors.background,
+		color: theme.colors.text,
 		shadowColor: theme.colors.shadow,
+
 		shadowOffset: {
-			width: 0,
-			height: 0,
+			width: theme.size.zero,
+			height: theme.size.zero,
 		},
 		shadowOpacity: 1,
-		shadowRadius: 4,
-		elevation: 2,
+		shadowRadius: theme.size.xs + theme.size.xs,
+		elevation: theme.size.xxs,
 	},
 	plantName: {
 		fontSize: theme.size.lg,
@@ -31,8 +34,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	plantImage: {
 		width: 142,
 		height: 170,
-		borderBottomLeftRadius: 32,
-		borderTopLeftRadius: 32,
-		objectFit: 'cover',
+		borderBottomLeftRadius: theme.size.xxl,
+		borderTopLeftRadius: theme.size.xxl,
 	},
 }));
