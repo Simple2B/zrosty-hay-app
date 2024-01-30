@@ -44,11 +44,7 @@ function RootLayout() {
 	if (!loaded) {
 		return null;
 	}
-	return (
-		<QueryClientProvider client={queryClient}>
-			<RootLayoutNav />;
-		</QueryClientProvider>
-	);
+	return <RootLayoutNav />;
 }
 
 const screenOptions = { headerShown: false };

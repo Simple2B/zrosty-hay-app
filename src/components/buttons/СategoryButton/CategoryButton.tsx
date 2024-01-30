@@ -1,10 +1,11 @@
-import React, { SVGAttributes, useState } from 'react';
+import React, { memo } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-import { useTranslation } from 'react-i18next';
 
 import { styleSheet } from './CategoryButton.style';
 import { PlantCategory } from '@src/api/model';
+import { SvgXml } from 'react-native-svg';
+import { sizes } from '@src/styling/sizes';
 
 type CategoryButtonProps = {
 	category: PlantCategory;
@@ -21,8 +22,7 @@ export const CategoryButton = ({ category, onPress, isActive }: CategoryButtonPr
 
 	return (
 		<TouchableOpacity style={styles.wrapper(isActive)} onPress={handleOnPres}>
-			{/* <category.svgIcon width={sizes.md} height={sizes.md} /> */}
-
+			<SvgXml xml={category.svgIcon} width={sizes.lg} height={sizes.lg} />
 			<Text style={styles.text}>{category.name}</Text>
 		</TouchableOpacity>
 	);
