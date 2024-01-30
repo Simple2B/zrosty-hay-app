@@ -6,6 +6,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 	},
 	header: {
 		flex: 3,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	plants: {
 		flex: 6,

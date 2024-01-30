@@ -1,9 +1,10 @@
 import { useStyles } from 'react-native-unistyles';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, SafeAreaView } from 'react-native';
 
 import { styleSheet } from './Plant.style';
 import { Categories } from '@src/components/Categories/Categories';
 import { useState } from 'react';
+import { PlantsHeader } from '@src/components/PlantsHeader/PlantsHeader';
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);
@@ -18,14 +19,12 @@ export default function PlantsScreen() {
 	};
 
 	return (
-		<View style={styles.wrapper}>
-			<View style={styles.header}>
-				<Text>header</Text>
-			</View>
+		<SafeAreaView style={styles.wrapper}>
+			<PlantsHeader />
 			<Categories categoryUuids={categoryUuids} handleSelectCategory={handleSelectCategory} />
 			<View style={styles.plants}>
 				<Text>plants</Text>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
