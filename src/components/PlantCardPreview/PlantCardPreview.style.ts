@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		borderRadius: theme.size.xxl,
 		backgroundColor: theme.colors.background,
 		color: theme.colors.text,
-		shadowColor: theme.colors.shadow,
+		shadowColor: theme.colors.borderGrey,
 
 		shadowOffset: {
 			width: theme.size.zero,
