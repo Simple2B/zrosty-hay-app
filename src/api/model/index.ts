@@ -24,6 +24,8 @@ export * from './photoOriginalName';
 export * from './plant';
 export * from './plantCategory';
 export * from './plantDetail';
+export * from './plantDetail';
+export * from './plantFamilyType';
 export * from './plantMaxTemperature';
 export * from './plantMinTemperature';
 export * from './plantPhoto';

@@ -44,3 +44,5 @@ build*.ipa
 build*.apk
 google-creds.json
 ```
+
+credentials.json

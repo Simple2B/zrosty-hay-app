@@ -7,6 +7,24 @@
 	},
 	"components": {
 		"authBotton": "Log in with",
+		"categoryButton": {
+			"rooms": "Rooms",
+			"gardens": "Gardens",
+			"vegetables": "Vegetables",
+			"fruits": "Fruits"
+		},
+		"isSunLoving": "Sun loving",
+		"notSunLoving": "Not sun loving",
+		"watering": {
+			"easy": "Infrequent watering",
+			"normal": "Moderate watering",
+			"hard": "Frequent watering"
+		},
+		"care": {
+			"easy": "Easy care",
+			"normal": "Normal care",
+			"hard": "Hard care"
+		},
 		"categories": "Categories"
 	}
 }

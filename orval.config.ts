@@ -2,7 +2,7 @@ import { defineConfig } from 'orval';
 
 module.exports = defineConfig({
 	base: {
-		input: 'https://api.zrosty-hay.simple2b.net/openapi.json',
+		input: './openapi.json',
 		output: {
 			baseUrl: 'https://api.zrosty-hay.simple2b.net',
 			target: './src/api/zrosty_hay.ts',
