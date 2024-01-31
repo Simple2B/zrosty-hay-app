@@ -26,5 +26,7 @@
 			"hard": "Hard care"
 		},
 		"categories": "Categories"
-	}
+	},
+	"searchPlantsTitle": "Looking for a plant?",
+	"searchPlantsPlaceholder": "Find the plant you're interested in here"
 }

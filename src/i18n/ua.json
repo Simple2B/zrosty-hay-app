@@ -27,5 +27,7 @@
 			"hard": "Важкий догляд"
 		},
 		"categories": "Категорії"
-	}
+	},
+	"searchPlantsTitle": "Шукаєш рослину?",
+	"searchPlantsPlaceholder": "Знайди рослину, яка тебе цікавить тут"
 }
