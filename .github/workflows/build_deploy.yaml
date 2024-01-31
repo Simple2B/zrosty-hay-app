@@ -67,9 +67,9 @@ jobs:
         run: yarn type-check
 
       - name: build android
-        run: eas build --platform android --local --non-interactive --output=builds/build-and-latest.aab
+        run: eas build --platform android --local --profile=production --non-interactive --output=builds/build-and-latest.aab
       - name: submit android
-        run: eas submit -p android --non-interactive --path=builds/build-and-latest.aab
+        run: eas submit -p android --non-interactive --profile=production --path=builds/build-and-latest.aab
 
   ios-build-deploy:
     name: IOS build and deploy
@@ -119,6 +119,6 @@ jobs:
         run: yarn type-check
 
       - name: build ios
-        run: eas build --platform ios --local --non-interactive --output=builds/build-ios-latest.ipa
+        run: eas build --platform ios --local --profile=production --non-interactive --output=builds/build-ios-latest.ipa
       - name: submit ios
-        run: eas submit -p ios --non-interactive --path=builds/build-ios-latest.ipa
+        run: eas submit -p ios --non-interactive --profile=production --path=builds/build-ios-latest.ipa
