@@ -10,8 +10,8 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { PlantCardPreview } from '@src/components/PlantCardPreview/PlantCardPreview';
 import { CellContainer, FlashList } from '@shopify/flash-list';
 import { Spinner } from '@src/components/Spinner/Spinner';
-import { styleSheet } from './Plant.style';
 import { Plant } from '@src/api/model';
+import { styleSheet } from './Plant.style';
 
 const ITEM_SIZE = 182;
 

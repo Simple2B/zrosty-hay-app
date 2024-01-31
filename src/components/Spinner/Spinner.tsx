@@ -1,5 +1,6 @@
 import React from 'react';
 import { Animated, Easing, View, StyleSheet } from 'react-native';
+
 import GreenSpinner from '@assets/spinners/green-spinner.svg';
 
 type SpinnerProps = {
