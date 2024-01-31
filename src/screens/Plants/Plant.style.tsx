@@ -5,12 +5,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 		flex: 1,
 		gap: theme.size.md,
 	},
-	header: {
-		flex: 2,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
 	plants: {
-		flex: 4,
+		flex: 7,
+		paddingHorizontal: 16,
 	},
 }));
