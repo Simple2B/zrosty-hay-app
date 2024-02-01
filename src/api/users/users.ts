@@ -5,11 +5,15 @@
  * OpenAPI spec version: 0.1.9
  */
 import {
+  useInfiniteQuery,
   useQuery
 } from '@tanstack/react-query'
 import type {
+  InfiniteData,
   QueryFunction,
   QueryKey,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
@@ -44,6 +48,46 @@ export const getAPIGetCurrentUserProfileQueryKey = () => {
     }
 
     
+export const getAPIGetCurrentUserProfileInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIGetCurrentUserProfileQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>> = ({ signal }) => aPIGetCurrentUserProfile({ signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type APIGetCurrentUserProfileInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>
+export type APIGetCurrentUserProfileInfiniteQueryError = AxiosError<unknown>
+
+/**
+ * @summary Get Current User Profile
+ */
+export const useAPIGetCurrentUserProfileInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIGetCurrentUserProfileInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIGetCurrentUserProfileQueryOptions = <TData = Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
