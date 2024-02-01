@@ -17,8 +17,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 			width: theme.size.zero,
 			height: theme.size.zero,
 		},
-		shadowOpacity: 1,
-		shadowRadius: theme.size.xs + theme.size.xs,
+		shadowOpacity: 0.5,
+		shadowRadius: theme.size.xs,
 		elevation: theme.size.xxs,
 	},
 	plantName: {
