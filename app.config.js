@@ -16,7 +16,7 @@ module.exports = {
 		userInterfaceStyle: 'automatic',
 		splash: {
 			image: './assets/images/splash.png',
-			resizeMode: 'contain',
+			resizeMode: 'cover',
 			backgroundColor: '#ffffff',
 		},
 		assetBundlePatterns: ['**/*'],

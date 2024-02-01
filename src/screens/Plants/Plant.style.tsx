@@ -8,7 +8,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 		paddingBottom: theme.size.sm,
 	},
 	plants: {
-		paddingHorizontal: 16,
+		paddingHorizontal: theme.size.lg,
+		paddingVertical: theme.size.lg + theme.size.xs,
 	},
 	separator: {
 		height: theme.size.md,

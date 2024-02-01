@@ -4,16 +4,8 @@
  * FastAPI
  * OpenAPI spec version: 0.1.9
  */
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import type {
-	InfiniteData,
-	QueryFunction,
-	QueryKey,
-	UseInfiniteQueryOptions,
-	UseInfiniteQueryResult,
-	UseQueryOptions,
-	UseQueryResult,
-} from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+import type { QueryFunction, QueryKey, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import type { APIGetAllParams } from '../model/aPIGetAllParams';
@@ -41,22 +33,13 @@ export const getAPIGetAllQueryKey = (params?: APIGetAllParams) => {
 	return [`https://api.zrosty-hay.simple2b.net/api/plants/`, ...(params ? [params] : [])] as const;
 };
 
-export const getAPIGetAllInfiniteQueryOptions = <
-	TData = InfiniteData<Awaited<ReturnType<typeof aPIGetAll>>, APIGetAllParams['page']>,
+export const getAPIGetAllQueryOptions = <
+	TData = Awaited<ReturnType<typeof aPIGetAll>>,
 	TError = AxiosError<HTTPValidationError>,
 >(
 	params?: APIGetAllParams,
 	options?: {
-		query?: Partial<
-			UseInfiniteQueryOptions<
-				Awaited<ReturnType<typeof aPIGetAll>>,
-				TError,
-				TData,
-				Awaited<ReturnType<typeof aPIGetAll>>,
-				QueryKey,
-				APIGetAllParams['page']
-			>
-		>;
+		query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetAll>>, TError, TData>>;
 		axios?: AxiosRequestConfig;
 	},
 ) => {
@@ -171,11 +154,11 @@ export const getAPIGetCategoriesQueryKey = () => {
 	return [`https://api.zrosty-hay.simple2b.net/api/plants/categories`] as const;
 };
 
-export const getAPIGetCategoriesInfiniteQueryOptions = <
-	TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCategories>>>,
+export const getAPIGetCategoriesQueryOptions = <
+	TData = Awaited<ReturnType<typeof aPIGetCategories>>,
 	TError = AxiosError<unknown>,
 >(options?: {
-	query?: Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData>>;
+	query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData>>;
 	axios?: AxiosRequestConfig;
 }) => {
 	const { query: queryOptions, axios: axiosOptions } = options ?? {};
@@ -269,13 +252,13 @@ export const getAPIGetQueryKey = (uuid: string) => {
 	return [`https://api.zrosty-hay.simple2b.net/api/plants/${uuid}`] as const;
 };
 
-export const getAPIGetInfiniteQueryOptions = <
-	TData = InfiniteData<Awaited<ReturnType<typeof aPIGet>>>,
+export const getAPIGetQueryOptions = <
+	TData = Awaited<ReturnType<typeof aPIGet>>,
 	TError = AxiosError<ApiError404 | HTTPValidationError>,
 >(
 	uuid: string,
 	options?: {
-		query?: Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData>>;
+		query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData>>;
 		axios?: AxiosRequestConfig;
 	},
 ) => {
