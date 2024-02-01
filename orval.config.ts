@@ -10,6 +10,13 @@ module.exports = defineConfig({
 			mode: 'tags-split',
 			schemas: 'src/api/model',
 			mock: true,
+			override: {
+				query: {
+					useQuery: true,
+					useInfinite: true,
+					useInfiniteQueryParam: 'page',
+				},
+			},
 		},
 	},
 });

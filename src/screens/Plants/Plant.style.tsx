@@ -6,7 +6,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 		gap: theme.size.md,
 	},
 	plants: {
-		paddingHorizontal: 16,
+		paddingHorizontal: theme.size.lg,
+		paddingVertical: theme.size.lg + theme.size.xs,
 	},
 	separator: {
 		height: theme.size.md,
