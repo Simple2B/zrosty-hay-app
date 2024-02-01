@@ -4,6 +4,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 	wrapper: {
 		flex: 1,
 		gap: theme.size.md,
+		paddingTop: theme.size.sm,
+		paddingBottom: theme.size.sm,
 	},
 	plants: {
 		paddingHorizontal: 16,

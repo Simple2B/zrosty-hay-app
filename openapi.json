@@ -1,6 +1,9 @@
 {
 	"openapi": "3.1.0",
-	"info": { "title": "FastAPI", "version": "0.1.9" },
+	"info": {
+		"title": "FastAPI",
+		"version": "0.1.9"
+	},
 	"paths": {
 		"/api/users/me": {
 			"get": {
@@ -11,10 +14,20 @@
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
 					}
 				},
-				"security": [{ "OAuth2PasswordBearer": [] }]
+				"security": [
+					{
+						"OAuth2PasswordBearer": []
+					}
+				]
 			}
 		},
 		"/api/auth/login": {
@@ -25,18 +38,34 @@
 				"operationId": "API-login",
 				"requestBody": {
 					"content": {
-						"application/x-www-form-urlencoded": { "schema": { "$ref": "#/components/schemas/Body_API-login" } }
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/Body_API-login"
+							}
+						}
 					},
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Token"
+								}
+							}
+						}
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -48,17 +77,35 @@
 				"description": "Logs in a user",
 				"operationId": "API-get_token",
 				"requestBody": {
-					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Auth" } } },
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Auth"
+							}
+						}
+					},
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Token"
+								}
+							}
+						}
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -74,19 +121,37 @@
 						"name": "name",
 						"in": "query",
 						"required": false,
-						"schema": { "type": "string", "maxLength": 64, "default": "", "title": "Name" }
+						"schema": {
+							"type": "string",
+							"maxLength": 64,
+							"default": "",
+							"title": "Name"
+						}
 					},
 					{
 						"name": "category_uuids",
 						"in": "query",
 						"required": false,
-						"schema": { "type": "array", "items": { "type": "string" }, "default": [], "title": "Category Uuids" }
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							},
+							"default": [],
+							"title": "Category Uuids"
+						}
 					},
 					{
 						"name": "page",
 						"in": "query",
 						"required": false,
-						"schema": { "type": "integer", "minimum": 1, "description": "Page number", "default": 1, "title": "Page" },
+						"schema": {
+							"type": "integer",
+							"minimum": 1,
+							"description": "Page number",
+							"default": 1,
+							"title": "Page"
+						},
 						"description": "Page number"
 					},
 					{
@@ -107,11 +172,23 @@
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Page_Plant_" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Page_Plant_"
+								}
+							}
+						}
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -128,7 +205,9 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": { "$ref": "#/components/schemas/PlantCategory" },
+									"items": {
+										"$ref": "#/components/schemas/PlantCategory"
+									},
 									"type": "array",
 									"title": "Response Api-Get Categories"
 								}
@@ -145,20 +224,46 @@
 				"description": "Returns the plants",
 				"operationId": "API-get",
 				"parameters": [
-					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					}
 				],
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlantDetail" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PlantDetail"
+								}
+							}
+						}
 					},
 					"404": {
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
 					}
 				}
 			}
@@ -169,7 +274,14 @@
 				"summary": "List Endpoints",
 				"operationId": "API-list_endpoints",
 				"responses": {
-					"200": { "description": "Successful Response", "content": { "application/json": { "schema": {} } } }
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
 				}
 			}
 		},
@@ -179,7 +291,14 @@
 				"summary": "Root",
 				"operationId": "root-root",
 				"responses": {
-					"200": { "description": "Successful Response", "content": { "application/json": { "schema": {} } } }
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -187,15 +306,26 @@
 	"components": {
 		"schemas": {
 			"ApiError404": {
-				"properties": { "detail": { "type": "string", "title": "Detail" } },
+				"properties": {
+					"detail": {
+						"type": "string",
+						"title": "Detail"
+					}
+				},
 				"type": "object",
 				"required": ["detail"],
 				"title": "ApiError404"
 			},
 			"Auth": {
 				"properties": {
-					"username": { "type": "string", "title": "Username" },
-					"password": { "type": "string", "title": "Password" }
+					"username": {
+						"type": "string",
+						"title": "Username"
+					},
+					"password": {
+						"type": "string",
+						"title": "Password"
+					}
 				},
 				"type": "object",
 				"required": ["username", "password"],
@@ -204,34 +334,132 @@
 			"Body_API-login": {
 				"properties": {
 					"grant_type": {
-						"anyOf": [{ "type": "string", "pattern": "password" }, { "type": "null" }],
+						"anyOf": [
+							{
+								"type": "string",
+								"pattern": "password"
+							},
+							{
+								"type": "null"
+							}
+						],
 						"title": "Grant Type"
 					},
-					"username": { "type": "string", "title": "Username" },
-					"password": { "type": "string", "title": "Password" },
-					"scope": { "type": "string", "title": "Scope", "default": "" },
-					"client_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Id" },
-					"client_secret": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Secret" }
+					"username": {
+						"type": "string",
+						"title": "Username"
+					},
+					"password": {
+						"type": "string",
+						"title": "Password"
+					},
+					"scope": {
+						"type": "string",
+						"title": "Scope",
+						"default": ""
+					},
+					"client_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Client Id"
+					},
+					"client_secret": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Client Secret"
+					}
 				},
 				"type": "object",
 				"required": ["username", "password"],
 				"title": "Body_API-login"
 			},
-			"CareType": { "type": "string", "enum": ["easy", "normal", "hard"], "title": "CareType" },
+			"CareType": {
+				"type": "string",
+				"enum": ["easy", "normal", "hard"],
+				"title": "CareType"
+			},
 			"HTTPValidationError": {
 				"properties": {
-					"detail": { "items": { "$ref": "#/components/schemas/ValidationError" }, "type": "array", "title": "Detail" }
+					"detail": {
+						"items": {
+							"$ref": "#/components/schemas/ValidationError"
+						},
+						"type": "array",
+						"title": "Detail"
+					}
 				},
 				"type": "object",
 				"title": "HTTPValidationError"
 			},
 			"Page_Plant_": {
 				"properties": {
-					"items": { "items": { "$ref": "#/components/schemas/Plant" }, "type": "array", "title": "Items" },
-					"total": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Total" },
-					"page": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Page" },
-					"size": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Size" },
-					"pages": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Pages" }
+					"items": {
+						"items": {
+							"$ref": "#/components/schemas/Plant"
+						},
+						"type": "array",
+						"title": "Items"
+					},
+					"total": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 0.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Total"
+					},
+					"page": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 1.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Page"
+					},
+					"size": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 1.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Size"
+					},
+					"pages": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 0.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Pages"
+					}
 				},
 				"type": "object",
 				"required": ["items", "total", "page", "size"],
@@ -239,8 +467,21 @@
 			},
 			"Photo": {
 				"properties": {
-					"urlPath": { "type": "string", "title": "Urlpath" },
-					"originalName": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Originalname" }
+					"urlPath": {
+						"type": "string",
+						"title": "Urlpath"
+					},
+					"originalName": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Originalname"
+					}
 				},
 				"type": "object",
 				"required": ["urlPath", "originalName"],
@@ -248,16 +489,64 @@
 			},
 			"Plant": {
 				"properties": {
-					"uuid": { "type": "string", "title": "Uuid" },
-					"name": { "type": "string", "title": "Name" },
-					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
-					"minSize": { "type": "number", "title": "Minsize" },
-					"maxSize": { "type": "number", "title": "Maxsize" },
-					"photo": { "anyOf": [{ "$ref": "#/components/schemas/Photo" }, { "type": "null" }] },
-					"minTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Mintemperature" },
-					"maxTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Maxtemperature" },
-					"careType": { "$ref": "#/components/schemas/CareType" },
-					"watering": { "$ref": "#/components/schemas/CareType" }
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"isSunLoving": {
+						"type": "boolean",
+						"title": "Issunloving"
+					},
+					"minSize": {
+						"type": "number",
+						"title": "Minsize"
+					},
+					"maxSize": {
+						"type": "number",
+						"title": "Maxsize"
+					},
+					"photo": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Photo"
+							},
+							{
+								"type": "null"
+							}
+						]
+					},
+					"minTemperature": {
+						"anyOf": [
+							{
+								"type": "number"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Mintemperature"
+					},
+					"maxTemperature": {
+						"anyOf": [
+							{
+								"type": "number"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Maxtemperature"
+					},
+					"careType": {
+						"$ref": "#/components/schemas/CareType"
+					},
+					"watering": {
+						"$ref": "#/components/schemas/CareType"
+					}
 				},
 				"type": "object",
 				"required": [
@@ -276,9 +565,18 @@
 			},
 			"PlantCategory": {
 				"properties": {
-					"uuid": { "type": "string", "title": "Uuid" },
-					"name": { "type": "string", "title": "Name" },
-					"svgIcon": { "type": "string", "title": "Svgicon" }
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"svgIcon": {
+						"type": "string",
+						"title": "Svgicon"
+					}
 				},
 				"type": "object",
 				"required": ["uuid", "name", "svgIcon"],
@@ -286,18 +584,57 @@
 			},
 			"PlantDetail": {
 				"properties": {
-					"uuid": { "type": "string", "title": "Uuid" },
-					"name": { "type": "string", "title": "Name" },
-					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
-					"minSize": { "type": "number", "title": "Minsize" },
-					"maxSize": { "type": "number", "title": "Maxsize" },
-					"features": { "type": "string", "title": "Features" },
-					"generalInfo": { "type": "string", "title": "Generalinfo" },
-					"temperatureInfo": { "type": "string", "title": "Temperatureinfo" },
-					"wateringInfo": { "type": "string", "title": "Wateringinfo" },
-					"waterVolume": { "type": "number", "title": "Watervolume" },
-					"humidityPercentage": { "type": "number", "title": "Humiditypercentage" },
-					"photos": { "items": { "$ref": "#/components/schemas/Photo" }, "type": "array", "title": "Photos" }
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"isSunLoving": {
+						"type": "boolean",
+						"title": "Issunloving"
+					},
+					"minSize": {
+						"type": "number",
+						"title": "Minsize"
+					},
+					"maxSize": {
+						"type": "number",
+						"title": "Maxsize"
+					},
+					"features": {
+						"type": "string",
+						"title": "Features"
+					},
+					"generalInfo": {
+						"type": "string",
+						"title": "Generalinfo"
+					},
+					"temperatureInfo": {
+						"type": "string",
+						"title": "Temperatureinfo"
+					},
+					"wateringInfo": {
+						"type": "string",
+						"title": "Wateringinfo"
+					},
+					"waterVolume": {
+						"type": "number",
+						"title": "Watervolume"
+					},
+					"humidityPercentage": {
+						"type": "number",
+						"title": "Humiditypercentage"
+					},
+					"photos": {
+						"items": {
+							"$ref": "#/components/schemas/Photo"
+						},
+						"type": "array",
+						"title": "Photos"
+					}
 				},
 				"type": "object",
 				"required": [
@@ -318,8 +655,15 @@
 			},
 			"Token": {
 				"properties": {
-					"access_token": { "type": "string", "title": "Access Token" },
-					"token_type": { "type": "string", "title": "Token Type", "default": "bearer" }
+					"access_token": {
+						"type": "string",
+						"title": "Access Token"
+					},
+					"token_type": {
+						"type": "string",
+						"title": "Token Type",
+						"default": "bearer"
+					}
 				},
 				"type": "object",
 				"required": ["access_token"],
@@ -327,10 +671,23 @@
 			},
 			"User": {
 				"properties": {
-					"id": { "type": "integer", "title": "Id" },
-					"username": { "type": "string", "title": "Username" },
-					"email": { "type": "string", "title": "Email" },
-					"activated": { "type": "boolean", "title": "Activated", "default": true }
+					"id": {
+						"type": "integer",
+						"title": "Id"
+					},
+					"username": {
+						"type": "string",
+						"title": "Username"
+					},
+					"email": {
+						"type": "string",
+						"title": "Email"
+					},
+					"activated": {
+						"type": "boolean",
+						"title": "Activated",
+						"default": true
+					}
 				},
 				"type": "object",
 				"required": ["id", "username", "email"],
@@ -339,12 +696,27 @@
 			"ValidationError": {
 				"properties": {
 					"loc": {
-						"items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+						"items": {
+							"anyOf": [
+								{
+									"type": "string"
+								},
+								{
+									"type": "integer"
+								}
+							]
+						},
 						"type": "array",
 						"title": "Location"
 					},
-					"msg": { "type": "string", "title": "Message" },
-					"type": { "type": "string", "title": "Error Type" }
+					"msg": {
+						"type": "string",
+						"title": "Message"
+					},
+					"type": {
+						"type": "string",
+						"title": "Error Type"
+					}
 				},
 				"type": "object",
 				"required": ["loc", "msg", "type"],
@@ -354,7 +726,12 @@
 		"securitySchemes": {
 			"OAuth2PasswordBearer": {
 				"type": "oauth2",
-				"flows": { "password": { "scopes": {}, "tokenUrl": "/api/auth/login" } }
+				"flows": {
+					"password": {
+						"scopes": {},
+						"tokenUrl": "/api/auth/login"
+					}
+				}
 			}
 		}
 	}
