@@ -5,13 +5,17 @@
  * OpenAPI spec version: 0.1.9
  */
 import {
+  useInfiniteQuery,
   useMutation,
   useQuery
 } from '@tanstack/react-query'
 import type {
+  InfiniteData,
   MutationFunction,
   QueryFunction,
   QueryKey,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseMutationOptions,
   UseQueryOptions,
   UseQueryResult
@@ -74,6 +78,46 @@ export const getAPIGetCurrentUserProfileQueryKey = () => {
     }
 
     
+export const getAPIGetCurrentUserProfileInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIGetCurrentUserProfileQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>> = ({ signal }) => aPIGetCurrentUserProfile({ signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type APIGetCurrentUserProfileInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>
+export type APIGetCurrentUserProfileInfiniteQueryError = AxiosError<unknown>
+
+/**
+ * @summary Get Current User Profile
+ */
+export const useAPIGetCurrentUserProfileInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIGetCurrentUserProfileInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIGetCurrentUserProfileQueryOptions = <TData = Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetCurrentUserProfile>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
@@ -250,6 +294,46 @@ export const getAPIGetAllQueryKey = (params?: APIGetAllParams,) => {
     }
 
     
+export const getAPIGetAllInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetAll>>, APIGetAllParams['page']>, TError = AxiosError<HTTPValidationError>>(params?: APIGetAllParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetAll>>, TError, TData, Awaited<ReturnType<typeof aPIGetAll>>, QueryKey, APIGetAllParams['page']>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIGetAllQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIGetAll>>, QueryKey, APIGetAllParams['page']> = ({ signal, pageParam }) => aPIGetAll({...params, page: pageParam || params?.['page']}, { signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetAll>>, TError, TData, Awaited<ReturnType<typeof aPIGetAll>>, QueryKey, APIGetAllParams['page']> & { queryKey: QueryKey }
+}
+
+export type APIGetAllInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIGetAll>>>
+export type APIGetAllInfiniteQueryError = AxiosError<HTTPValidationError>
+
+/**
+ * @summary Get All
+ */
+export const useAPIGetAllInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetAll>>, APIGetAllParams['page']>, TError = AxiosError<HTTPValidationError>>(
+ params?: APIGetAllParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetAll>>, TError, TData, Awaited<ReturnType<typeof aPIGetAll>>, QueryKey, APIGetAllParams['page']>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIGetAllInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIGetAllQueryOptions = <TData = Awaited<ReturnType<typeof aPIGetAll>>, TError = AxiosError<HTTPValidationError>>(params?: APIGetAllParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetAll>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
@@ -309,6 +393,46 @@ export const getAPIGetCategoriesQueryKey = () => {
     }
 
     
+export const getAPIGetCategoriesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCategories>>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIGetCategoriesQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIGetCategories>>> = ({ signal }) => aPIGetCategories({ signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type APIGetCategoriesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIGetCategories>>>
+export type APIGetCategoriesInfiniteQueryError = AxiosError<unknown>
+
+/**
+ * @summary Get Categories
+ */
+export const useAPIGetCategoriesInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGetCategories>>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIGetCategoriesInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIGetCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof aPIGetCategories>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGetCategories>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
@@ -368,6 +492,46 @@ export const getAPIGetQueryKey = (uuid: string,) => {
     }
 
     
+export const getAPIGetInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGet>>>, TError = AxiosError<ApiError404 | HTTPValidationError>>(uuid: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIGetQueryKey(uuid);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIGet>>> = ({ signal }) => aPIGet(uuid, { signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(uuid), ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type APIGetInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIGet>>>
+export type APIGetInfiniteQueryError = AxiosError<ApiError404 | HTTPValidationError>
+
+/**
+ * @summary Get
+ */
+export const useAPIGetInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIGet>>>, TError = AxiosError<ApiError404 | HTTPValidationError>>(
+ uuid: string, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIGetInfiniteQueryOptions(uuid,options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIGetQueryOptions = <TData = Awaited<ReturnType<typeof aPIGet>>, TError = AxiosError<ApiError404 | HTTPValidationError>>(uuid: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIGet>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
@@ -426,6 +590,46 @@ export const getAPIListEndpointsQueryKey = () => {
     }
 
     
+export const getAPIListEndpointsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof aPIListEndpoints>>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIListEndpoints>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAPIListEndpointsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof aPIListEndpoints>>> = ({ signal }) => aPIListEndpoints({ signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIListEndpoints>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type APIListEndpointsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof aPIListEndpoints>>>
+export type APIListEndpointsInfiniteQueryError = AxiosError<unknown>
+
+/**
+ * @summary List Endpoints
+ */
+export const useAPIListEndpointsInfinite = <TData = InfiniteData<Awaited<ReturnType<typeof aPIListEndpoints>>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof aPIListEndpoints>>, TError, TData>>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getAPIListEndpointsInfiniteQueryOptions(options)
+
+  const query = useInfiniteQuery(queryOptions) as  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
 export const getAPIListEndpointsQueryOptions = <TData = Awaited<ReturnType<typeof aPIListEndpoints>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof aPIListEndpoints>>, TError, TData>>, axios?: AxiosRequestConfig}
 ) => {
 
