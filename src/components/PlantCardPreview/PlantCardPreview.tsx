@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import FastImage from 'react-native-fast-image';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -33,19 +33,20 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	const sizeText = `${minSize} - ${maxSize} cm`;
 	const wateringText = t(`components.watering.${watering}`);
 
-	const getPlantImagePlaceholder = () => {
+	const getPlantImagePlaceholder = useMemo(() => {
 		const placeholderImages = [placeholderImage1, placeholderImage2, placeholderImage3];
 		const randomPlaceholderImage = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
 		const imageSource = photo?.urlPath || randomPlaceholderImage;
-		return Image.resolveAssetSource(imageSource).uri;
-	};
+		const resolvedSource = Image.resolveAssetSource(imageSource);
+		return resolvedSource ? resolvedSource.uri : undefined;
+	}, [photo]);
 
 	return (
 		<TouchableOpacity style={styles.cardWrapper}>
 			<FastImage
 				style={styles.plantImage}
 				source={{
-					uri: photo?.urlPath || getPlantImagePlaceholder(),
+					uri: photo?.urlPath || getPlantImagePlaceholder,
 
 					priority: FastImage.priority.normal,
 				}}
