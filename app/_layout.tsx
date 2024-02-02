@@ -6,14 +6,11 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
 
-import { ThemeProvider } from '@react-navigation/native';
 import { queryClient } from '../src/queryClient';
-import { useColorScheme } from 'react-native';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -54,8 +51,6 @@ function RootLayout() {
 const screenOptions = { headerShown: false };
 
 function RootLayoutNav() {
-	const colorScheme = useColorScheme();
-	// const { styles } = useStyles(styleSheet);
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Stack screenOptions={screenOptions}>
@@ -73,12 +68,3 @@ if (Constants.expoConfig?.extra?.storybookEnabled?.trim() === 'true') {
 }
 
 export default AppEntryPoint;
-
-// export const styleSheet = createStyleSheet((theme) => ({
-// 	lightColors: theme.colors.background,
-// 		color: theme.colors.background,
-// 	},
-// 	darkColors: {
-// 		color: theme.colors.background,
-// 	},
-// }));
