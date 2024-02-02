@@ -48,7 +48,7 @@ function RootLayout() {
 	return <RootLayoutNav />;
 }
 
-const screenOptions = { headerShown: false };
+const screenOptions = { headerShown: true };
 
 function RootLayoutNav() {
 	return (
@@ -56,7 +56,7 @@ function RootLayoutNav() {
 			<Stack screenOptions={screenOptions}>
 				<Stack.Screen name='index' />
 				<Stack.Screen name='plants/index' />
-				{/* <Stack.Screen name='plants/index/(tabs)' /> */}
+				<Stack.Screen name='plants/[uuid]' />
 			</Stack>
 		</QueryClientProvider>
 	);

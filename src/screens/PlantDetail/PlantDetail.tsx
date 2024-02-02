@@ -8,9 +8,12 @@ import { useAPIGet } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { NotFound } from '@src/components/NotFound/NotFound';
+import { PlantDetailTab } from '@src/components/PlantDetailTab/PlantDetailTab';
+import { useTranslation } from 'react-i18next';
 
 export default function PlantDetailScreen() {
 	const { styles } = useStyles(styleSheet);
+	const { t } = useTranslation();
 	const { uuid } = useLocalSearchParams<{ uuid: string }>();
 
 	const { data, isLoading, isError } = useAPIGet(uuid, {
@@ -31,7 +34,17 @@ export default function PlantDetailScreen() {
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<Text>{data?.data.name}</Text>
+			<PlantDetailTab
+				screenOptions={{
+					tabBarActiveTintColor: '#e91e63',
+					tabBarLabelStyle: { fontSize: 12 },
+					tabBarStyle: { backgroundColor: 'powderblue' },
+				}}
+			>
+				<PlantDetailTab.Screen name='index' options={{ title: t('descriptionTab') }} />
+				<PlantDetailTab.Screen name='care' options={{ title: t('careTab') }} />
+				<PlantDetailTab.Screen name='recipes' options={{ title: t('recipesTab') }} />
+			</PlantDetailTab>
 		</SafeAreaView>
 	);
 }
