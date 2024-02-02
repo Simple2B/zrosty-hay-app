@@ -23,6 +23,7 @@ export default function PlantsScreen() {
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useAPIGetAllInfinite(
 		{
 			size: PAGINATION_SIZE,
+			name: searchInput,
 			category_uuids: categoryUuids,
 		},
 		{
