@@ -48,7 +48,7 @@ function RootLayout() {
 	return <RootLayoutNav />;
 }
 
-const screenOptions = { headerShown: true };
+const screenOptions = { headerShown: false };
 
 function RootLayoutNav() {
 	return (

@@ -30,21 +30,9 @@ export default function PlantDetailScreen() {
 		return <NotFound />;
 	}
 
-	console.log(data, 'data');
-
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<PlantDetailTab
-				screenOptions={{
-					tabBarActiveTintColor: '#e91e63',
-					tabBarLabelStyle: { fontSize: 12 },
-					tabBarStyle: { backgroundColor: 'powderblue' },
-				}}
-			>
-				<PlantDetailTab.Screen name='index' options={{ title: t('descriptionTab') }} />
-				<PlantDetailTab.Screen name='care' options={{ title: t('careTab') }} />
-				<PlantDetailTab.Screen name='recipes' options={{ title: t('recipesTab') }} />
-			</PlantDetailTab>
+			<Text>Description</Text>
 		</SafeAreaView>
 	);
 }
