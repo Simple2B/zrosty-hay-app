@@ -9,7 +9,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
-import { queryClient } from '@src/queryClient';
+
+import { queryClient } from '../src/queryClient';
 
 export {
 	// Catch any errors thrown by the Layout component.
