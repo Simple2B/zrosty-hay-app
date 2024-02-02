@@ -16,7 +16,6 @@ import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
 import placeholderImage1 from '@assets/images/plantCardPlaceholder/plant1.jpg';
 import placeholderImage2 from '@assets/images/plantCardPlaceholder/plant2.jpg';
 import placeholderImage3 from 'assets/images/plantCardPlaceholder/plant3.jpg';
-import { Link } from 'expo-router';
 
 type PlantCardPreviewProps = {
 	plantInfo: Plant;
