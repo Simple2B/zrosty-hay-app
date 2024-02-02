@@ -1,50 +1,43 @@
+import { useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { View, SafeAreaView } from 'react-native';
-import { useState } from 'react';
-import { useInfiniteQuery } from 'react-query';
+import { FlashList } from '@shopify/flash-list';
 
 import { Categories } from '@src/components/Categories/Categories';
 import { PlantsHeader } from '@src/components/PlantsHeader/PlantsHeader';
-import { useAPIGetAll, aPIGetAll } from '@src/api/plants/plants';
+import { useAPIGetAllInfinite } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
-import { PlantCardPreview } from '@src/components/PlantCardPreview/PlantCardPreview';
-import { CellContainer, FlashList } from '@shopify/flash-list';
 import { Spinner } from '@src/components/Spinner/Spinner';
-import { Plant } from '@src/api/model';
 import { styleSheet } from './Plant.style';
+import { renderItemPlantCardPreview, renderItemSeparator, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
 
 const ITEM_SIZE = 182;
+const PAGINATION_SIZE = 4;
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);
+	// TODO update search
+	const [searchInput, setSearchInput] = useState<string>('');
 	const [categoryUuids, setCategoryUuids] = useState<string[]>([]);
-	const { data, isLoading } = useAPIGetAll(
+
+	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useAPIGetAllInfinite(
 		{
-			name: '',
+			size: PAGINATION_SIZE,
+			name: searchInput,
 			category_uuids: categoryUuids,
 		},
 		{
 			query: {
-				queryKey: [queryKeys.GET_PLANTS],
+				queryKey: [queryKeys.GET_PLANTS, searchInput, categoryUuids],
+				getNextPageParam: getNextPlantPage,
+			},
+			axios: {
+				paramsSerializer: {
+					indexes: null,
+				},
 			},
 		},
 	);
-	// TODO finish it
-	// const { data, fetchNextPage, isLoading } = useInfiniteQuery(
-	// 	[
-	// 		queryKeys.GET_PLANTS,
-	// 		// name: name,
-	// 		// category_uuids: category_uuids,
-	// 	],
-	// 	async ({ pageParam = 1 }) => {
-	// 		const res = await aPIGetAll();
-	// 		return res.data;
-	// 	},
-	// 	{
-	// 		getPreviousPageParam: (firstPage) => firstPage.page - 1 ?? undefined,
-	// 		getNextPageParam: (lastPage) => lastPage.page + 1 ?? undefined,
-	// 	},
-	// );
 
 	const handleSelectCategory = (uuid: string) => {
 		if (categoryUuids.includes(uuid)) {
@@ -52,34 +45,41 @@ export default function PlantsScreen() {
 		} else {
 			setCategoryUuids([...categoryUuids, uuid]);
 		}
-		// queryClient.invalidateQueries({ queryKey: [queryKeys.GET_PLANTS] });
 	};
 
-	const plants = data?.data.items ?? [];
-	// const orders = data?.pages.flatMap((page) => page.items) || [];
-	// console.log(plants);
+	const plants = data?.pages.flatMap((queryData) => queryData.data.items);
 
-	// console.log(isLoading, plants.length);
+	const onEndReached = () => {
+		if (!hasNextPage) return;
+		fetchNextPage();
+	};
 
-	const getKeyExtractor = (item: Plant) => item.uuid;
+	const renderLoader = () => {
+		return isFetchingNextPage ? (
+			<View style={styles.loader}>
+				<Spinner size={24} />
+			</View>
+		) : null;
+	};
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<PlantsHeader />
+			<PlantsHeader value={searchInput} onChangeText={setSearchInput} />
 			<Categories categoryUuids={categoryUuids} handleSelectCategory={handleSelectCategory} />
-
-			{isLoading ? (
-				<Spinner size={64} />
-			) : (
+			{isLoading && <Spinner size={64} />}
+			{!!plants && (
 				<FlashList
-					refreshing={isLoading}
-					keyExtractor={getKeyExtractor}
-					contentContainerStyle={styles.plants}
-					showsVerticalScrollIndicator={false}
-					ItemSeparatorComponent={() => <View style={styles.separator} />}
+					refreshing={isFetchingNextPage}
 					data={plants}
+					onEndReachedThreshold={0.1}
+					contentContainerStyle={styles.plants}
 					estimatedItemSize={ITEM_SIZE}
-					renderItem={({ item }) => <PlantCardPreview plantInfo={item} />}
+					showsVerticalScrollIndicator={false}
+					keyExtractor={getKeyExtractor}
+					onEndReached={onEndReached}
+					ListFooterComponent={renderLoader}
+					ItemSeparatorComponent={renderItemSeparator}
+					renderItem={renderItemPlantCardPreview}
 				/>
 			)}
 		</SafeAreaView>
