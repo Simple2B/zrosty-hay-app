@@ -55,7 +55,7 @@ function RootLayoutNav() {
 		<QueryClientProvider client={queryClient}>
 			<Stack screenOptions={screenOptions}>
 				<Stack.Screen name='index' />
-				<Stack.Screen name='plants' />
+				<Stack.Screen name='plants/index' />
 			</Stack>
 		</QueryClientProvider>
 	);
