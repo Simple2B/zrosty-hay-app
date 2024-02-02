@@ -11,6 +11,11 @@ export const styleSheet = createStyleSheet((theme) => ({
 		paddingHorizontal: theme.size.lg,
 		paddingVertical: theme.size.lg + theme.size.xs,
 	},
+	loader: {
+		paddingTop: theme.size.md,
+		paddingBottom: theme.size.md,
+		paddingHorizontal: theme.size.md,
+	},
 	separator: {
 		height: theme.size.md,
 	},
