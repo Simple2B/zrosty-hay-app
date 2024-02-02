@@ -7,7 +7,6 @@ import { useStyles } from 'react-native-unistyles';
 
 import { styleSheet } from './PlantPhotoSwiper.style';
 import { PlantPhoto } from '@src/api/model/plantPhoto';
-import { commonColors } from '@src/styling/commonColors';
 
 type PlantPhotoSwiperProps = {
 	plantPhotos: PlantPhoto[];
@@ -20,7 +19,7 @@ export const PlantPhotoSwiper = ({ plantPhotos }: PlantPhotoSwiperProps) => {
 
 	return (
 		<View style={styles.wrapper}>
-			<Swiper loop activeDotColor={commonColors.white} width={width}>
+			<Swiper loop activeDotColor={styles.activeDot.backgroundColor} width={width}>
 				{plantPhotos.map((photo) => (
 					<FastImage
 						key={photo?.urlPath}

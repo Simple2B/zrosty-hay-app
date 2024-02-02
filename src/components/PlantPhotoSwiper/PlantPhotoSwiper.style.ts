@@ -9,4 +9,7 @@ export const styleSheet = createStyleSheet(() => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	activeDot: {
+		backgroundColor: '#fff',
+	},
 }));
