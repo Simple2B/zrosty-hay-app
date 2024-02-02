@@ -56,6 +56,7 @@ function RootLayoutNav() {
 			<Stack screenOptions={screenOptions}>
 				<Stack.Screen name='index' />
 				<Stack.Screen name='plants/index' />
+				{/* <Stack.Screen name='plants/index/(tabs)' /> */}
 			</Stack>
 		</QueryClientProvider>
 	);
