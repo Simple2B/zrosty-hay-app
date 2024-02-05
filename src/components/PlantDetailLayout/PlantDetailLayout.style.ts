@@ -25,7 +25,6 @@ export const styleSheet = createStyleSheet((theme) => ({
 	tabBarIndicatorStyle: {
 		height: 'auto',
 		top: 0,
-		padding: 4,
 		backgroundColor: theme.colors.primary,
 		borderRadius: theme.size.xxl,
 	},

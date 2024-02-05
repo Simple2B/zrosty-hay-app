@@ -18,26 +18,9 @@ export const PlantDetailLayout = () => {
 	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 
-	const { uuid } = useLocalSearchParams<{ uuid: string }>();
-
-	const { data, isLoading, isError } = useAPIGetPlantPhotos(uuid, {
-		query: {
-			queryKey: [queryKeys.GET_PLANT_PHOTOS, uuid],
-		},
-	});
-
-	if (isLoading) {
-		return <Spinner size={32} />;
-	}
-
-	if (isError) {
-		// TODO temporary bind
-		return <NotFound />;
-	}
-
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			{data?.data && <PlantPhotoSwiper plantPhotos={data?.data} />}
+			<PlantPhotoSwiper />
 			<View style={styles.tabBarWrapper}>
 				<PlantDetailTab
 					tabBar={(props) => <PlantDetailTabBtns {...props} />}
