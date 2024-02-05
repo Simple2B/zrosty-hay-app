@@ -8,6 +8,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 
 	tabBarWrapper: {
 		flex: 1,
+		paddingTop: theme.size.lg,
 		paddingHorizontal: theme.size.xl,
 	},
 

@@ -32,5 +32,6 @@
 	"searchPlantsPlaceholder": "Знайди рослину, яка тебе цікавить тут",
 	"descriptionTab": "Опис",
 	"careTab": "Догляд",
-	"recipesTab": "Рецепти"
+	"recipesTab": "Рецепти",
+	"plantInfoText": "Інформація про рослину"
 }

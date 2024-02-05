@@ -31,5 +31,6 @@
 	"searchPlantsPlaceholder": "Find the plant you're interested in here",
 	"descriptionTab": "Description",
 	"careTab": "Care",
-	"recipesTab": "recipes"
+	"recipesTab": "recipes",
+	"plantInfoText": "Information about the plant"
 }

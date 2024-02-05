@@ -7,13 +7,24 @@ export const styleSheet = createStyleSheet((theme) => ({
 		backgroundColor: theme.colors.background,
 	},
 
-	description: {
-		gap: theme.size.lg,
+	infoWrapper: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: theme.size.sm,
+	},
+
+	subTitile: {
+		fontSize: theme.size.lg,
+		fontWeight: theme.fontWeight.bold,
 	},
 
 	title: {
 		fontSize: theme.size.xxl,
 		fontWeight: theme.fontWeight.bold,
+	},
+
+	description: {
+		gap: theme.size.lg,
 	},
 
 	paragraph: {
