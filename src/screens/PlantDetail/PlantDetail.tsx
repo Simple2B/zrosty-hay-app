@@ -16,7 +16,7 @@ export default function PlantDetailScreen() {
 
 	const { data, isLoading, isError } = useAPIGet(uuid, {
 		query: {
-			queryKey: [queryKeys.GET_PLANT_DETAIL],
+			queryKey: [queryKeys.GET_PLANT_DETAIL, uuid],
 		},
 	});
 
@@ -28,6 +28,7 @@ export default function PlantDetailScreen() {
 		return <NotFound />;
 	}
 
+	console.log(data?.data, 'data ---> heare');
 	return (
 		<SafeAreaView style={styles.wrapper}>
 			<Text>Description</Text>

@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.9"
+		"version": "0.1.11"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -241,6 +241,61 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/PlantDetail"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/plants/{uuid}/photos": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get Plant Photos",
+				"description": "Returns the plant photos",
+				"operationId": "API-get_plant_photos",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Photo"
+									},
+									"title": "Response Api-Get Plant Photos"
 								}
 							}
 						}
@@ -627,13 +682,6 @@
 					"humidityPercentage": {
 						"type": "number",
 						"title": "Humiditypercentage"
-					},
-					"photos": {
-						"items": {
-							"$ref": "#/components/schemas/Photo"
-						},
-						"type": "array",
-						"title": "Photos"
 					}
 				},
 				"type": "object",
@@ -648,8 +696,7 @@
 					"temperatureInfo",
 					"wateringInfo",
 					"waterVolume",
-					"humidityPercentage",
-					"photos"
+					"humidityPercentage"
 				],
 				"title": "PlantDetail"
 			},

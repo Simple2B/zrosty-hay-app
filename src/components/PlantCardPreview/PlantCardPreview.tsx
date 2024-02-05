@@ -13,12 +13,15 @@ import RainDropIcon from '@assets/icons/plantCard/rainDrop.svg';
 import RulerIcon from '@assets/icons/plantCard/ruler.svg';
 import PlantIcon from '@assets/icons/plantCard/plant.svg';
 import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
-import placeholderImage1 from '@assets/images/plantCardPlaceholder/plant1.jpg';
-import placeholderImage2 from '@assets/images/plantCardPlaceholder/plant2.jpg';
-import placeholderImage3 from 'assets/images/plantCardPlaceholder/plant3.jpg';
+import { DEFAULT_PHOTOS } from '@src/constants/photos';
 
 type PlantCardPreviewProps = {
 	plantInfo: Plant;
+};
+
+const getPlantImagePlaceholder = () => {
+	const resolvedSource = DEFAULT_PHOTOS[Math.floor(Math.random() * DEFAULT_PHOTOS.length)];
+	return resolvedSource.uri;
 };
 
 export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
@@ -34,14 +37,6 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	const sizeText = `${minSize} - ${maxSize} cm`;
 	const wateringText = t(`components.watering.${watering}`);
 
-	const getPlantImagePlaceholder = useMemo(() => {
-		const placeholderImages = [placeholderImage1, placeholderImage2, placeholderImage3];
-		const randomPlaceholderImage = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
-		const imageSource = photo?.urlPath || randomPlaceholderImage;
-		const resolvedSource = Image.resolveAssetSource(imageSource);
-		return resolvedSource ? resolvedSource.uri : undefined;
-	}, [photo]);
-
 	const onPressCard = () => {
 		router.push(`/plants/${plantInfo.uuid}`);
 	};
@@ -51,7 +46,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 			<FastImage
 				style={styles.plantImage}
 				source={{
-					uri: photo?.urlPath || getPlantImagePlaceholder,
+					uri: photo?.urlPath || getPlantImagePlaceholder(),
 
 					priority: FastImage.priority.normal,
 				}}
