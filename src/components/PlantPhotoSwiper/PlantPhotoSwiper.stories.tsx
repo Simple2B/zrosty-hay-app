@@ -18,7 +18,7 @@ export default {
 	],
 } as ComponentMeta<typeof PlantPhotoSwiper>;
 
-const Template: ComponentStory<typeof PlantPhotoSwiper> = (args) => <PlantPhotoSwiper {...args} />;
+const Template: ComponentStory<typeof PlantPhotoSwiper> = () => <PlantPhotoSwiper  />;
 
 const plantPhotos = [
 	{
