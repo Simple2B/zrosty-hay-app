@@ -20,4 +20,5 @@ UnistylesRegistry.addBreakpoints(breakpoints)
 	})
 	.addConfig({
 		adaptiveThemes: true,
+		initialTheme: 'light',
 	});
