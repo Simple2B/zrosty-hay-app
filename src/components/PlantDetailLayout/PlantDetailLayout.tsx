@@ -11,6 +11,8 @@ import { Spinner } from '@src/components/Spinner/Spinner';
 import { queryKeys } from '@src/constants/queryKeys';
 import { styleSheet } from './PlantDetailLayout.style';
 import { View } from 'react-native';
+import React from 'react';
+// import { PlantDetailTabBtn } from '../PlantDetailTabBtn/PlantDetailTabBtn';
 
 export const PlantDetailLayout = () => {
 	const { t } = useTranslation();
@@ -33,13 +35,12 @@ export const PlantDetailLayout = () => {
 		return <NotFound />;
 	}
 
-	console.log('uuid');
-
 	return (
 		<SafeAreaView style={styles.wrapper}>
 			{data?.data && <PlantPhotoSwiper plantPhotos={data?.data} />}
 			<View style={styles.tabBarWrapper}>
 				<PlantDetailTab
+					// tabBar={(props) => <PlantDetailTabBtn {...props} />}
 					screenOptions={{
 						tabBarStyle: styles.tabBar,
 

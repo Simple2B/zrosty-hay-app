@@ -9,23 +9,13 @@ export const styleSheet = createStyleSheet((theme) => ({
 	tabBarWrapper: {
 		flex: 1,
 		paddingHorizontal: theme.size.xl,
-		// backgroundColor: 'red',
-	},
-	tabBarBorder: {
-		// height: 50,
-		// padding: 4,
-		backgroundColor: 'green',
 	},
 
 	tabBar: {
 		marginHorizontal: theme.size.md,
-		marginVertical: theme.size.xl,
-		// borderColor: 'red',
-		// borderWidth: 1,
-		backgroundColor: 'red',
-		padding: 4,
+		marginVertical: theme.size.md,
 		borderRadius: theme.size.xxl,
-		shadowColor: theme.colors.background,
+		borderColor: theme.colors.borderGrey,
 	},
 	tabBarLabelStyle: {
 		fontSize: theme.size.md,
@@ -34,8 +24,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	tabBarIndicatorStyle: {
 		height: 'auto',
 		top: 0,
-		// marginVertical: theme.size.xs,
-		// margin: 4,
+		padding: 4,
 		backgroundColor: theme.colors.primary,
 		borderRadius: theme.size.xxl,
 	},

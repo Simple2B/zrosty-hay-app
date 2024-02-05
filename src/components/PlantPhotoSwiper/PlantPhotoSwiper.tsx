@@ -21,7 +21,7 @@ export const PlantPhotoSwiper = ({ plantPhotos }: PlantPhotoSwiperProps) => {
 	return (
 		<View style={styles.wrapper}>
 			<Swiper loop activeDotColor={styles.activeDot.backgroundColor} width={width}>
-				{plantPhotos.length > 1
+				{plantPhotos.length > 0
 					? plantPhotos.map((photo) => (
 							<FastImage
 								key={photo?.urlPath}
