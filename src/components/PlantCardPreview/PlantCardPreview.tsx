@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import FastImage from 'react-native-fast-image';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { router } from 'expo-router';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCardPreview.style';
 import { PlantCardInfo } from '../PlantCardInfo/PlantCardInfo';
@@ -41,8 +42,12 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 		return resolvedSource ? resolvedSource.uri : undefined;
 	}, [photo]);
 
+	const onPressCard = () => {
+		router.push(`/plants/${plantInfo.uuid}`);
+	};
+
 	return (
-		<TouchableOpacity style={styles.cardWrapper}>
+		<TouchableOpacity style={styles.cardWrapper} onPress={onPressCard}>
 			<FastImage
 				style={styles.plantImage}
 				source={{

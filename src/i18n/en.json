@@ -28,5 +28,8 @@
 		"categories": "Categories"
 	},
 	"searchPlantsTitle": "Looking for a plant?",
-	"searchPlantsPlaceholder": "Find the plant you're interested in here"
+	"searchPlantsPlaceholder": "Find the plant you're interested in here",
+	"descriptionTab": "Description",
+	"careTab": "Care",
+	"recipesTab": "recipes"
 }
