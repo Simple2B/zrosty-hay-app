@@ -1,7 +1,6 @@
 import { useStyles } from 'react-native-unistyles';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import { useAPIGet } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';

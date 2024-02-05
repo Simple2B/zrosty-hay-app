@@ -11,21 +11,4 @@ export const styleSheet = createStyleSheet((theme) => ({
 		paddingTop: theme.size.lg,
 		paddingHorizontal: theme.size.xl,
 	},
-
-	tabBar: {
-		marginHorizontal: theme.size.md,
-		marginVertical: theme.size.md,
-		borderRadius: theme.size.xxl,
-		borderColor: theme.colors.borderGrey,
-	},
-	tabBarLabelStyle: {
-		fontSize: theme.size.md,
-		fontWeight: theme.fontWeight.bold,
-	},
-	tabBarIndicatorStyle: {
-		height: 'auto',
-		top: 0,
-		backgroundColor: theme.colors.primary,
-		borderRadius: theme.size.xxl,
-	},
 }));
