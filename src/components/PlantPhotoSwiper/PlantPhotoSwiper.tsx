@@ -8,21 +8,37 @@ import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantPhotoSwiper.style';
 import { PlantPhoto } from '@src/api/model/plantPhoto';
 import { DEFAULT_PHOTOS } from '@src/constants/photos';
+import { useLocalSearchParams } from 'expo-router';
+import { useAPIGetPlantPhotos } from '@src/api/plants/plants';
+import { queryKeys } from '@src/constants/queryKeys';
+import { Spinner } from '../Spinner/Spinner';
+import { NotFound } from '../NotFound/NotFound';
 
-type PlantPhotoSwiperProps = {
-	plantPhotos: PlantPhoto[];
-};
-
-export const PlantPhotoSwiper = ({ plantPhotos }: PlantPhotoSwiperProps) => {
-	const { styles } = useStyles(styleSheet);
-
+export const PlantPhotoSwiper = () => {
 	const width = Dimensions.get('window').width;
+	const { styles } = useStyles(styleSheet);
+	const { uuid } = useLocalSearchParams<{ uuid: string }>();
+
+	const { data, isLoading, isError } = useAPIGetPlantPhotos(uuid, {
+		query: {
+			queryKey: [queryKeys.GET_PLANT_PHOTOS, uuid],
+		},
+	});
+
+	if (isLoading) {
+		return <Spinner size={32} />;
+	}
+
+	if (isError) {
+		// TODO temporary bind
+		return <NotFound />;
+	}
 
 	return (
 		<View style={styles.wrapper}>
 			<Swiper loop activeDotColor={styles.activeDot.backgroundColor} width={width}>
-				{plantPhotos.length > 1
-					? plantPhotos.map((photo) => (
+				{data?.data.length && !!data.data.length
+					? data.data.map((photo) => (
 							<FastImage
 								key={photo?.urlPath}
 								style={styles.plantImage}

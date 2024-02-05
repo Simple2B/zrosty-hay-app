@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
@@ -53,11 +54,13 @@ const screenOptions = { headerShown: false };
 function RootLayoutNav() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Stack screenOptions={screenOptions}>
-				<Stack.Screen name='index' />
-				<Stack.Screen name='plants/index' />
-				<Stack.Screen name='plants/[uuid]' />
-			</Stack>
+			<SafeAreaProvider>
+				<Stack screenOptions={screenOptions}>
+					<Stack.Screen name='index' />
+					<Stack.Screen name='plants/index' />
+					<Stack.Screen name='plants/[uuid]' />
+				</Stack>
+			</SafeAreaProvider>
 		</QueryClientProvider>
 	);
 }
