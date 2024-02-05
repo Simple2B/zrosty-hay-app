@@ -20,7 +20,8 @@
 		"update-openapi-json": "./scripts/update-openapi-json.sh",
 		"gen-api": "yarn orval --config ./orval.config.ts",
 		"lint": "npx @biomejs/biome lint .",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"eas-build-post-install": "yarn orval --config ./orval.config.ts"
 	},
 	"jest": {
 		"preset": "jest-expo"
