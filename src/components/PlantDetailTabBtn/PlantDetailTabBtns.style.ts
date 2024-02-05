@@ -1,3 +1,4 @@
+import { Animated } from 'react-native';
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
@@ -25,9 +26,10 @@ export const styleSheet = createStyleSheet((theme) => ({
 		fontSize: theme.size.md,
 		fontWeight: theme.fontWeight.bold,
 	}),
-	tabBarItem: (isFocused: boolean) => ({
+	tabBarItem: (isFocused: boolean, opacity: Animated.AnimatedInterpolation<number>) => ({
 		color: isFocused ? theme.colors.background : theme.colors.text,
 		fontSize: theme.size.md,
 		fontWeight: theme.fontWeight.bold,
+		opacity: opacity,
 	}),
 }));

@@ -1,9 +1,9 @@
 import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { Animated, View, TouchableOpacity } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-import { styleSheet } from './PlantDetailTabBtn.style';
+import { styleSheet } from './PlantDetailTabBtns.style';
 
-export function PlantDetailTabBtn({ state, descriptors, navigation, position }: MaterialTopTabBarProps) {
+export function PlantDetailTabBtns({ state, descriptors, navigation, position }: MaterialTopTabBarProps) {
 	const { styles } = useStyles(styleSheet);
 	return (
 		<View style={styles.tabBar}>
@@ -43,8 +43,6 @@ export function PlantDetailTabBtn({ state, descriptors, navigation, position }: 
 					outputRange: inputRange.map((i) => (i === index ? 1 : 0)),
 				});
 
-				console.log(isFocused);
-
 				return (
 					<TouchableOpacity
 						key={route.key}
@@ -56,7 +54,7 @@ export function PlantDetailTabBtn({ state, descriptors, navigation, position }: 
 						onLongPress={onLongPress}
 						style={styles.tabBarItemwrapper(isFocused)}
 					>
-						<Animated.Text style={styles.tabBarItem(isFocused)}>{label as string}</Animated.Text>
+						<Animated.Text style={styles.tabBarItem(isFocused, opacity)}>{label as string}</Animated.Text>
 					</TouchableOpacity>
 				);
 			})}
