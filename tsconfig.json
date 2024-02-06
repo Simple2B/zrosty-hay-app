@@ -4,10 +4,23 @@
 		"strict": true,
 		"baseUrl": ".",
 		"paths": {
-			"@src/*": ["src/*"],
-			"@assets/*": ["assets/*"]
+			"@src/*": [
+				"src/*"
+			],
+			"@assets/*": [
+				"assets/*"
+			]
 		}
 	},
-	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "./src/**/*.ts", "src/custom.d.ts"],
-	"exclude": ["src/api/api/api.ts", "src/api/auth/auth.ts"]
+	"include": [
+		"**/*.ts",
+		"**/*.tsx",
+		".expo/types/**/*.ts",
+		"expo-env.d.ts",
+		"./src/**/*.ts",
+		"src/custom.d.ts"
+	],
+	"exclude": [
+		"src/api/*"
+	]
 }
