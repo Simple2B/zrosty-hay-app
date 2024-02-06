@@ -113,6 +113,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+      - name: Generate orval
+        run: yarn gen-api
 
       - name: Lint
         run: yarn lint
