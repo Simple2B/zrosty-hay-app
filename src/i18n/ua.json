@@ -33,5 +33,6 @@
 	"descriptionTab": "Опис",
 	"careTab": "Догляд",
 	"recipesTab": "Рецепти",
-	"plantInfoText": "Інформація про рослину"
+	"plantInfoText": "Інформація про рослину",
+	"plantMoreTextBtn": "Більше"
 }

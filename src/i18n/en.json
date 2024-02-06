@@ -32,5 +32,6 @@
 	"descriptionTab": "Description",
 	"careTab": "Care",
 	"recipesTab": "recipes",
-	"plantInfoText": "Information about the plant"
+	"plantInfoText": "Information about the plant",
+	"plantMoreTextBtn": "More"
 }

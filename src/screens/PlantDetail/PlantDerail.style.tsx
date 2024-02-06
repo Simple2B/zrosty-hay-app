@@ -24,10 +24,28 @@ export const styleSheet = createStyleSheet((theme) => ({
 	},
 
 	description: {
-		gap: theme.size.lg,
+		gap: theme.size.md,
 	},
 
 	paragraph: {
 		fontSize: theme.size.md,
+	},
+
+	btnMore: {
+		paddingTop: theme.size.md,
+		fontSize: theme.size.md,
+		fontWeight: theme.fontWeight.bold,
+		color: theme.colors.notification,
+		textDecorationLine: 'underline',
+		textDecorationColor: theme.colors.notification,
+	},
+
+	info: {
+		paddingTop: theme.size.xl,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
+		rowGap: theme.size.md,
+		columnGap: theme.size.xl,
 	},
 }));
