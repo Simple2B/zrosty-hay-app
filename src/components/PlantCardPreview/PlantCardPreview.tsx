@@ -31,7 +31,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 
 	const { t } = useTranslation();
 
-	const isSunLovingText = isSunLoving ? t('components.isSunLoving') : t('components.notSunLoving');
+	const isSunLovingText = isSunLoving ? t('isSunLoving') : t('notSunLoving');
 	const temperatureText = `${minTemperature} - ${maxTemperature} °C`;
 	const careTypeText = t(`components.care.${careType}`);
 	const sizeText = `${minSize} - ${maxSize} cm`;

@@ -43,9 +43,11 @@ export const styleSheet = createStyleSheet((theme) => ({
 	info: {
 		paddingTop: theme.size.xl,
 		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'space-between',
-		rowGap: theme.size.md,
-		columnGap: theme.size.xl,
+		justifyContent: 'space-evenly',
+		columnGap: theme.size.xxl,
+	},
+
+	infoRow: {
+		gap: theme.size.lg,
 	},
 }));

@@ -14,8 +14,6 @@
 			"fruits": "Фрукти"
 		},
 
-		"isSunLoving": "Багато сонця",
-		"notSunLoving": "Мало сонця",
 		"watering": {
 			"easy": "Легко поливати",
 			"normal": "Помірний полив",
@@ -28,11 +26,23 @@
 		},
 		"categories": "Категорії"
 	},
+	"isSunLoving": "Багато сонця",
+	"notSunLoving": "Мало сонця",
 	"searchPlantsTitle": "Шукаєш рослину?",
 	"searchPlantsPlaceholder": "Знайди рослину, яка тебе цікавить тут",
 	"descriptionTab": "Опис",
 	"careTab": "Догляд",
 	"recipesTab": "Рецепти",
 	"plantInfoText": "Інформація про рослину",
-	"plantMoreTextBtn": "Більше"
+	"plantMoreTextBtn": "Більше",
+	"plantDetailSunTitle": "Освітлення",
+	"plantDetailWateringTitle": "Полив",
+	"plantDetailHumidityTitle": "Вологість",
+	"plantDetailSizeTitle": "Довжина",
+	"millilitre": "мл",
+	"plantSize": {
+		"small": "Мала рослина",
+		"medium": "Середня рослина",
+		"large": "Велика рослина"
+	}
 }
