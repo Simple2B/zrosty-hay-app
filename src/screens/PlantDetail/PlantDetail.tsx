@@ -20,10 +20,10 @@ import { styleSheet } from './PlantDerail.style';
 export default function PlantDetailScreen() {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
-	const { uuid } = useLocalSearchParams<{ uuid: string }>();
+	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 	const [showMore, setShowMore] = useState<boolean>(false);
 
-	const { data, isLoading, isError } = useAPIGet(uuid, {
+	const { data, isLoading, isError } = useAPIGet(uuid ?? '', {
 		query: {
 			queryKey: [queryKeys.GET_PLANT_DETAIL, uuid],
 		},

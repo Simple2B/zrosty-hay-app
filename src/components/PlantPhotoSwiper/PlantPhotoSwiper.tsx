@@ -17,9 +17,11 @@ import { NotFound } from '../NotFound/NotFound';
 export const PlantPhotoSwiper = () => {
 	const width = Dimensions.get('window').width;
 	const { styles } = useStyles(styleSheet);
-	const { uuid } = useLocalSearchParams<{ uuid: string }>();
+	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 
-	const { data, isLoading, isError } = useAPIGetPlantPhotos(uuid, {
+
+
+	const { data, isLoading, isError } = useAPIGetPlantPhotos(uuid ?? '', {
 		query: {
 			queryKey: [queryKeys.GET_PLANT_PHOTOS, uuid],
 		},
