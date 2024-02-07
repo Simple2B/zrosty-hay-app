@@ -13,8 +13,6 @@
 			"vegetables": "Vegetables",
 			"fruits": "Fruits"
 		},
-		"isSunLoving": "Sun loving",
-		"notSunLoving": "Not sun loving",
 		"watering": {
 			"easy": "Infrequent watering",
 			"normal": "Moderate watering",
@@ -27,10 +25,23 @@
 		},
 		"categories": "Categories"
 	},
+	"isSunLoving": "Sun loving",
+	"notSunLoving": "Not sun loving",
 	"searchPlantsTitle": "Looking for a plant?",
 	"searchPlantsPlaceholder": "Find the plant you're interested in here",
 	"descriptionTab": "Description",
 	"careTab": "Care",
 	"recipesTab": "recipes",
-	"plantInfoText": "Information about the plant"
+	"plantInfoText": "Information about the plant",
+	"plantMoreTextBtn": "More",
+	"plantDetailSunTitle": "Lighting",
+	"plantDetailWateringTitle": "Watering",
+	"plantDetailHumidityTitle": "Humidity",
+	"plantDetailSizeTitle": "Size",
+	"millilitre": "ml",
+	"plantSize": {
+		"small": "Small plant",
+		"medium": "Medium plant",
+		"large": "large plant"
+	}
 }
