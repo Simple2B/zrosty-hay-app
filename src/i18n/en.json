@@ -43,5 +43,7 @@
 		"small": "Small plant",
 		"medium": "Medium plant",
 		"large": "large plant"
-	}
+	},
+	"day": "Day",
+	"careCalendarText": "Care calendar"
 }

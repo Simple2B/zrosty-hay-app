@@ -2,8 +2,14 @@ import { MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { Animated, View, TouchableOpacity } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantDetailTabBtns.style';
+import { router } from 'expo-router';
 
-export function PlantDetailTabBtns({ state, descriptors, navigation, position }: MaterialTopTabBarProps) {
+export function PlantDetailTabBtns({
+	state,
+	descriptors,
+	position,
+	plantUuid,
+}: MaterialTopTabBarProps & { plantUuid: string }) {
 	const { styles } = useStyles(styleSheet);
 	return (
 		<View style={styles.tabBar}>
@@ -18,23 +24,9 @@ export function PlantDetailTabBtns({ state, descriptors, navigation, position }:
 
 				const isFocused = state.index === index;
 
-				const onPress = () => {
-					const event = navigation.emit({
-						type: 'tabPress',
-						target: route.key,
-						canPreventDefault: true,
-					});
-
-					if (!isFocused && !event.defaultPrevented) {
-						navigation.navigate(route.name, route.params);
-					}
-				};
-
-				const onLongPress = () => {
-					navigation.emit({
-						type: 'tabLongPress',
-						target: route.key,
-					});
+				const handlerNavigate = () => {
+					const routeName = state.routes[index].name === 'index' ? '' : state.routes[index].name;
+					router.push(`/plants/${plantUuid}/${routeName}`);
 				};
 
 				const inputRange = state.routes.map((_, i) => i);
@@ -50,8 +42,8 @@ export function PlantDetailTabBtns({ state, descriptors, navigation, position }:
 						accessibilityState={isFocused ? { selected: true } : {}}
 						accessibilityLabel={options.tabBarAccessibilityLabel}
 						testID={options.tabBarTestID}
-						onPress={onPress}
-						onLongPress={onLongPress}
+						onPress={handlerNavigate}
+						onLongPress={handlerNavigate}
 						style={styles.tabBarItemwrapper(isFocused)}
 					>
 						<Animated.Text style={styles.tabBarItem(isFocused, opacity)}>{label as string}</Animated.Text>

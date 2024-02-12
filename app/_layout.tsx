@@ -2,6 +2,7 @@ import '@src/styling/unistyles';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Constants from 'expo-constants';
+import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
@@ -12,6 +13,7 @@ import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
 
 import { queryClient } from '../src/queryClient';
+import { useStyles } from 'react-native-unistyles';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -52,15 +54,18 @@ function RootLayout() {
 const screenOptions = { headerShown: false };
 
 function RootLayoutNav() {
+	const { theme } = useStyles();
 	return (
 		<QueryClientProvider client={queryClient}>
-			<SafeAreaProvider>
-				<Stack screenOptions={screenOptions}>
-					<Stack.Screen name='index' />
-					<Stack.Screen name='plants/index' />
-					<Stack.Screen name='plants/[uuid]' />
-				</Stack>
-			</SafeAreaProvider>
+			<ThemeProvider value={theme}>
+				<SafeAreaProvider>
+					<Stack screenOptions={screenOptions}>
+						<Stack.Screen name='index' />
+						<Stack.Screen name='plants/index' />
+						<Stack.Screen name='plants/[uuid]' />
+					</Stack>
+				</SafeAreaProvider>
+			</ThemeProvider>
 		</QueryClientProvider>
 	);
 }
