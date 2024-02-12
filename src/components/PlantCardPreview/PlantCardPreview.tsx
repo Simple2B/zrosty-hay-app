@@ -13,15 +13,10 @@ import RainDropIcon from '@assets/icons/plantCard/rainDrop.svg';
 import RulerIcon from '@assets/icons/plantCard/ruler.svg';
 import PlantIcon from '@assets/icons/plantCard/plant.svg';
 import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
-import { DEFAULT_PHOTOS } from '@src/constants/photos';
+import placeholderImage from 'assets/images/plantPlaceholder.jpg';
 
 type PlantCardPreviewProps = {
 	plantInfo: Plant;
-};
-
-const getPlantImagePlaceholder = () => {
-	const resolvedSource = DEFAULT_PHOTOS[Math.floor(Math.random() * DEFAULT_PHOTOS.length)];
-	return resolvedSource.uri;
 };
 
 export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
@@ -46,7 +41,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 			<FastImage
 				style={styles.plantImage}
 				source={{
-					uri: photo?.urlPath || getPlantImagePlaceholder(),
+					uri: photo?.urlPath || Image.resolveAssetSource(placeholderImage).uri,
 
 					priority: FastImage.priority.normal,
 				}}
