@@ -22,27 +22,31 @@ const Template: ComponentStory<typeof PlantingStep> = (args) => <PlantingStep {.
 
 export const Story = Template.bind({});
 Story.args = {
-	day: 20,
-	stepTypes: [
-		{
-			color: 'red',
-			uuid: '1dasdasdas',
-		},
-		{
-			color: 'blue',
-			uuid: '2sdfsdfs',
-		},
-		{
-			color: 'yellow',
-			uuid: '3sdfsdfs',
-		},
-		{
-			color: 'green',
-			uuid: '4sdfsdfs',
-		},
-		{
-			color: 'black',
-			uuid: '5sdfsdfs',
-		},
-	],
+	isActive: true,
+	handlerCurStepDay: () => {},
+	stepDay: {
+		day: 20,
+		stepTypes: [
+			{
+				color: 'red',
+				uuid: '1dasdasdas',
+			},
+			{
+				color: 'blue',
+				uuid: '2sdfsdfs',
+			},
+			{
+				color: 'yellow',
+				uuid: '3sdfsdfs',
+			},
+			{
+				color: 'green',
+				uuid: '4sdfsdfs',
+			},
+			{
+				color: 'black',
+				uuid: '5sdfsdfs',
+			},
+		],
+	},
 };
