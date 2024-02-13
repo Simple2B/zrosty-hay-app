@@ -14,14 +14,14 @@ global.STORIES = [
     directory: "./.storybook/stories",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:\\.storybook\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:\\.storybook[\\\\/]stories(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
   {
     titlePrefix: "",
     directory: "./src",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -59,6 +59,7 @@ const getStories = () => {
     "./src/components/buttons/СategoryButton/CategoryButton.stories.tsx": require("../src/components/buttons/СategoryButton/CategoryButton.stories.tsx"),
     "./src/components/inputs/SearchInput/SearchInput.stories.tsx": require("../src/components/inputs/SearchInput/SearchInput.stories.tsx"),
     "./src/components/PlantCardPreview/PlantCardPreview.stories.tsx": require("../src/components/PlantCardPreview/PlantCardPreview.stories.tsx"),
+    "./src/components/PlantingStep/PlantingStep.stories.tsx": require("../src/components/PlantingStep/PlantingStep.stories.tsx"),
     "./src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx": require("../src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx"),
     "./src/components/Spinner/Spinner.stories.tsx": require("../src/components/Spinner/Spinner.stories.tsx"),
   };
