@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.17"
+		"version": "0.1.18"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -351,6 +351,70 @@
 										"$ref": "#/components/schemas/PlantingStep"
 									},
 									"title": "Response Api-Get Planting Steps"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/plants/{uuid}/steps/{day}": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get Planting Step By Day",
+				"description": "Returns the plant program step day details",
+				"operationId": "API-get_planting_step_by_day",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					},
+					{
+						"name": "day",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"title": "Day"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/PlantingStepDay"
+									},
+									"title": "Response Api-Get Planting Step By Day"
 								}
 							}
 						}
@@ -797,15 +861,34 @@
 				"required": ["day", "stepTypes"],
 				"title": "PlantingStep"
 			},
-			"PlantingStepType": {
+			"PlantingStepDay": {
 				"properties": {
 					"uuid": {
 						"type": "string",
 						"title": "Uuid"
 					},
-					"color": {
+					"name": {
 						"type": "string",
-						"title": "Color"
+						"title": "Name"
+					},
+					"svgIcon": {
+						"type": "string",
+						"title": "Svgicon"
+					},
+					"instruction": {
+						"type": "string",
+						"title": "Instruction"
+					}
+				},
+				"type": "object",
+				"required": ["uuid", "name", "svgIcon", "instruction"],
+				"title": "PlantingStepDay"
+			},
+			"PlantingStepType": {
+				"properties": {
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
 					},
 					"svgIcon": {
 						"type": "string",
@@ -817,7 +900,7 @@
 					}
 				},
 				"type": "object",
-				"required": ["uuid", "color", "svgIcon", "name"],
+				"required": ["uuid", "svgIcon", "name"],
 				"title": "PlantingStepType"
 			},
 			"StepType": {

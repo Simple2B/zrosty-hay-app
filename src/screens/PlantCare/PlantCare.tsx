@@ -10,6 +10,7 @@ import RightIconDirection from '@assets/icons/rightIcon.svg';
 import { PlantingStepTypes } from '@src/components/PlantingStepTypes/PlantingStepTypes';
 import { sizes } from '@src/styling/sizes';
 import { styleSheet } from './PlantCare.style';
+import { PlantCareBody } from '@src/components/PlantCareBody/PlantCareBody';
 
 export const PlantCare = () => {
 	const { styles } = useStyles(styleSheet);
@@ -28,8 +29,7 @@ export const PlantCare = () => {
 				</View>
 			</View>
 
-			<PlantingSteps />
-			<PlantingStepTypes />
+			<PlantCareBody />
 		</ScrollView>
 	);
 };

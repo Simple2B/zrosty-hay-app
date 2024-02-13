@@ -8,10 +8,15 @@ import { PlantingStepType as TPlantingStepType } from '@src/api/model';
 import { styleSheet } from './PlantingStepTypes.style';
 import { PlantingStepType } from '../PlantingStepType/PlantingStepType';
 import { Spinner } from '../Spinner/Spinner';
+import { queryKeys } from '@src/constants/queryKeys';
 
 export const PlantingStepTypes = () => {
 	const { styles } = useStyles(styleSheet);
-	const { data, isLoading } = useAPIGetAllPlantingStepTypes();
+	const { data, isLoading } = useAPIGetAllPlantingStepTypes({
+		query: {
+			queryKey: [queryKeys.GET_PLANT_STEP_TYPES],
+		},
+	});
 
 	if (isLoading) {
 		return <Spinner size={sizes.xxl * 2} />;
