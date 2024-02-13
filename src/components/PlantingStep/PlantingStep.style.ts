@@ -9,7 +9,16 @@ export const styleSheet = createStyleSheet((theme) => ({
 		gap: theme.size.lg,
 		borderWidth: 1,
 		borderRadius: theme.size.md,
-		borderColor: theme.colors.borderGrey,
+		variants: {
+			isActive: {
+				true: {
+					borderColor: theme.colors.primary,
+				},
+				false: {
+					borderColor: theme.colors.borderGrey,
+				},
+			},
+		},
 	},
 	dayTitle: {
 		fontSize: theme.size.md,
