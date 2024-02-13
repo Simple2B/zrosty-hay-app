@@ -5,6 +5,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: theme.size.sm,
+		paddingHorizontal: theme.size.xs,
 	},
 	name: {
 		flex: 1,
