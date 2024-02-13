@@ -20,7 +20,7 @@ export const PlantingStep = memo(({ stepDay, isActive, handlerCurStepDay }: Prop
 	const { t } = useTranslation();
 
 	const onPress = () => {
-		handlerCurStepDay((curDay) => (curDay === stepDay ? null : stepDay));
+		handlerCurStepDay(isActive ? null : stepDay);
 	};
 
 	return (
