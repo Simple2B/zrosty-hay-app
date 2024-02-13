@@ -1,16 +1,17 @@
 import { ScrollView } from 'react-native';
-import React, { SetStateAction, memo } from 'react';
+import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { useLocalSearchParams } from 'expo-router';
 
+import { PlantingStep as TPlantingStep } from '@src/api/model';
 import { useAPIGetPlantingSteps } from '@src/api/plants/plants';
+import { queryKeys } from '@src/constants/queryKeys';
 import { PlantingStep } from '../PlantingStep/PlantingStep';
 import { styleSheet } from './PlantingSteps.style';
-import { queryKeys } from '@src/constants/queryKeys';
 import { TStapDay } from '../PlantCareBody/PlantCareBody';
 
 type Props = {
-	curStepDay: number | null;
+	curStepDay: TPlantingStep | null;
 	handlerCurStepDay: (day: TStapDay) => void;
 };
 
@@ -31,9 +32,9 @@ export const PlantingSteps = ({ curStepDay, handlerCurStepDay }: Props) => {
 			{data?.data.map((step) => (
 				<PlantingStep
 					key={step.day}
-					{...step}
+					stepDay={step}
 					handlerCurStepDay={handlerCurStepDay}
-					isActive={step.day === curStepDay}
+					isActive={step.day === curStepDay?.day}
 				/>
 			))}
 		</ScrollView>

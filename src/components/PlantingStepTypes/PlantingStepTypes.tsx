@@ -10,7 +10,11 @@ import { PlantingStepType } from '../PlantingStepType/PlantingStepType';
 import { Spinner } from '../Spinner/Spinner';
 import { queryKeys } from '@src/constants/queryKeys';
 
-export const PlantingStepTypes = () => {
+type Props = {
+	selectedStepTypeUuids: string[] | null;
+};
+
+export const PlantingStepTypes = ({ selectedStepTypeUuids }: Props) => {
 	const { styles } = useStyles(styleSheet);
 	const { data, isLoading } = useAPIGetAllPlantingStepTypes({
 		query: {
@@ -22,17 +26,19 @@ export const PlantingStepTypes = () => {
 		return <Spinner size={sizes.xxl * 2} />;
 	}
 
-	const splitLists = data?.data.reduce(
-		(acc, item, idx) => {
-			if (idx % 2 === 0) {
-				acc.odd.push(item);
-			} else {
-				acc.even.push(item);
-			}
-			return acc;
-		},
-		{ odd: [], even: [] } as { odd: TPlantingStepType[]; even: TPlantingStepType[] },
-	);
+	const splitLists = data?.data
+		.filter((item) => (selectedStepTypeUuids ? selectedStepTypeUuids.includes(item.uuid) : true))
+		.reduce(
+			(acc, item, idx) => {
+				if (idx % 2 === 0) {
+					acc.odd.push(item);
+				} else {
+					acc.even.push(item);
+				}
+				return acc;
+			},
+			{ odd: [], even: [] } as { odd: TPlantingStepType[]; even: TPlantingStepType[] },
+		);
 
 	return (
 		<View style={styles.wrapper}>

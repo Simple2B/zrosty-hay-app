@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import React from 'react';
+import React, { memo } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { SvgXml } from 'react-native-svg';
 
@@ -11,7 +11,7 @@ type Props = TPlantingStepType & {};
 
 const SIZE = sizes.xxl + sizes.sm;
 
-export const PlantingStepType = ({ name, svgIcon }: Props) => {
+export const PlantingStepType = memo(({ name, svgIcon }: Props) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
@@ -20,4 +20,4 @@ export const PlantingStepType = ({ name, svgIcon }: Props) => {
 			<Text style={styles.name}>{name}</Text>
 		</View>
 	);
-};
+});
