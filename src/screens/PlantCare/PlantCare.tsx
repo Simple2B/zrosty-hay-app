@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,7 @@ import { PlantingSteps } from '@src/components/PlantingSteps/PlantingSteps';
 import CalendarIcon from '@assets/icons/calendar.svg';
 import LeftIconDirection from '@assets/icons/leftIcon.svg';
 import RightIconDirection from '@assets/icons/rightIcon.svg';
+import { PlantingStepTypes } from '@src/components/PlantingStepTypes/PlantingStepTypes';
 import { sizes } from '@src/styling/sizes';
 import { styleSheet } from './PlantCare.style';
 
@@ -15,7 +16,7 @@ export const PlantCare = () => {
 	const { t } = useTranslation();
 
 	return (
-		<View style={styles.wrapper}>
+		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
 			<View style={styles.header}>
 				<View style={styles.titleWrapper}>
 					<CalendarIcon width={sizes.xl} height={sizes.xl} />
@@ -28,6 +29,7 @@ export const PlantCare = () => {
 			</View>
 
 			<PlantingSteps />
-		</View>
+			<PlantingStepTypes />
+		</ScrollView>
 	);
 };

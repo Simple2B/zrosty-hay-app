@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { useTranslation } from 'react-i18next';
 
-import { PlantingStep as PlantingStepType } from '@src/api/model';
+import { PlantingStep as TPlantingStepType } from '@src/api/model';
 import { styleSheet } from './PlantingStep.style';
 
-type Props = PlantingStepType & {};
+type Props = TPlantingStepType & {};
 
 export const PlantingStep = ({ day, stepTypes }: Props) => {
 	const { styles } = useStyles(styleSheet);
