@@ -14,6 +14,7 @@ import '@src/i18n/i18n';
 
 import { queryClient } from '../src/queryClient';
 import { useStyles } from 'react-native-unistyles';
+import { CustomStatusBar } from '@src/components/CustomStatusBar/CustomStatusBar';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -58,6 +59,7 @@ function RootLayoutNav() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider value={theme}>
+				<CustomStatusBar />
 				<SafeAreaProvider>
 					<Stack screenOptions={screenOptions}>
 						<Stack.Screen name='index' />
