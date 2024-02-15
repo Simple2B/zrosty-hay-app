@@ -61,6 +61,7 @@ const getStories = () => {
     "./src/components/PlantCardPreview/PlantCardPreview.stories.tsx": require("../src/components/PlantCardPreview/PlantCardPreview.stories.tsx"),
     "./src/components/PlantingStep/PlantingStep.stories.tsx": require("../src/components/PlantingStep/PlantingStep.stories.tsx"),
     "./src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx": require("../src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx"),
+    "./src/components/PlantRecipe/PlantRecipe.stories.tsx": require("../src/components/PlantRecipe/PlantRecipe.stories.tsx"),
     "./src/components/Spinner/Spinner.stories.tsx": require("../src/components/Spinner/Spinner.stories.tsx"),
   };
 };

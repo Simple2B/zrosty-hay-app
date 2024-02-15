@@ -9,7 +9,6 @@ import { View } from 'react-native';
 export const renderItemPlantCardPreview = ({ item }: ListRenderItemInfo<Plant>) => (
 	<PlantCardPreview plantInfo={item} />
 );
-export const renderItemSeparator = () => <View style={{ height: sizes.md }} />;
 
 export const getKeyExtractor = (item: Plant) => item.uuid;
 
