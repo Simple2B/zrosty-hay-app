@@ -12,6 +12,9 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { CustomStatusBar } from '../CustomStatusBar/CustomStatusBar';
+import { STATUS_BAR_TEXT_COLOR } from '../CustomStatusBar/CustomStatusBar.constants';
 
 export const PlantPhotoSwiper = () => {
 	const width = Dimensions.get('window').width;
@@ -33,10 +36,13 @@ export const PlantPhotoSwiper = () => {
 		return <NotFound />;
 	}
 
+	const statusBarHeight = useSafeAreaInsets().top;
+
 	return (
 		<>
-			{!!data?.data.length && (
-				<View style={styles.wrapper}>
+			{data?.data.length ? (
+				<View style={styles.wrapper(statusBarHeight)}>
+					<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{data?.data.map((photo) => (
 							<FastImage
@@ -51,6 +57,8 @@ export const PlantPhotoSwiper = () => {
 						))}
 					</Swiper>
 				</View>
+			) : (
+				<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
 			)}
 		</>
 	);

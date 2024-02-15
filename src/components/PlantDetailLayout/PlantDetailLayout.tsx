@@ -18,7 +18,7 @@ export const PlantDetailLayout = () => {
 
 	const plantUuid = uuid ?? '';
 	return (
-		<SafeAreaView style={styles.wrapper}>
+		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
 			<PlantPhotoSwiper />
 			<View style={styles.tabBarWrapper}>
 				<PlantDetailTab tabBar={(props) => <PlantDetailTabBtns {...props} plantUuid={plantUuid} />}>

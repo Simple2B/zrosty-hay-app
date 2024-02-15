@@ -15,6 +15,7 @@ import '@src/i18n/i18n';
 import { queryClient } from '../src/queryClient';
 import { useStyles } from 'react-native-unistyles';
 import { CustomStatusBar } from '@src/components/CustomStatusBar/CustomStatusBar';
+import { STATUS_BAR_TEXT_COLOR } from '@src/components/CustomStatusBar/CustomStatusBar.constants';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -59,7 +60,7 @@ function RootLayoutNav() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider value={theme}>
-				<CustomStatusBar />
+				<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.light} />
 				<SafeAreaProvider>
 					<Stack screenOptions={screenOptions}>
 						<Stack.Screen name='index' />

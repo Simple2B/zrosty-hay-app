@@ -10,12 +10,15 @@ import TopLeaf from '@assets/icons/topLeaf.svg';
 import ButtonLeaf from '@assets/icons/buttonLeaf.svg';
 
 import { styleSheet } from './Login.style';
+import { CustomStatusBar } from '@src/components/CustomStatusBar/CustomStatusBar';
+import { STATUS_BAR_TEXT_COLOR } from '@src/components/CustomStatusBar/CustomStatusBar.constants';
 
 export default function LoginScreen() {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
 	return (
 		<SafeAreaView style={styles.container}>
+			<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
 			<View style={styles.innerContainer}>
 				<View style={styles.innerTop}>
 					<Text style={styles.title}>

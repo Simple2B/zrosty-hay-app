@@ -1,14 +1,10 @@
 import React from 'react';
-import { StatusBar, View } from 'react-native';
-import { useStyles } from 'react-native-unistyles';
-import { styleSheet } from './CustomStatusBar.style';
+import { StatusBar } from 'react-native';
 
-//TODO: check status bar for android
-export const CustomStatusBar = () => {
-	const { styles } = useStyles(styleSheet);
-	return (
-		<View style={styles.wrapper}>
-			<StatusBar translucent barStyle='light-content' />
-		</View>
-	);
+type Props = {
+	textColor: 'light-content' | 'dark-content';
+};
+
+export const CustomStatusBar = ({ textColor }: Props) => {
+	return <StatusBar barStyle={textColor} />;
 };

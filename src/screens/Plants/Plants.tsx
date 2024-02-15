@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 
 import { Categories } from '@src/components/Categories/Categories';
@@ -10,6 +10,7 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './Plant.style';
 import { renderItemPlantCardPreview, renderItemSeparator, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ITEM_SIZE = 182;
 const PAGINATION_SIZE = 4;
@@ -63,7 +64,7 @@ export default function PlantsScreen() {
 	};
 
 	return (
-		<SafeAreaView style={styles.wrapper}>
+		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
 			<PlantsHeader value={searchInput} onChangeText={setSearchInput} />
 			<Categories categoryUuids={categoryUuids} handleSelectCategory={handleSelectCategory} />
 			{isLoading && <Spinner size={64} />}
