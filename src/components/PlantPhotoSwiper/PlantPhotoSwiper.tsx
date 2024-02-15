@@ -16,7 +16,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CustomStatusBar } from '../CustomStatusBar/CustomStatusBar';
 import { STATUS_BAR_TEXT_COLOR } from '../CustomStatusBar/CustomStatusBar.constants';
 
-export const PlantPhotoSwiper = () => {
+type Props = {
+	setHasPlanPhoto: () => void;
+};
+
+export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 	const width = Dimensions.get('window').width;
 	const { styles } = useStyles(styleSheet);
 	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
@@ -36,13 +40,15 @@ export const PlantPhotoSwiper = () => {
 		return <NotFound />;
 	}
 
-	const statusBarHeight = useSafeAreaInsets().top;
+	if (data?.data.length) {
+		setHasPlanPhoto();
+	}
 
 	return (
 		<>
-			{data?.data.length ? (
-				<View style={styles.wrapper(statusBarHeight)}>
-					<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
+			{!!data?.data.length && (
+				<View style={styles.wrapper}>
+					<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.light} />
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{data?.data.map((photo) => (
 							<FastImage
@@ -57,8 +63,6 @@ export const PlantPhotoSwiper = () => {
 						))}
 					</Swiper>
 				</View>
-			) : (
-				<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
 			)}
 		</>
 	);
