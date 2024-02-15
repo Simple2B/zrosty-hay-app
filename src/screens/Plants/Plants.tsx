@@ -9,7 +9,7 @@ import { useAPIGetAllInfinite } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './Plant.style';
-import { renderItemPlantCardPreview, renderItemSeparator, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
+import { renderItemPlantCardPreview, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
 
 const ITEM_SIZE = 182;
 const PAGINATION_SIZE = 4;
@@ -78,7 +78,6 @@ export default function PlantsScreen() {
 					keyExtractor={getKeyExtractor}
 					onEndReached={onEndReached}
 					ListFooterComponent={renderLoader}
-					ItemSeparatorComponent={renderItemSeparator}
 					renderItem={renderItemPlantCardPreview}
 				/>
 			)}

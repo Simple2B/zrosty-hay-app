@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.18"
+		"version": "0.1.21"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -442,6 +442,84 @@
 				}
 			}
 		},
+		"/api/plants/{uuid}/recipes": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get Plant Recipes",
+				"description": "Returns the plants",
+				"operationId": "API-get_plant_recipes",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"minimum": 1,
+							"description": "Page number",
+							"default": 1,
+							"title": "Page"
+						},
+						"description": "Page number"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"maximum": 100,
+							"minimum": 1,
+							"description": "Page size",
+							"default": 50,
+							"title": "Size"
+						},
+						"description": "Page size"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Page_Recipe_"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/planting-step-types/": {
 			"get": {
 				"tags": ["API", "Planting Step Types"],
@@ -663,6 +741,68 @@
 				"required": ["items", "total", "page", "size"],
 				"title": "Page[Plant]"
 			},
+			"Page_Recipe_": {
+				"properties": {
+					"items": {
+						"items": {
+							"$ref": "#/components/schemas/Recipe"
+						},
+						"type": "array",
+						"title": "Items"
+					},
+					"total": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 0.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Total"
+					},
+					"page": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 1.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Page"
+					},
+					"size": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 1.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Size"
+					},
+					"pages": {
+						"anyOf": [
+							{
+								"type": "integer",
+								"minimum": 0.0
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Pages"
+					}
+				},
+				"type": "object",
+				"required": ["items", "total", "page", "size"],
+				"title": "Page[Recipe]"
+			},
 			"Photo": {
 				"properties": {
 					"urlPath": {
@@ -825,6 +965,10 @@
 					"humidityPercentage": {
 						"type": "number",
 						"title": "Humiditypercentage"
+					},
+					"hasPlanPhoto": {
+						"type": "boolean",
+						"title": "Hasplanphoto"
 					}
 				},
 				"type": "object",
@@ -839,7 +983,8 @@
 					"temperatureInfo",
 					"wateringInfo",
 					"waterVolume",
-					"humidityPercentage"
+					"humidityPercentage",
+					"hasPlanPhoto"
 				],
 				"title": "PlantDetail"
 			},
@@ -902,6 +1047,57 @@
 				"type": "object",
 				"required": ["uuid", "svgIcon", "name"],
 				"title": "PlantingStepType"
+			},
+			"Recipe": {
+				"properties": {
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"description": {
+						"type": "string",
+						"title": "Description"
+					},
+					"photo": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Photo"
+							},
+							{
+								"type": "null"
+							}
+						]
+					},
+					"categories": {
+						"items": {
+							"$ref": "#/components/schemas/RecipeCategory"
+						},
+						"type": "array",
+						"title": "Categories"
+					}
+				},
+				"type": "object",
+				"required": ["uuid", "name", "description", "photo", "categories"],
+				"title": "Recipe"
+			},
+			"RecipeCategory": {
+				"properties": {
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					}
+				},
+				"type": "object",
+				"required": ["uuid", "name"],
+				"title": "RecipeCategory"
 			},
 			"StepType": {
 				"properties": {

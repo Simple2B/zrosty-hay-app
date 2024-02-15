@@ -1,33 +1,39 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
-	cardWrapper: {
+	wrapper: {
+		height: 170,
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
 		alignSelf: 'stretch',
-		heigh: 170,
-		gap: theme.size.lg + theme.size.xxs,
 		borderRadius: theme.size.xxl,
 		borderColor: theme.colors.borderGrey,
 		borderWidth: 1,
-		backgroundColor: theme.colors.background,
-		color: theme.colors.text,
+		gap: theme.size.lg + theme.size.xxs,
 		marginBottom: theme.size.md,
 	},
-	plantName: {
+
+	content: {
+		flex: 1,
+		justifyContent: 'center',
+		gap: theme.size.lg,
+		paddingRight: theme.size.xl,
+	},
+	title: {
 		fontSize: theme.size.lg,
 		fontWeight: theme.fontWeight.bold,
-		lineHeight: theme.size.lg + theme.size.xs,
 	},
-	infoBlock: {
-		flex: 1,
-		flexDirection: 'column',
-		gap: theme.size.sm,
+	description: {
+		fontSize: theme.size.md,
 	},
-	plantImage: {
+
+	categories: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: theme.size.xs,
+	},
+	recipeImage: {
 		width: 142,
-		height: 170,
+		height: 168,
 		borderBottomLeftRadius: theme.size.xxl,
 		borderTopLeftRadius: theme.size.xxl,
 	},
