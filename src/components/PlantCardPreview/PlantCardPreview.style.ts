@@ -11,15 +11,8 @@ export const styleSheet = createStyleSheet((theme) => ({
 		borderRadius: theme.size.xxl,
 		backgroundColor: theme.colors.background,
 		color: theme.colors.text,
-		shadowColor: theme.colors.borderGrey,
-
-		shadowOffset: {
-			width: theme.size.zero,
-			height: theme.size.zero,
-		},
-		shadowOpacity: 0.5,
-		shadowRadius: theme.size.xs,
-		elevation: theme.size.xxs,
+		borderWidth: 1,
+		borderColor: theme.colors.borderGrey,
 	},
 	plantName: {
 		fontSize: theme.size.lg,
