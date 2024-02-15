@@ -1,7 +1,7 @@
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from 'react-native-unistyles';
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useState } from 'react';
 
@@ -10,8 +10,6 @@ import { PlantPhotoSwiper } from '@src/components/PlantPhotoSwiper/PlantPhotoSwi
 
 import { styleSheet } from './PlantDetailLayout.style';
 import { PlantDetailTabBtns } from '../PlantDetailTabBtns/PlantDetailTabBtns';
-import { CustomStatusBar } from '../CustomStatusBar/CustomStatusBar';
-import { STATUS_BAR_TEXT_COLOR } from '../CustomStatusBar/CustomStatusBar.constants';
 
 export const PlantDetailLayout = () => {
 	const { t } = useTranslation();
@@ -32,7 +30,7 @@ export const PlantDetailLayout = () => {
 		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
 			<PlantPhotoSwiper setHasPlanPhoto={setIsPhotoState} />
 			<View style={styles.tabBarWrapper(statusBarHeightToAdd)}>
-				<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
+				<StatusBar barStyle='dark-content' />
 
 				<PlantDetailTab tabBar={(props) => <PlantDetailTabBtns {...props} plantUuid={plantUuid} />}>
 					<PlantDetailTab.Screen name='index' options={{ title: t('descriptionTab') }} />

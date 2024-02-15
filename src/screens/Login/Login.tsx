@@ -2,7 +2,7 @@ import { useStyles } from 'react-native-unistyles';
 
 import { Link } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 
 import { AuthButton } from '@src/components/buttons/AuthButton/AuthButton';
 import { AuthBtnType } from '@src/components/buttons/AuthButton/AuthButton.constans';
@@ -10,15 +10,14 @@ import TopLeaf from '@assets/icons/topLeaf.svg';
 import ButtonLeaf from '@assets/icons/buttonLeaf.svg';
 
 import { styleSheet } from './Login.style';
-import { CustomStatusBar } from '@src/components/CustomStatusBar/CustomStatusBar';
-import { STATUS_BAR_TEXT_COLOR } from '@src/components/CustomStatusBar/CustomStatusBar.constants';
 
 export default function LoginScreen() {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
 	return (
 		<SafeAreaView style={styles.container}>
-			<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.dark} />
+			<StatusBar barStyle='dark-content' />
+
 			<View style={styles.innerContainer}>
 				<View style={styles.innerTop}>
 					<Text style={styles.title}>

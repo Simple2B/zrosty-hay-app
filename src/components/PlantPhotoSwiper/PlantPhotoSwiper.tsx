@@ -1,5 +1,5 @@
-import React from 'react';
-import { Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
+import { Dimensions, StatusBar } from 'react-native';
 import { View, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import FastImage from 'react-native-fast-image';
@@ -12,9 +12,6 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CustomStatusBar } from '../CustomStatusBar/CustomStatusBar';
-import { STATUS_BAR_TEXT_COLOR } from '../CustomStatusBar/CustomStatusBar.constants';
 
 type Props = {
 	setHasPlanPhoto: () => void;
@@ -31,6 +28,12 @@ export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 		},
 	});
 
+	useEffect(() => {
+		if (data?.data.length) {
+			setHasPlanPhoto();
+		}
+	}, [data?.data.length, setHasPlanPhoto]);
+
 	if (isLoading) {
 		return <Spinner size={32} />;
 	}
@@ -40,15 +43,11 @@ export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 		return <NotFound />;
 	}
 
-	if (data?.data.length) {
-		setHasPlanPhoto();
-	}
-
 	return (
 		<>
 			{!!data?.data.length && (
 				<View style={styles.wrapper}>
-					<CustomStatusBar textColor={STATUS_BAR_TEXT_COLOR.light} />
+					<StatusBar barStyle='light-content' />
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{data?.data.map((photo) => (
 							<FastImage
