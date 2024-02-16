@@ -17,11 +17,13 @@ import { PlantDetailInfo } from '@src/components/PlantDetailInfo/PlantDetailInfo
 import { getSizeKey } from '@src/utils';
 import { styleSheet } from './PlantDerail.style';
 
+const MAX_LENGTH = 150;
+
 export default function PlantDetailScreen() {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
 	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
-	const [showMore, setShowMore] = useState<boolean>(false);
+	const [maxFeaturesLenght, setMaxFeaturesLenght] = useState<number>(MAX_LENGTH);
 
 	const { data, isLoading, isError } = useAPIGet(uuid ?? '', {
 		query: {
@@ -30,7 +32,7 @@ export default function PlantDetailScreen() {
 	});
 
 	const handlerOnBtnMore = () => {
-		setShowMore(!showMore);
+		setMaxFeaturesLenght(maxFeaturesLenght * 2);
 	};
 
 	if (isLoading) {
@@ -43,6 +45,7 @@ export default function PlantDetailScreen() {
 
 	const isSunLoving = data.data.isSunLoving;
 	const sizeSubtitle = t(`plantSize.${getSizeKey(data.data.maxSize)}`);
+	const featureeLenght = data.data.features.length;
 
 	return (
 		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -53,15 +56,9 @@ export default function PlantDetailScreen() {
 					<Text style={styles.subTitile}>{t('plantInfoText')}</Text>
 				</View>
 				<Text style={styles.paragraph}>{data.data.generalInfo}</Text>
-				<Text style={styles.paragraph}>{data.data.features}</Text>
-				{showMore && (
-					<>
-						<Text style={styles.paragraph}>{data.data.temperatureInfo}</Text>
-						<Text style={styles.paragraph}>{data.data.wateringInfo}</Text>
-					</>
-				)}
+				<Text style={styles.paragraph}>{data.data.features.slice(0, maxFeaturesLenght)}</Text>
 			</View>
-			{!showMore && (
+			{maxFeaturesLenght < featureeLenght && (
 				<Text onPress={handlerOnBtnMore} style={styles.btnMore}>
 					{t('plantMoreTextBtn')}
 				</Text>
