@@ -1,5 +1,5 @@
-import React from 'react';
-import { Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
+import { Dimensions, StatusBar } from 'react-native';
 import { View, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import FastImage from 'react-native-fast-image';
@@ -11,6 +11,7 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TPlantScreenProps } from '@src/types/plant';
 
 export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
@@ -32,10 +33,13 @@ export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 		return <NotFound />;
 	}
 
+	const statusBarHeight = useSafeAreaInsets().top;
+
 	return (
 		<>
-			{!!data?.data.length && (
+			{data?.data.length ? (
 				<View style={styles.wrapper}>
+					<StatusBar barStyle='light-content' />
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{data?.data.map((photo) => (
 							<FastImage
@@ -50,6 +54,8 @@ export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 						))}
 					</Swiper>
 				</View>
+			) : (
+				<View style={styles.statusbar(statusBarHeight)} />
 			)}
 		</>
 	);

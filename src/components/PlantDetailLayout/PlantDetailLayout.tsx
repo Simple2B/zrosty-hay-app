@@ -1,8 +1,9 @@
+import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from 'react-native-unistyles';
-import { View } from 'react-native';
-import React from 'react';
+import { StatusBar, View } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 
 import { PlantDetailTab } from '@src/components/PlantDetailTab/PlantDetailTab';
 import { PlantPhotoSwiper } from '@src/components/PlantPhotoSwiper/PlantPhotoSwiper';
@@ -16,9 +17,11 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
-		<SafeAreaView style={styles.wrapper}>
+		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
 			<PlantPhotoSwiper plantUuid={plantUuid} />
 			<View style={styles.tabBarWrapper}>
+				<StatusBar barStyle='dark-content' />
+
 				<PlantDetailTab tabBar={(props) => <PlantDetailTabBtns {...props} plantUuid={plantUuid} />}>
 					<PlantDetailTab.Screen name='index' options={{ title: t('descriptionTab') }} />
 					<PlantDetailTab.Screen name='care' options={{ title: t('careTab') }} />

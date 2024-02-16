@@ -1,8 +1,12 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
-export const styleSheet = createStyleSheet(() => ({
+export const styleSheet = createStyleSheet((theme) => ({
+	statusbar: (statusbarHeight: number) => ({
+		paddingTop: statusbarHeight,
+	}),
 	wrapper: {
-		height: 320,
+		height: theme.size.xxl * 10,
+		backgroundColor: theme.colors.primary,
 	},
 	plantImage: {
 		flex: 1,
