@@ -17,7 +17,7 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
-		<SafeAreaView style={styles.wrapper}>
+		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
 			<PlantPhotoSwiper plantUuid={plantUuid} />
 			<View style={styles.tabBarWrapper}>
 				<StatusBar barStyle='dark-content' />
