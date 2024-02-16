@@ -7,8 +7,9 @@ import CalendarIcon from '@assets/icons/calendar.svg';
 import { sizes } from '@src/styling/sizes';
 import { styleSheet } from './PlantCare.style';
 import { PlantCareBody } from '@src/components/PlantCareBody/PlantCareBody';
+import { TPlantScreenProps } from '@src/types/plant';
 
-export const PlantCare = () => {
+export const PlantCare = ({ plantUuid }: TPlantScreenProps) => {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
 
@@ -21,7 +22,7 @@ export const PlantCare = () => {
 				</View>
 			</View>
 
-			<PlantCareBody />
+			<PlantCareBody plantUuid={plantUuid} />
 		</ScrollView>
 	);
 };

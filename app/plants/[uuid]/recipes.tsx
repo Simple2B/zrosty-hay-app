@@ -1,11 +1,15 @@
 import { Text, View } from 'react-native';
 import React from 'react';
 import { PlantRecipesScreen } from '@src/screens/PlantRecipes/PlantRecipes';
+import { useLocalSearchParams } from 'expo-router';
+import { NotFound } from '@src/components/NotFound/NotFound';
 
-const Recipes = () => {
-	return (
-		<PlantRecipesScreen/>
-	);
-};
+export default function Recipes() {
+	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 
-export default Recipes;
+	if (!uuid) {
+		return <NotFound />;
+	}
+
+	return <PlantRecipesScreen plantUuid={uuid} />;
+}

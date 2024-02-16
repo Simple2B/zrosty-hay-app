@@ -6,21 +6,20 @@ import FastImage from 'react-native-fast-image';
 import { useStyles } from 'react-native-unistyles';
 
 import { styleSheet } from './PlantPhotoSwiper.style';
-import { useLocalSearchParams } from 'expo-router';
 import { useAPIGetPlantPhotos } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
+import { TPlantScreenProps } from '@src/types/plant';
 
-export const PlantPhotoSwiper = () => {
+export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 	const width = Dimensions.get('window').width;
 	const { styles } = useStyles(styleSheet);
-	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 
-	const { data, isLoading, isError } = useAPIGetPlantPhotos(uuid ?? '', {
+	const { data, isLoading, isError } = useAPIGetPlantPhotos(plantUuid, {
 		query: {
-			queryKey: [queryKeys.GET_PLANT_PHOTOS, uuid],
+			queryKey: [queryKeys.GET_PLANT_PHOTOS, plantUuid],
 		},
 	});
 
