@@ -45,7 +45,7 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	const isSunLoving = data.data.isSunLoving;
 	const sizeSubtitle = t(`plantSize.${getSizeKey(data.data.maxSize)}`);
 	const featureWordsLenght = data.data.features.split(' ').length;
-	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / 10 : 0;
+	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / 10 : LINE_NUMBER;
 
 	return (
 		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
