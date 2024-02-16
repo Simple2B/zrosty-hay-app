@@ -12,12 +12,9 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-type Props = {
-	setHasPlanPhoto: () => void;
-};
-
-export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
+export const PlantPhotoSwiper = () => {
 	const width = Dimensions.get('window').width;
 	const { styles } = useStyles(styleSheet);
 	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
@@ -28,12 +25,6 @@ export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 		},
 	});
 
-	useEffect(() => {
-		if (data?.data.length) {
-			setHasPlanPhoto();
-		}
-	}, [data?.data.length, setHasPlanPhoto]);
-
 	if (isLoading) {
 		return <Spinner size={32} />;
 	}
@@ -43,8 +34,10 @@ export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 		return <NotFound />;
 	}
 
+	const statusBarHeight = useSafeAreaInsets().top;
+
 	return (
-		<>
+		<View style={styles.statusbar(statusBarHeight)}>
 			{!!data?.data.length && (
 				<View style={styles.wrapper}>
 					<StatusBar barStyle='light-content' />
@@ -63,6 +56,6 @@ export const PlantPhotoSwiper = ({ setHasPlanPhoto }: Props) => {
 					</Swiper>
 				</View>
 			)}
-		</>
+		</View>
 	);
 };

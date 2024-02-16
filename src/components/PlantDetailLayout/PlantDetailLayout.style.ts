@@ -6,9 +6,9 @@ export const styleSheet = createStyleSheet((theme) => ({
 		backgroundColor: theme.colors.background,
 	},
 
-	tabBarWrapper: (statusBarHeight: number) => ({
+	tabBarWrapper: {
 		flex: 1,
-		paddingTop: theme.size.lg + statusBarHeight,
+		paddingTop: theme.size.lg,
 		paddingHorizontal: theme.size.xl,
-	}),
+	},
 }));
