@@ -18,7 +18,7 @@ export default {
 	],
 } as ComponentMeta<typeof PlantPhotoSwiper>;
 
-const Template: ComponentStory<typeof PlantPhotoSwiper> = () => <PlantPhotoSwiper  />;
+const Template: ComponentStory<typeof PlantPhotoSwiper> = (args) => <PlantPhotoSwiper {...args} />;
 
 const plantPhotos = [
 	{
@@ -40,4 +40,4 @@ const plantPhotos = [
 ];
 
 export const Story = Template.bind({});
-Story.args = { plantPhotos };
+Story.args = { plantUuid: '123' };
