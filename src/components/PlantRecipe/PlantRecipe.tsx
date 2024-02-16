@@ -12,14 +12,8 @@ type Props = {
 	recipe: Recipe;
 };
 
-const MAX_LENGTH = 80;
-const MIN_LENGTH = 60;
-
 export const PlantRecipe = ({ recipe }: Props) => {
 	const { styles } = useStyles(styleSheet);
-
-	const nameLength = recipe.name.split(' ').length;
-	const maxDescriptionLength = nameLength > 2 ? MIN_LENGTH : MAX_LENGTH;
 
 	return (
 		<TouchableOpacity style={styles.wrapper}>
@@ -34,7 +28,9 @@ export const PlantRecipe = ({ recipe }: Props) => {
 			/>
 			<View style={styles.content}>
 				<Text style={styles.title}>{recipe.name}</Text>
-				<Text style={styles.description}>{recipe.description.slice(0, maxDescriptionLength)}...</Text>
+				<Text numberOfLines={3} style={styles.description}>
+					{recipe.description}
+				</Text>
 				<View>
 					<ScrollView
 						contentContainerStyle={styles.categories}

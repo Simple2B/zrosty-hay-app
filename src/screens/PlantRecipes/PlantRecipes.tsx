@@ -1,7 +1,6 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { useStyles } from 'react-native-unistyles';
-import { useLocalSearchParams } from 'expo-router';
 import { FlashList } from '@shopify/flash-list';
 
 import { queryKeys } from '@src/constants/queryKeys';
@@ -9,22 +8,22 @@ import { useAPIGetPlantRecipesInfinite } from '@src/api/plants/plants';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './PlantRecipes.style';
 import { getKeyExtractor, getNextPlantPage, renderItemPlantCardPreview } from './PlantRecipes.callbacks';
+import { TPlantScreenProps } from '@src/types/plant';
 
 const ITEM_SIZE = 177;
 const PAGINATION_SIZE = 4;
 
-export const PlantRecipesScreen = () => {
+export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 	const { styles } = useStyles(styleSheet);
-	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useAPIGetPlantRecipesInfinite(
-		uuid ?? '',
+		plantUuid,
 		{
 			size: PAGINATION_SIZE,
 		},
 		{
 			query: {
-				queryKey: [queryKeys.GET_PLANT_RECIPES, uuid],
+				queryKey: [queryKeys.GET_PLANT_RECIPES, plantUuid],
 				getNextPageParam: getNextPlantPage,
 			},
 		},

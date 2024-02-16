@@ -1,6 +1,5 @@
 import { useStyles } from 'react-native-unistyles';
 import { ScrollView, Text, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -16,23 +15,23 @@ import Info from '@assets/icons/info.svg';
 import { PlantDetailInfo } from '@src/components/PlantDetailInfo/PlantDetailInfo';
 import { getSizeKey } from '@src/utils';
 import { styleSheet } from './PlantDerail.style';
+import { TPlantScreenProps } from '@src/types/plant';
 
-const MAX_LENGTH = 150;
+const LINE_NUMBER = 4;
 
-export default function PlantDetailScreen() {
+export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
-	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
-	const [maxFeaturesLenght, setMaxFeaturesLenght] = useState<number>(MAX_LENGTH);
+	const [featuresLineNumber, setFeaturesLineNumber] = useState<number>(LINE_NUMBER);
 
-	const { data, isLoading, isError } = useAPIGet(uuid ?? '', {
+	const { data, isLoading, isError } = useAPIGet(plantUuid, {
 		query: {
-			queryKey: [queryKeys.GET_PLANT_DETAIL, uuid],
+			queryKey: [queryKeys.GET_PLANT_DETAIL, plantUuid],
 		},
 	});
 
 	const handlerOnBtnMore = () => {
-		setMaxFeaturesLenght(maxFeaturesLenght * 2);
+		setFeaturesLineNumber(featuresLineNumber * 2);
 	};
 
 	if (isLoading) {
@@ -45,7 +44,8 @@ export default function PlantDetailScreen() {
 
 	const isSunLoving = data.data.isSunLoving;
 	const sizeSubtitle = t(`plantSize.${getSizeKey(data.data.maxSize)}`);
-	const featureeLenght = data.data.features.length;
+	const featureWordsLenght = data.data.features.split(' ').length;
+	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / 10 : LINE_NUMBER;
 
 	return (
 		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -56,9 +56,11 @@ export default function PlantDetailScreen() {
 					<Text style={styles.subTitile}>{t('plantInfoText')}</Text>
 				</View>
 				<Text style={styles.paragraph}>{data.data.generalInfo}</Text>
-				<Text style={styles.paragraph}>{data.data.features.slice(0, maxFeaturesLenght)}</Text>
+				<Text numberOfLines={featuresLineNumber} style={styles.paragraph}>
+					{data.data.features}
+				</Text>
 			</View>
-			{maxFeaturesLenght < featureeLenght && (
+			{featuresLineNumber < lineCount && (
 				<Text onPress={handlerOnBtnMore} style={styles.btnMore}>
 					{t('plantMoreTextBtn')}
 				</Text>
