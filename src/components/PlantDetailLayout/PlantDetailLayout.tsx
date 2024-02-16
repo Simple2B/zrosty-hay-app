@@ -10,17 +10,15 @@ import { PlantPhotoSwiper } from '@src/components/PlantPhotoSwiper/PlantPhotoSwi
 
 import { styleSheet } from './PlantDetailLayout.style';
 import { PlantDetailTabBtns } from '../PlantDetailTabBtns/PlantDetailTabBtns';
+import { TPlantScreenProps } from '@src/types/plant';
 
-export const PlantDetailLayout = () => {
+export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
-	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
-
-	const plantUuid = uuid ?? '';
 
 	return (
-		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
-			<PlantPhotoSwiper />
+		<SafeAreaView style={styles.wrapper}>
+			<PlantPhotoSwiper plantUuid={plantUuid} />
 			<View style={styles.tabBarWrapper}>
 				<StatusBar barStyle='dark-content' />
 
