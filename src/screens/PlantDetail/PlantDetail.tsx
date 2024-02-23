@@ -6,25 +6,28 @@ import { useState } from 'react';
 import SunIcon from '@assets/icons/plantDetail/sun.svg';
 import WateringIcon from '@assets/icons/plantDetail/watering.svg';
 import WateringInfoIcon from '@assets/icons/plantDetail/wateringInfo.svg';
+import HarvestTimeIcon from '@assets/icons/plantDetail/harvestTime.svg';
+import PlantingTimeIcon from '@assets/icons/plantDetail/plantingTime.svg';
 import SizeIcon from '@assets/icons/plantDetail/size.svg';
-import { useAPIGet } from '@src/api/plants/plants';
+import { useAPIGetPlantDetail } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { NotFound } from '@src/components/NotFound/NotFound';
 import Info from '@assets/icons/info.svg';
 import { PlantDetailInfo } from '@src/components/PlantDetailInfo/PlantDetailInfo';
-import { getSizeKey } from '@src/utils';
 import { styleSheet } from './PlantDerail.style';
 import { TPlantScreenProps } from '@src/types/plant';
+import { convertDays } from '@src/utils';
 
 const LINE_NUMBER = 4;
+const AVERAGE_COUNT_WORDS = 6;
 
 export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	const { styles } = useStyles(styleSheet);
 	const { t } = useTranslation();
 	const [featuresLineNumber, setFeaturesLineNumber] = useState<number>(LINE_NUMBER);
 
-	const { data, isLoading, isError } = useAPIGet(plantUuid, {
+	const { data, isLoading, isError } = useAPIGetPlantDetail(plantUuid, {
 		query: {
 			queryKey: [queryKeys.GET_PLANT_DETAIL, plantUuid],
 		},
@@ -43,9 +46,13 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	}
 
 	const isSunLoving = data.data.isSunLoving;
-	const sizeSubtitle = t(`plantSize.${getSizeKey(data.data.maxSize)}`);
+	const sizeSubtitle = `${t('min')}. ${data.data.minSize}${t('cm')} - ${t('max')}. ${data.data.maxSize}${t('cm')}`;
 	const featureWordsLenght = data.data.features.split(' ').length;
-	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / 10 : LINE_NUMBER;
+	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / AVERAGE_COUNT_WORDS : LINE_NUMBER;
+	const harvestTime = data.data.harvestTime;
+	const plantingTime = data.data.plantingTime;
+	const harvestTimeSubTitle = convertDays(harvestTime, t);
+	const plantingTimeSubtitle = convertDays(plantingTime, t);
 
 	return (
 		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -73,11 +80,14 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 						subTitle={isSunLoving ? t('isSunLoving') : t('notSunLoving')}
 						SvgIcon={SunIcon}
 					/>
+					{!!harvestTime && (
+						<PlantDetailInfo title={t('harvestTime')} subTitle={harvestTimeSubTitle} SvgIcon={HarvestTimeIcon} />
+					)}
 				</View>
 				<View style={styles.infoRow}>
 					<PlantDetailInfo
 						title={t('plantDetailWateringTitle')}
-						subTitle={`${data.data.waterVolume}${t('millilitre')}`}
+						subTitle={t(`watering.${data.data.watering}`)}
 						SvgIcon={WateringIcon}
 					/>
 					<PlantDetailInfo
@@ -85,6 +95,9 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 						subTitle={`${data.data.humidityPercentage}%`}
 						SvgIcon={WateringInfoIcon}
 					/>
+					{!!plantingTime && (
+						<PlantDetailInfo title={t('plantingTime')} subTitle={plantingTimeSubtitle} SvgIcon={PlantingTimeIcon} />
+					)}
 				</View>
 			</View>
 		</ScrollView>

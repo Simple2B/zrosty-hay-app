@@ -1,7 +1,6 @@
 import React, { FunctionComponent, SVGAttributes } from 'react';
 import { Text, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-import { sizes } from '@src/styling/sizes';
 import { styleSheet } from './PlantDetailInfo.style';
 
 type PlantDetailInfoProps = {

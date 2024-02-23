@@ -16,4 +16,11 @@ export const styleSheet = createStyleSheet((theme) => ({
 	activeDot: {
 		backgroundColor: '#fff',
 	},
+	backIconwrapper: (statusbarHeight: number) => ({
+		paddingTop: statusbarHeight,
+		position: 'absolute',
+		zIndex: 1000,
+		top: theme.size.xl,
+		left: theme.size.xl,
+	}),
 }));

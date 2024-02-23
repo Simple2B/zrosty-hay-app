@@ -13,11 +13,6 @@
 			"vegetables": "Vegetables",
 			"fruits": "Fruits"
 		},
-		"watering": {
-			"easy": "Infrequent watering",
-			"normal": "Moderate watering",
-			"hard": "Frequent watering"
-		},
 		"care": {
 			"easy": "Easy care",
 			"normal": "Normal care",
@@ -45,5 +40,20 @@
 		"large": "large plant"
 	},
 	"day": "Day",
-	"careCalendarText": "Care calendar"
+	"dni": "days",
+	"days": "days",
+	"month": "місяць",
+	"misaca": "місяця",
+	"months": "місяців",
+	"careCalendarText": "Care calendar",
+	"watering": {
+		"easy": "Infrequent watering",
+		"normal": "Moderate watering",
+		"hard": "Frequent watering"
+	},
+	"min": "min",
+	"max": "max",
+	"cm": "cm",
+	"harvestTime": "Harvest period",
+	"plantingTime": "Lifetime"
 }

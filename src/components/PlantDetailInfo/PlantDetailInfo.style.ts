@@ -10,7 +10,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 
 	inner: {
 		justifyContent: 'center',
-		gap: theme.size.sm,
+		gap: theme.size.xs,
 	},
 
 	title: {

@@ -30,7 +30,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	const temperatureText = `${minTemperature} - ${maxTemperature} °C`;
 	const careTypeText = t(`components.care.${careType}`);
 	const sizeText = `${minSize} - ${maxSize} cm`;
-	const wateringText = t(`components.watering.${watering}`);
+	const wateringText = t(`watering.${watering}`);
 
 	const onPressCard = () => {
 		router.push(`/plants/${plantInfo.uuid}`);
