@@ -13,7 +13,7 @@ import { renderItemPlantCardPreview, getKeyExtractor, getNextPlantPage } from '.
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ITEM_SIZE = 182;
-const PAGINATION_SIZE = 4;
+const PAGINATION_SIZE = 20;
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);

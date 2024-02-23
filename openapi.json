@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.21"
+		"version": "0.1.26"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -217,12 +217,12 @@
 				}
 			}
 		},
-		"/api/plants/{uuid}": {
+		"/api/plants/{uuid}/detail": {
 			"get": {
 				"tags": ["API", "Plants"],
-				"summary": "Get",
-				"description": "Returns the plants",
-				"operationId": "API-get",
+				"summary": "Get Plant Detail",
+				"description": "Returns the plant detail",
+				"operationId": "API-get_plant_detail",
 				"parameters": [
 					{
 						"name": "uuid",
@@ -241,6 +241,57 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/PlantDetail"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/plants/{uuid}/care-tips": {
+			"get": {
+				"tags": ["API", "Plants"],
+				"summary": "Get Plant Care Tips",
+				"description": "Returns the plant care trips",
+				"operationId": "API-get_plant_care_tips",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PlantCareTips"
 								}
 							}
 						}
@@ -679,6 +730,21 @@
 				"type": "object",
 				"title": "HTTPValidationError"
 			},
+			"InstanceName": {
+				"properties": {
+					"uuid": {
+						"type": "string",
+						"title": "Uuid"
+					},
+					"name": {
+						"type": "string",
+						"title": "Name"
+					}
+				},
+				"type": "object",
+				"required": ["uuid", "name"],
+				"title": "InstanceName"
+			},
 			"Page_Plant_": {
 				"properties": {
 					"items": {
@@ -835,6 +901,9 @@
 						"type": "string",
 						"title": "Name"
 					},
+					"careType": {
+						"$ref": "#/components/schemas/CareType"
+					},
 					"isSunLoving": {
 						"type": "boolean",
 						"title": "Issunloving"
@@ -846,6 +915,9 @@
 					"maxSize": {
 						"type": "number",
 						"title": "Maxsize"
+					},
+					"watering": {
+						"$ref": "#/components/schemas/CareType"
 					},
 					"photo": {
 						"anyOf": [
@@ -878,28 +950,94 @@
 							}
 						],
 						"title": "Maxtemperature"
-					},
-					"careType": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"watering": {
-						"$ref": "#/components/schemas/CareType"
 					}
 				},
 				"type": "object",
 				"required": [
 					"uuid",
 					"name",
+					"careType",
 					"isSunLoving",
 					"minSize",
 					"maxSize",
+					"watering",
 					"photo",
 					"minTemperature",
-					"maxTemperature",
-					"careType",
-					"watering"
+					"maxTemperature"
 				],
 				"title": "Plant"
+			},
+			"PlantCareTips": {
+				"properties": {
+					"watering": {
+						"$ref": "#/components/schemas/CareType"
+					},
+					"wateringInfo": {
+						"type": "string",
+						"title": "Wateringinfo"
+					},
+					"minTemperature": {
+						"anyOf": [
+							{
+								"type": "number"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Mintemperature"
+					},
+					"maxTemperature": {
+						"anyOf": [
+							{
+								"type": "number"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Maxtemperature"
+					},
+					"temperature_info": {
+						"type": "string",
+						"title": "Temperature Info"
+					},
+					"groundPh": {
+						"type": "number",
+						"title": "Groundph"
+					},
+					"generalInfo": {
+						"type": "string",
+						"title": "Generalinfo"
+					},
+					"pests": {
+						"items": {
+							"$ref": "#/components/schemas/InstanceName"
+						},
+						"type": "array",
+						"title": "Pests"
+					},
+					"illnesses": {
+						"items": {
+							"$ref": "#/components/schemas/InstanceName"
+						},
+						"type": "array",
+						"title": "Illnesses"
+					}
+				},
+				"type": "object",
+				"required": [
+					"watering",
+					"wateringInfo",
+					"minTemperature",
+					"maxTemperature",
+					"temperature_info",
+					"groundPh",
+					"generalInfo",
+					"pests",
+					"illnesses"
+				],
+				"title": "PlantCareTips"
 			},
 			"PlantCategory": {
 				"properties": {
@@ -930,6 +1068,9 @@
 						"type": "string",
 						"title": "Name"
 					},
+					"careType": {
+						"$ref": "#/components/schemas/CareType"
+					},
 					"isSunLoving": {
 						"type": "boolean",
 						"title": "Issunloving"
@@ -942,49 +1083,44 @@
 						"type": "number",
 						"title": "Maxsize"
 					},
-					"features": {
-						"type": "string",
-						"title": "Features"
+					"watering": {
+						"$ref": "#/components/schemas/CareType"
 					},
 					"generalInfo": {
 						"type": "string",
 						"title": "Generalinfo"
 					},
-					"temperatureInfo": {
+					"features": {
 						"type": "string",
-						"title": "Temperatureinfo"
-					},
-					"wateringInfo": {
-						"type": "string",
-						"title": "Wateringinfo"
-					},
-					"waterVolume": {
-						"type": "number",
-						"title": "Watervolume"
+						"title": "Features"
 					},
 					"humidityPercentage": {
 						"type": "number",
 						"title": "Humiditypercentage"
 					},
-					"hasPlanPhoto": {
-						"type": "boolean",
-						"title": "Hasplanphoto"
+					"harvestTime": {
+						"type": "integer",
+						"title": "Harvesttime"
+					},
+					"plantingTime": {
+						"type": "integer",
+						"title": "Plantingtime"
 					}
 				},
 				"type": "object",
 				"required": [
 					"uuid",
 					"name",
+					"careType",
 					"isSunLoving",
 					"minSize",
 					"maxSize",
-					"features",
+					"watering",
 					"generalInfo",
-					"temperatureInfo",
-					"wateringInfo",
-					"waterVolume",
+					"features",
 					"humidityPercentage",
-					"hasPlanPhoto"
+					"harvestTime",
+					"plantingTime"
 				],
 				"title": "PlantDetail"
 			},
