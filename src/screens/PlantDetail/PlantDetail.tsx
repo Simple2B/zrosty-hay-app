@@ -20,6 +20,7 @@ import { TPlantScreenProps } from '@src/types/plant';
 import { convertDays } from '@src/utils';
 
 const LINE_NUMBER = 4;
+const AVERAGE_COUNT_WORDS = 6;
 
 export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	const { styles } = useStyles(styleSheet);
@@ -47,11 +48,12 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	const isSunLoving = data.data.isSunLoving;
 	const sizeSubtitle = `${t('min')}. ${data.data.minSize}${t('cm')} - ${t('max')}. ${data.data.maxSize}${t('cm')}`;
 	const featureWordsLenght = data.data.features.split(' ').length;
-	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / 10 : LINE_NUMBER;
+	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / AVERAGE_COUNT_WORDS : LINE_NUMBER;
 	const harvestTime = data.data.harvestTime;
 	const plantingTime = data.data.plantingTime;
 	const harvestTimeSubTitle = convertDays(harvestTime, t);
 	const plantingTimeSubtitle = convertDays(plantingTime, t);
+
 	return (
 		<ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
 			<View style={styles.description}>
