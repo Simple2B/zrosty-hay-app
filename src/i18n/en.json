@@ -22,6 +22,8 @@
 	},
 	"isSunLoving": "Sun loving",
 	"notSunLoving": "Not sun loving",
+	"isMoistureLoving": "Moisture loving",
+	"notMoistureLoving": "Not moisture loving",
 	"searchPlantsTitle": "Looking for a plant?",
 	"searchPlantsPlaceholder": "Find the plant you're interested in here",
 	"descriptionTab": "Description",
@@ -42,10 +44,11 @@
 	"day": "Day",
 	"dni": "days",
 	"days": "days",
-	"month": "місяць",
-	"misaca": "місяця",
-	"months": "місяців",
+	"month": "month",
+	"misaca": "months",
+	"months": "months",
 	"careCalendarText": "Care calendar",
+	"careInfoHeader": "Care advice",
 	"watering": {
 		"easy": "Infrequent watering",
 		"normal": "Moderate watering",
@@ -55,5 +58,11 @@
 	"max": "max",
 	"cm": "cm",
 	"harvestTime": "Harvest period",
-	"plantingTime": "Lifetime"
+	"plantingTime": "Lifetime",
+	"temperature": "temperature",
+	"showMore": "Show more",
+	"showLess": "Show less",
+	"ground": "Ground",
+	"desirableSoilAcidity": "Desirable soil acidity",
+	"lightning": "Lightning"
 }

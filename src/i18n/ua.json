@@ -22,6 +22,8 @@
 	},
 	"isSunLoving": "Багато сонця",
 	"notSunLoving": "Мало сонця",
+	"isMoistureLoving": "Вологолюбний",
+	"notMoistureLoving": "Не вимагає вологи",
 	"searchPlantsTitle": "Шукаєш рослину?",
 	"searchPlantsPlaceholder": "Знайди рослину, яка тебе цікавить тут",
 	"descriptionTab": "Опис",
@@ -46,6 +48,7 @@
 	"misaca": "місяця",
 	"months": "місяців",
 	"careCalendarText": "Календар догляду",
+	"careInfoHeader": "Поради з догляду",
 	"watering": {
 		"easy": "Економний полив",
 		"normal": "Помірний полив",
@@ -55,5 +58,11 @@
 	"max": "мак",
 	"cm": "cм",
 	"harvestTime": "Урожайний період",
-	"plantingTime": "Т-сть життя"
+	"plantingTime": "Т-сть життя",
+	"temperature": "Температура",
+	"showMore": "Дізнатись більше",
+	"showLess": "Згорнути",
+	"ground": "Ґрунт",
+	"desirableSoilAcidity": "Бажана кислотність ґрунту",
+	"lightning": "Освітлення"
 }

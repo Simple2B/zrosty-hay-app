@@ -25,7 +25,7 @@ export const PlantCareBody = ({ plantUuid }: TPlantScreenProps) => {
 			<PlantingSteps handlerCurStepDay={handlerCurStepDay} curStepDay={curStepDay} plantUuid={plantUuid} />
 			{!!curStepDay && <PlantingStepDays day={curStepDay.day} plantUuid={plantUuid} />}
 			<PlantingStepTypes selectedStepTypeUuids={curStepDay?.stepTypes.map((stepType) => stepType.uuid) ?? null} />
-			<PlantCareTips />
+			<PlantCareTips plantUuid={plantUuid} />
 		</View>
 	);
 };
