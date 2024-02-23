@@ -80,7 +80,7 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 						subTitle={isSunLoving ? t('isSunLoving') : t('notSunLoving')}
 						SvgIcon={SunIcon}
 					/>
-					{Boolean(harvestTime) && (
+					{!!harvestTime && (
 						<PlantDetailInfo title={t('harvestTime')} subTitle={harvestTimeSubTitle} SvgIcon={HarvestTimeIcon} />
 					)}
 				</View>
@@ -95,7 +95,7 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 						subTitle={`${data.data.humidityPercentage}%`}
 						SvgIcon={WateringInfoIcon}
 					/>
-					{Boolean(plantingTime) && (
+					{!!plantingTime && (
 						<PlantDetailInfo title={t('plantingTime')} subTitle={plantingTimeSubtitle} SvgIcon={PlantingTimeIcon} />
 					)}
 				</View>
