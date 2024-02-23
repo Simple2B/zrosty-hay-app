@@ -28,8 +28,12 @@ export const PlantingSteps = ({ curStepDay, handlerCurStepDay, plantUuid }: Prop
 		},
 	});
 
+	if (!data?.data.length) {
+		return <></>;
+	}
+
 	return (
-		<>
+		<View>
 			<View style={styles.header}>
 				<View style={styles.titleWrapper}>
 					<CalendarIcon width={sizes.xl} height={sizes.xl} />
@@ -46,6 +50,6 @@ export const PlantingSteps = ({ curStepDay, handlerCurStepDay, plantUuid }: Prop
 					/>
 				))}
 			</ScrollView>
-		</>
+		</View>
 	);
 };
