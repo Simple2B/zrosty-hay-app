@@ -22,6 +22,8 @@ export const OnboardingScreen = () => {
 		(navigation as any).navigate('login/index');
 	};
 
+	//TODO: fix text displaying, indicators at the left, save to storage, translate text
+
 	return (
 		<SafeAreaView style={styles.wrapper}>
 			<Onboarding
@@ -39,8 +41,8 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding1} />
 							</View>
 						),
-						title: 'Дізнавайся',
-						subtitle: 'Done with React Native Onboarding Swiper',
+						title: 'ЗростиГай ваш садовий помічник',
+						subtitle: 'Додаток для догляду за рослинами, що зробить догляд за рослинами простим і приємним',
 					},
 					{
 						backgroundColor: '#fff',
@@ -49,8 +51,9 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding2} />
 							</View>
 						),
-						title: 'Вирощуй',
-						subtitle: 'Done with React Native Onboarding Swiper',
+						title: 'Все для ваших рослин',
+						subtitle:
+							'Знайомтесь з новими рослинами. Створіть план догляду за кілька кліків. Отримуйте корисні поради для догляду за рослинами.',
 					},
 					{
 						backgroundColor: '#fff',
@@ -59,8 +62,8 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding3} />
 							</View>
 						),
-						title: 'Контролюй',
-						subtitle: 'Done with React Native Onboarding Swiper',
+						title: 'Догляд за рослинами без зусиль!',
+						subtitle: 'Відстежуйте дії, отримуйте нагадування, насолоджуйтесь пишними та здоровими рослинами',
 					},
 				]}
 			/>
