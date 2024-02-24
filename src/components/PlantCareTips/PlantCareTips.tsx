@@ -51,7 +51,6 @@ export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 		groundType,
 	} = data.data;
 	const isSunLoving = false;
-	const isMoistureLoving = true;
 
 	const formattedPests = pests.map((pest) => {
 		return pest.name;
@@ -101,7 +100,9 @@ export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 				<PlantCareTipBlock title={t('pest')} SvgIcon={PestIcon} subTitle={formattedPests.join(', ')} />
 			)}
 
-			<PlantCareTipBlock title={t('illness')} SvgIcon={PillIcon} subTitle={formattedIllnesses.join(', ')} />
+			{!!illnesses.length && (
+				<PlantCareTipBlock title={t('illness')} SvgIcon={PillIcon} subTitle={formattedIllnesses.join(', ')} />
+			)}
 		</View>
 	);
 };

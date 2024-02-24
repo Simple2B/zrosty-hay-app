@@ -8,13 +8,12 @@ import { sizes } from '@src/styling/sizes';
 type PlantCareTipBlockProps = {
 	title: string;
 	subTitle?: string;
-	SvgIcon?: FunctionComponent<SVGAttributes<SVGElement>>;
+	SvgIcon: FunctionComponent<SVGAttributes<SVGElement>>;
 	text?: string;
 };
 
 export const PlantCareTipBlock = ({ title, subTitle, SvgIcon, text }: PlantCareTipBlockProps) => {
 	const [showFullText, setShowFullText] = useState(false);
-	const [numLines, setNumLines] = useState(0);
 	const { styles } = useStyles(styleSheet);
 
 	const handleShowMore = () => {
@@ -25,8 +24,8 @@ export const PlantCareTipBlock = ({ title, subTitle, SvgIcon, text }: PlantCareT
 		<View style={styles.tipBlock}>
 			<Text style={styles.tipTitle}>{title}</Text>
 			<View style={styles.tipRow}>
-				{SvgIcon && <SvgIcon width={sizes.xl} height={sizes.xl} />}
-				{subTitle && <Text>{subTitle}</Text>}
+				<SvgIcon width={sizes.xl} height={sizes.xl} />
+				{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
 			</View>
 			{text && (
 				<>
