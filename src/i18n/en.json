@@ -65,6 +65,6 @@
 	"ground": "Ground",
 	"desirableSoilAcidity": "Desirable soil acidity",
 	"lightning": "Lightning",
-	"notFound": "Ops... Something went wrong",
+	"notFound": "Oops, nothing found!",
 	"goBack": "Go back"
 }

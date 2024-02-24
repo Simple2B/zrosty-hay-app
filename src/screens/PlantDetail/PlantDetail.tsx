@@ -15,7 +15,7 @@ import { Spinner } from '@src/components/Spinner/Spinner';
 import { NotFound } from '@src/components/NotFound/NotFound';
 import Info from '@assets/icons/info.svg';
 import { PlantDetailInfo } from '@src/components/PlantDetailInfo/PlantDetailInfo';
-import { styleSheet } from './PlantDerail.style';
+import { styleSheet } from './PlantDetail.style';
 import { TPlantScreenProps } from '@src/types/plant';
 import { convertDays } from '@src/utils';
 
@@ -46,7 +46,7 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 	}
 
 	const isSunLoving = data.data.isSunLoving;
-	const sizeSubtitle = `${t('min')}. ${data.data.minSize}${t('cm')} - ${t('max')}. ${data.data.maxSize}${t('cm')}`;
+	const sizeSubtitle = `${data.data.minSize}${t('cm')} - ${data.data.maxSize}${t('cm')}`;
 	const featureWordsLenght = data.data.features.split(' ').length;
 	const lineCount = featureWordsLenght > 0 ? featureWordsLenght / AVERAGE_COUNT_WORDS : LINE_NUMBER;
 	const harvestTime = data.data.harvestTime;
@@ -60,7 +60,7 @@ export function PlantDetailScreen({ plantUuid }: TPlantScreenProps) {
 				<Text style={styles.title}>{data?.data.name}</Text>
 				<View style={styles.infoWrapper}>
 					<Info />
-					<Text style={styles.subTitile}>{t('plantInfoText')}</Text>
+					<Text style={styles.subTitle}>{t('plantInfoText')}</Text>
 				</View>
 				<Text style={styles.paragraph}>{data.data.generalInfo}</Text>
 				<Text numberOfLines={featuresLineNumber} style={styles.paragraph}>
