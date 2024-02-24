@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-
 import { styleSheet } from './PlantCareTips.style';
+import { t } from 'i18next';
 
 import { sizes } from '@src/styling/sizes';
-import { t } from 'i18next';
 import { TPlantScreenProps } from '@src/types/plant';
 import { useAPIGetPlantCareTips } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
+
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import { PlantCareTipBlock } from '../PlantCareTipBlock/PlantCareTipBlock';

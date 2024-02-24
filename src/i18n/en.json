@@ -64,5 +64,7 @@
 	"showLess": "Show less",
 	"ground": "Ground",
 	"desirableSoilAcidity": "Desirable soil acidity",
-	"lightning": "Lightning"
+	"lightning": "Lightning",
+	"notFound": "Ops... Something went wrong",
+	"goBack": "Go back"
 }

@@ -64,5 +64,7 @@
 	"showLess": "Згорнути",
 	"ground": "Ґрунт",
 	"desirableSoilAcidity": "Бажана кислотність ґрунту",
-	"lightning": "Освітлення"
+	"lightning": "Освітлення",
+	"notFound": "Ой, щось пішло не так",
+	"goBack": "Повернутися назад"
 }
