@@ -65,6 +65,7 @@ function RootLayoutNav() {
 						<Stack.Screen name='index' />
 						<Stack.Screen name='plants/index' />
 						<Stack.Screen name='plants/[uuid]' />
+						<Stack.Screen name='login/index' />
 					</Stack>
 				</SafeAreaProvider>
 			</ThemeProvider>

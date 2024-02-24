@@ -1,5 +1,5 @@
-import LoginScreen from '@src/screens/Login/Login';
+import { OnboardingScreen } from '@src/components/Onboarding/Onboarding';
 
-export default function Index() {
-  return <LoginScreen />;
+export default function Onboarding() {
+	return <OnboardingScreen />;
 }
