@@ -8,6 +8,7 @@ import { PlantingStepTypes } from '../PlantingStepTypes/PlantingStepTypes';
 import { styleSheet } from './PlantCareBody.style';
 import { PlantingStepDays } from '../PlantingStepDays/PlantingStepDays';
 import { TPlantScreenProps } from '@src/types/plant';
+import { PlantCareTips } from '../PlantCareTips/PlantCareTips';
 
 export type TStapDay = SetStateAction<PlantingStep | null>;
 
@@ -24,6 +25,7 @@ export const PlantCareBody = ({ plantUuid }: TPlantScreenProps) => {
 			<PlantingSteps handlerCurStepDay={handlerCurStepDay} curStepDay={curStepDay} plantUuid={plantUuid} />
 			{!!curStepDay && <PlantingStepDays day={curStepDay.day} plantUuid={plantUuid} />}
 			<PlantingStepTypes selectedStepTypeUuids={curStepDay?.stepTypes.map((stepType) => stepType.uuid) ?? null} />
+			<PlantCareTips plantUuid={plantUuid} />
 		</View>
 	);
 };

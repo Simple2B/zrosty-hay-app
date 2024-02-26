@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		gap: theme.size.sm,
 	},
 
-	subTitile: {
+	subTitle: {
 		fontSize: theme.size.lg,
 		fontWeight: theme.fontWeight.bold,
 	},
