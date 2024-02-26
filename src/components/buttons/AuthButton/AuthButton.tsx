@@ -6,6 +6,7 @@ import { styleSheet } from './AuthButton.style';
 
 type AuthButtonProps = {
 	type: AuthBtnType;
+	onPress: () => void;
 };
 
 export const AuthButton = ({ type = AuthBtnType.google }: AuthButtonProps) => {

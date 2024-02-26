@@ -28,9 +28,9 @@ export default function LoginScreen() {
 					<Text style={styles.subTitle}>{t('login.subTitle')}</Text>
 				</View>
 				<View style={styles.innerButtons}>
-					<AuthButton type={AuthBtnType.google} />
-					<AuthButton type={AuthBtnType.apple} />
-					<AuthButton type={AuthBtnType.facebook} />
+					<AuthButton type={AuthBtnType.google} onPress={() => {}} />
+					<AuthButton type={AuthBtnType.apple} onPress={() => {}} />
+					<AuthButton type={AuthBtnType.facebook} onPress={() => {}} />
 				</View>
 			</View>
 
