@@ -48,7 +48,7 @@ export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 	return (
 		<View style={styles.wrapper}>
 			{isLoading && <Spinner size={64} />}
-			{!recipes ? (
+			{recipes ? (
 				<FlashList
 					refreshing={true}
 					data={recipes}

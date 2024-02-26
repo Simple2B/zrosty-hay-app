@@ -16,7 +16,6 @@ import { PlantCareTipBlock } from '../PlantCareTipBlock/PlantCareTipBlock';
 import GraduationCapIcon from '@assets/icons/graduationCap.svg';
 import RainDropIcon from '@assets/icons/rainDrop.svg';
 import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
-// import SunIcon from '@assets/icons/plantCard/sun.svg';
 import PestIcon from '@assets/icons/pest.svg';
 import ShovelIcon from '@assets/icons/shovel.svg';
 import PillIcon from '@assets/icons/pill.svg';
@@ -70,12 +69,6 @@ export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 				<GraduationCapIcon width={sizes.xl} height={sizes.xl} />
 				<Text style={styles.title}>{t('careInfoHeader')}</Text>
 			</View>
-
-			{/* <PlantCareTipBlock
-				title={t('lightning')}
-				subTitle={t(isSunLoving ? 'isSunLoving' : 'notSunLoving')}
-				SvgIcon={SunIcon}
-			/> */}
 
 			<PlantCareTipBlock
 				title={t('plantDetailWateringTitle')}

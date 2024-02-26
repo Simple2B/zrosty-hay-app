@@ -1,9 +1,8 @@
-import React, { FunctionComponent, SVGAttributes, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, SVGAttributes, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { t } from 'i18next';
 import { styleSheet } from './PlantCareTipBlock.style';
-import { sizes } from '@src/styling/sizes';
 
 type PlantCareTipBlockProps = {
 	title: string;
@@ -14,7 +13,7 @@ type PlantCareTipBlockProps = {
 
 export const PlantCareTipBlock = ({ title, subTitle, SvgIcon, text }: PlantCareTipBlockProps) => {
 	const [showFullText, setShowFullText] = useState(false);
-	const { styles } = useStyles(styleSheet);
+	const { styles, theme } = useStyles(styleSheet);
 
 	const handleShowMore = () => {
 		setShowFullText(!showFullText);
@@ -24,7 +23,7 @@ export const PlantCareTipBlock = ({ title, subTitle, SvgIcon, text }: PlantCareT
 		<View style={styles.wrapper}>
 			<Text style={styles.title}>{title}</Text>
 			<View style={styles.row}>
-				<SvgIcon width={sizes.xl} height={sizes.xl} />
+				<SvgIcon width={theme.size.xl} height={theme.size.xl} />
 				{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
 			</View>
 			{text && (
