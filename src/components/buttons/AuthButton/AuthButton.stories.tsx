@@ -27,4 +27,5 @@ export const Story = Template.bind({});
 Story.args = {
 	type: AuthBtnType.facebook,
 	onPress: () => {},
+	disabled: false,
 };

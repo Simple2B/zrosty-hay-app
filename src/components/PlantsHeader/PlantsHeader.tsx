@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import LinearGradient from 'react-native-linear-gradient';
+import { StatusBar } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
+import { PLANTS_HEADER_COLORS } from '@src/styling/lineargradient-colors';
 import { styleSheet } from './PlantsHeader.style';
 import { SearchInput } from '../inputs/SearchInput/SearchInput';
-import { PLANTS_HEADER_COLORS } from '@src/styling/lineargradient-colors';
-import { StatusBar } from 'react-native';
+import { UserProfile } from '../UserProfile/UserProfile';
 
 type Props = {
 	value: string;
@@ -24,6 +24,7 @@ export const PlantsHeader = ({ value, onChangeText }: Props) => {
 	return (
 		<LinearGradient colors={PLANTS_HEADER_COLORS} style={styles.wrapper(statusBarHeight)}>
 			<StatusBar barStyle='light-content' />
+			<UserProfile />
 
 			<SearchInput
 				value={value}

@@ -7,15 +7,14 @@ import { styleSheet } from './AuthButton.style';
 type AuthButtonProps = {
 	type: AuthBtnType;
 	onPress: () => void;
+	disabled: boolean;
 };
 
-export const AuthButton = ({ type = AuthBtnType.google }: AuthButtonProps) => {
+export const AuthButton = ({ disabled, onPress, type = AuthBtnType.google }: AuthButtonProps) => {
 	const { styles } = useStyles(styleSheet);
 
-	// TODO add handle
-
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity style={styles.container} onPress={onPress} disabled={disabled}>
 			{ICONS[type]}
 			<Text style={styles.text}>Увійти з {type}</Text>
 		</TouchableOpacity>

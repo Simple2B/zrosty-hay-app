@@ -6,10 +6,6 @@ import { useRouter } from 'expo-router';
 import { useAPIValidateGoogleToken } from '@src/api/o-auth/o-auth';
 import { queryKeys } from '@src/constants/queryKeys';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
-// import { useAPIValidateGoogleToken } from '@src/orval_api/o-auth/o-auth';
-// import { QueryKeys } from 'constants/QueryKeys';
-// import { SecureStorageKeys } from 'constants/SecureStorageKeys';
-// import { reportError } from '../services/reportError';
 
 export const useGoogleLogin = () => {
 	const queryClient = useQueryClient();
@@ -28,10 +24,11 @@ export const useGoogleLogin = () => {
 					refetchType: 'all',
 				});
 
-				// router.replace('/(app)/(rooms)');
+				router.replace('/plants');
 			},
 			onError: async (error) => {
 				console.log({ error });
+				// TODO add alert
 				// reportError('Failed to login with google', 'google_login_error', JSON.stringify(error));
 				await GoogleSignin.revokeAccess();
 				GoogleSignin.signOut();

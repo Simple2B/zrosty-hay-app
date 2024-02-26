@@ -22,7 +22,15 @@ module.exports = {
 		assetBundlePatterns: ['**/*'],
 		ios: {
 			supportsTablet: true,
+			usesAppleSignIn: true,
 			bundleIdentifier: iosAppId,
+			infoPlist: {
+				CFBundleURLTypes: [
+					{
+						CFBundleURLSchemes: [process.env.APPLE_URL_SCHEMES ?? 'zrostyhayapp'],
+					},
+				],
+			},
 		},
 		android: {
 			adaptiveIcon: {
@@ -36,7 +44,7 @@ module.exports = {
 			output: 'static',
 			favicon: './assets/images/favicon.png',
 		},
-		plugins: ['expo-router'],
+		plugins: ['expo-router', 'expo-apple-authentication'],
 		experiments: {
 			typedRoutes: true,
 			tsconfigPaths: true,
