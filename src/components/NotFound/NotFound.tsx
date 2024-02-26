@@ -3,10 +3,11 @@ import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './NotFound.style';
 import { router } from 'expo-router';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export const NotFound = () => {
 	const { styles } = useStyles(styleSheet);
+	const { t } = useTranslation();
 
 	return (
 		<SafeAreaView style={styles.wrapper}>

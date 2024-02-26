@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './PlantCareTips.style';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { sizes } from '@src/styling/sizes';
 import { TPlantScreenProps } from '@src/types/plant';
@@ -23,6 +23,7 @@ import PillIcon from '@assets/icons/pill.svg';
 
 export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 	const { styles } = useStyles(styleSheet);
+	const { t } = useTranslation();
 
 	const { data, isLoading, isError } = useAPIGetPlantCareTips(plantUuid, {
 		query: {
@@ -51,13 +52,17 @@ export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 		groundType,
 	} = data.data;
 
-	const formattedPests = pests.map((pest) => {
-		return pest.name;
-	});
+	const formattedPests = pests
+		.map((pest) => {
+			return pest.name;
+		})
+		.join(', ');
 
-	const formattedIllnesses = illnesses.map((illness) => {
-		return illness.name;
-	});
+	const formattedIllnesses = illnesses
+		.map((illness) => {
+			return illness.name;
+		})
+		.join(', ');
 
 	return (
 		<View style={styles.wrapper}>
@@ -95,12 +100,10 @@ export const PlantCareTips = ({ plantUuid }: TPlantScreenProps) => {
 				/>
 			)}
 
-			{!!pests.length && (
-				<PlantCareTipBlock title={t('pest')} SvgIcon={PestIcon} subTitle={formattedPests.join(', ')} />
-			)}
+			{!!pests.length && <PlantCareTipBlock title={t('pest')} SvgIcon={PestIcon} subTitle={formattedPests} />}
 
 			{!!illnesses.length && (
-				<PlantCareTipBlock title={t('illness')} SvgIcon={PillIcon} subTitle={formattedIllnesses.join(', ')} />
+				<PlantCareTipBlock title={t('illness')} SvgIcon={PillIcon} subTitle={formattedIllnesses} />
 			)}
 		</View>
 	);
