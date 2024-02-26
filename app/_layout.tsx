@@ -29,7 +29,7 @@ axios.interceptors.request.use(async (request) => {
 	// Your interceptor logic here
 	const token = (await SecureStore.getItemAsync(secureStorageKeys.TOKEN)) ?? '';
 	const headers = request.headers;
-	console.log('token', token);
+
 	if (token && headers) {
 		headers.Authorization = `Bearer ${token}`;
 	}
