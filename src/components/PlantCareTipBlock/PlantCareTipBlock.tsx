@@ -21,19 +21,19 @@ export const PlantCareTipBlock = ({ title, subTitle, SvgIcon, text }: PlantCareT
 	};
 
 	return (
-		<View style={styles.tipBlock}>
-			<Text style={styles.tipTitle}>{title}</Text>
-			<View style={styles.tipRow}>
+		<View style={styles.wrapper}>
+			<Text style={styles.title}>{title}</Text>
+			<View style={styles.row}>
 				<SvgIcon width={sizes.xl} height={sizes.xl} />
 				{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
 			</View>
 			{text && (
 				<>
-					<Text style={styles.tipDescription} ellipsizeMode='tail' numberOfLines={showFullText ? undefined : 1}>
+					<Text style={styles.description} ellipsizeMode='tail' numberOfLines={showFullText ? undefined : 1}>
 						{text}
 					</Text>
 
-					<Text style={styles.tipShowMore} onPress={handleShowMore}>
+					<Text style={styles.showMore} onPress={handleShowMore}>
 						{showFullText ? t('showLess') : t('showMore')}
 					</Text>
 				</>

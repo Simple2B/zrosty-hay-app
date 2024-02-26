@@ -1,7 +1,7 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
-	tipBlock: {
+	wrapper: {
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'flex-start',
@@ -14,19 +14,19 @@ export const styleSheet = createStyleSheet((theme) => ({
 	subTitle: {
 		paddingLeft: theme.size.md,
 	},
-	tipTitle: {
+	title: {
 		fontSize: theme.size.lg,
 		fontWeight: theme.fontWeight.bold,
 	},
-	tipRow: {
+	row: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: theme.size.xs,
 	},
-	tipDescription: {
+	description: {
 		color: theme.colors.text,
 	},
-	tipShowMore: {
+	showMore: {
 		alignSelf: 'center',
 		fontWeight: theme.fontWeight.bold,
 		color: theme.colors.notification,
