@@ -44,7 +44,16 @@ module.exports = {
 			output: 'static',
 			favicon: './assets/images/favicon.png',
 		},
-		plugins: ['expo-router', 'expo-apple-authentication'],
+		plugins: [
+			'expo-router',
+			'expo-apple-authentication',
+			[
+				'expo-secure-store',
+				{
+					faceIDPermission: `Allow ${appName} to access your Face ID biometric data.`,
+				},
+			],
+		],
 		experiments: {
 			typedRoutes: true,
 			tsconfigPaths: true,
