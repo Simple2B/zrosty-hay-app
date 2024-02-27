@@ -2,24 +2,43 @@ import '@src/styling/unistyles';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Constants from 'expo-constants';
+import axios from 'axios';
 import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { useStyles } from 'react-native-unistyles';
+import * as SecureStore from 'expo-secure-store';
+import { StatusBar } from 'react-native';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
 
 import { queryClient } from '../src/queryClient';
-import { useStyles } from 'react-native-unistyles';
-import { StatusBar } from 'react-native';
 
 export {
 	// Catch any errors thrown by the Layout component.
 	ErrorBoundary,
 } from 'expo-router';
+
+axios.interceptors.request.use(async (request) => {
+	// Your interceptor logic here
+	const token = (await SecureStore.getItemAsync(secureStorageKeys.TOKEN)) ?? '';
+	const headers = request.headers;
+
+	if (token && headers) {
+		headers.Authorization = `Bearer ${token}`;
+	}
+	return {
+		...request,
+		headers,
+	};
+});
 
 export const unstable_settings = {
 	// Ensure that reloading on `/modal` keeps a back button present.
@@ -28,6 +47,11 @@ export const unstable_settings = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 Constants.expoConfig?.extra?.storybookEnabled?.trim() !== 'true' && SplashScreen.preventAutoHideAsync();
+
+GoogleSignin.configure({
+	webClientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID_WEB,
+	iosClientId: process.env.EXPO_PUBLIC_GOOGLE_CLIENT_ID_IOS,
+});
 
 function RootLayout() {
 	const [loaded, error] = useFonts({

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Categories } from '@src/components/Categories/Categories';
 import { PlantsHeader } from '@src/components/PlantsHeader/PlantsHeader';
@@ -10,7 +11,6 @@ import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './Plant.style';
 import { renderItemPlantCardPreview, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ITEM_SIZE = 182;
 const PAGINATION_SIZE = 20;
