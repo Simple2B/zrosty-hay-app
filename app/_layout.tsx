@@ -7,7 +7,11 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { useStyles } from 'react-native-unistyles';
 import * as SecureStore from 'expo-secure-store';
+import { StatusBar } from 'react-native';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -16,9 +20,6 @@ import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
 
 import { queryClient } from '../src/queryClient';
-import { useStyles } from 'react-native-unistyles';
-import { StatusBar } from 'react-native';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export {
 	// Catch any errors thrown by the Layout component.
