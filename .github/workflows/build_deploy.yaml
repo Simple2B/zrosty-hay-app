@@ -132,6 +132,6 @@ jobs:
         run: pod repo update
 
       - name: build ios
-        run: eas build --platform ios --local --profile=production --non-interactive --output=builds/build-ios-latest.ipa
+        run: eas build --platform ios --reset-cache --local --profile=production --non-interactive --output=builds/build-ios-latest.ipa
       - name: submit ios
         run: eas submit -p ios --non-interactive --profile=production --path=builds/build-ios-latest.ipa
