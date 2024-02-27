@@ -47,12 +47,8 @@ module.exports = {
 		plugins: ['expo-router', 'expo-apple-authentication'],
 		experiments: {
 			typedRoutes: true,
-			tsconfigPaths: true,
 		},
 		extra: {
-			router: {
-				origin: false,
-			},
 			eas: {
 				projectId: 'edbd5c2b-d843-4704-b395-d1f635746e05',
 			},
