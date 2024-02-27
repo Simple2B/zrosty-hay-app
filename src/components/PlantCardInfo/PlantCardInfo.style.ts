@@ -6,6 +6,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		alignSelf: 'stretch',
+		gap: theme.size.xxs,
 	},
 
 	plantDescription: {

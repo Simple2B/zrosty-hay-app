@@ -14,6 +14,7 @@ import RulerIcon from '@assets/icons/plantCard/ruler.svg';
 import PlantIcon from '@assets/icons/plantCard/plant.svg';
 import ThermometerIcon from '@assets/icons/plantCard/thermometer.svg';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
+import { getSizeKey } from '@src/utils';
 
 type PlantCardPreviewProps = {
 	plantInfo: Plant;
@@ -29,7 +30,7 @@ export const PlantCardPreview = ({ plantInfo }: PlantCardPreviewProps) => {
 	const isSunLovingText = isSunLoving ? t('isSunLoving') : t('notSunLoving');
 	const temperatureText = `${minTemperature} - ${maxTemperature} °C`;
 	const careTypeText = t(`components.care.${careType}`);
-	const sizeText = `${minSize} - ${maxSize} cm`;
+	const sizeText = t(`plantSize.${getSizeKey(maxSize)}`);
 	const wateringText = t(`watering.${watering}`);
 
 	const onPressCard = () => {
