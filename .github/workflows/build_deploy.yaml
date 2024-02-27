@@ -82,7 +82,7 @@ jobs:
 
   ios-build-deploy:
     name: IOS build and deploy
-    runs-on: hay-mac
+    runs-on: ios-shared
     needs:
       - on-develop-branch-check
     if: ${{ needs.on-develop-branch-check.outputs.on_develop == 'true' }}
@@ -128,6 +128,8 @@ jobs:
 
       - name: Check types
         run: yarn type-check
+      - name: Update pods
+        run: pod repo update
 
       - name: build ios
         run: eas build --platform ios --local --profile=production --non-interactive --output=builds/build-ios-latest.ipa
