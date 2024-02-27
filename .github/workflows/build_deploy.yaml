@@ -26,59 +26,59 @@ jobs:
           reference: "develop"
           tag: "${{ github.ref }}"
 
-  # adroid-build-deploy:
-  #   name: Android build and deploy
-  #   runs-on: hay-mac
-  #   needs:
-  #     - on-develop-branch-check
-  #   if: ${{ needs.on-develop-branch-check.outputs.on_develop == 'true' }}
-  #   steps:
-  #     - name: Check for EXPO_TOKEN
-  #       run: |
-  #         if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
-  #           echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
-  #           exit 1
-  #         fi
+  adroid-build-deploy:
+    name: Android build and deploy
+    runs-on: hay-mac
+    needs:
+      - on-develop-branch-check
+    if: ${{ needs.on-develop-branch-check.outputs.on_develop == 'true' }}
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
 
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18.x
-  #         cache: yarn
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
 
-  #     - name: Setup EAS
-  #       uses: expo/expo-github-action@v8
-  #       with:
-  #         eas-version: latest
-  #         token: ${{ secrets.EXPO_TOKEN }}
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
-  #     - name: Add config files
+      - name: Add config files
 
-  #       uses: mobiledevops/secret-to-file-action@v1
-  #       with:
-  #         base64-encoded-secret: ${{ secrets.GOOGLE_CREDS_JSON }}
-  #         filename: "google-creds.json"
-  #         is-executable: false
-  #         working-directory: "."
+        uses: mobiledevops/secret-to-file-action@v1
+        with:
+          base64-encoded-secret: ${{ secrets.GOOGLE_CREDS_JSON }}
+          filename: "google-creds.json"
+          is-executable: false
+          working-directory: "."
 
-  #     - name: Install dependencies
-  #       run: yarn install
-  #     - name: Generate orval
-  #       run: yarn gen-api
+      - name: Install dependencies
+        run: yarn install
+      - name: Generate orval
+        run: yarn gen-api
 
-  #     - name: Lint
-  #       run: yarn lint
+      - name: Lint
+        run: yarn lint
 
-  #     - name: Check types
-  #       run: yarn type-check
+      - name: Check types
+        run: yarn type-check
 
-  #     - name: build android
-  #       run: eas build --platform android --local --profile=production --non-interactive --output=builds/build-and-latest.aab
-  #     - name: submit android
-  #       run: eas submit -p android --non-interactive --profile=production --path=builds/build-and-latest.aab
+      - name: build android
+        run: eas build --platform android --local --profile=production --non-interactive --output=builds/build-and-latest.aab
+      - name: submit android
+        run: eas submit -p android --non-interactive --profile=production --path=builds/build-and-latest.aab
 
   ios-build-deploy:
     name: IOS build and deploy
