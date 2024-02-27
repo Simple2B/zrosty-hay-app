@@ -82,7 +82,7 @@ jobs:
 
   ios-build-deploy:
     name: IOS build and deploy
-    runs-on: ios-shared
+    runs-on: hay-mac
     needs:
       - on-develop-branch-check
     if: ${{ needs.on-develop-branch-check.outputs.on_develop == 'true' }}
