@@ -1,13 +1,14 @@
 import React from 'react';
 import { PlantCare } from '@src/screens/PlantCare/PlantCare';
 import { useLocalSearchParams } from 'expo-router';
-import { NotFound } from '@src/components/NotFound/NotFound';
+import { Spinner } from '@src/components/Spinner/Spinner';
+import { sizes } from '@src/styling/sizes';
 
 const Care = () => {
 	const { uuid } = useLocalSearchParams<{ uuid?: string }>();
 
 	if (!uuid) {
-		return <NotFound />;
+		return <Spinner size={sizes.xxl * 2} />;
 	}
 
 	return <PlantCare plantUuid={uuid} />;

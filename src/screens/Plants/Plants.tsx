@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
 import { View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
@@ -17,11 +17,10 @@ const PAGINATION_SIZE = 20;
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);
-	// TODO update search
 	const [searchInput, setSearchInput] = useState<string>('');
 	const [categoryUuids, setCategoryUuids] = useState<string[]>([]);
 
-	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useAPIGetAllInfinite(
+	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, refetch } = useAPIGetAllInfinite(
 		{
 			size: PAGINATION_SIZE,
 			name: searchInput,
@@ -29,7 +28,7 @@ export default function PlantsScreen() {
 		},
 		{
 			query: {
-				queryKey: [queryKeys.GET_PLANTS, searchInput, categoryUuids],
+				queryKey: [queryKeys.GET_PLANTS, categoryUuids],
 				getNextPageParam: getNextPlantPage,
 			},
 			axios: {
@@ -39,6 +38,13 @@ export default function PlantsScreen() {
 			},
 		},
 	);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			refetch();
+		}, 1500);
+		return () => clearTimeout(timer);
+	}, [searchInput]);
 
 	const handleSelectCategory = (uuid: string) => {
 		if (categoryUuids.includes(uuid)) {

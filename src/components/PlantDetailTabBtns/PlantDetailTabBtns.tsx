@@ -9,6 +9,7 @@ export function PlantDetailTabBtns({
 	descriptors,
 	position,
 	plantUuid,
+	navigation,
 }: MaterialTopTabBarProps & { plantUuid: string }) {
 	const { styles } = useStyles(styleSheet);
 	return (
@@ -19,14 +20,29 @@ export function PlantDetailTabBtns({
 					options.tabBarLabel !== undefined
 						? options.tabBarLabel
 						: options.title !== undefined
-						  ? options.title
-						  : route.name;
+							? options.title
+							: route.name;
 
 				const isFocused = state.index === index;
 
-				const handlerNavigate = () => {
-					const routeName = state.routes[index].name === 'index' ? '' : state.routes[index].name;
-					router.push(`/plants/${plantUuid}/${routeName}`);
+				const onPress = () => {
+					const event = navigation.emit({
+						type: 'tabPress',
+						target: route.key,
+						canPreventDefault: true,
+					});
+
+					if (!isFocused && !event.defaultPrevented) {
+
+						navigation.navigate(route.name, route.params);
+					}
+				};
+
+				const onLongPress = () => {
+					navigation.emit({
+						type: 'tabLongPress',
+						target: route.key,
+					});
 				};
 
 				const inputRange = state.routes.map((_, i) => i);
@@ -42,8 +58,8 @@ export function PlantDetailTabBtns({
 						accessibilityState={isFocused ? { selected: true } : {}}
 						accessibilityLabel={options.tabBarAccessibilityLabel}
 						testID={options.tabBarTestID}
-						onPress={handlerNavigate}
-						onLongPress={handlerNavigate}
+						onPress={onPress}
+						onLongPress={onLongPress}
 						style={styles.tabBarItemwrapper(isFocused)}
 					>
 						<Animated.Text style={styles.tabBarItem(isFocused, opacity)}>{label as string}</Animated.Text>
