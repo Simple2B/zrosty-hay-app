@@ -48,6 +48,7 @@ export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 	return (
 		<View style={styles.wrapper}>
 			{isLoading && <Spinner size={64} />}
+			{/* biome-ignore lint: can be 0 or undefined */}
 			{!!recipes?.length ? (
 				<FlashList
 					refreshing={true}

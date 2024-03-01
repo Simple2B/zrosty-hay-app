@@ -38,7 +38,7 @@ export default function PlantsScreen() {
 			},
 		},
 	);
-
+	// biome-ignore lint: we have dependency on searchInput
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			refetch();
