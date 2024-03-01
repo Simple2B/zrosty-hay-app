@@ -34,7 +34,7 @@ export function PlantDetailTabBtns({
 
 					if (!isFocused && !event.defaultPrevented) {
 
-						navigation.navigate(route.name, { uuid: plantUuid });
+						navigation.navigate(route.name, route.params);
 					}
 				};
 

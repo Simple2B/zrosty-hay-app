@@ -13,13 +13,13 @@ type Props = {
 };
 
 export const SearchInput = ({ title, placeholder, value, onChangeText }: Props) => {
-	const { styles } = useStyles(styleSheet);
+	const { styles, theme } = useStyles(styleSheet);
 
 	return (
 		<View style={styles.wrapper}>
 			<View style={styles.innerWrapper}>
 				<Text style={styles.title}>{title}</Text>
-				<TextInput placeholder={placeholder} value={value} onChangeText={onChangeText} maxLength={maxLength} />
+				<TextInput placeholder={placeholder} value={value} onChangeText={onChangeText} maxLength={maxLength} placeholderTextColor={theme.colors.borderGrey} />
 			</View>
 			<View style={styles.serchIcon}>
 				<SearchIcon />

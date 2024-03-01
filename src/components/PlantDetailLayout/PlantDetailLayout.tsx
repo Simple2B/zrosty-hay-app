@@ -26,16 +26,26 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 						swipeEnd: (e) => {
 							navigation.navigate(route.name, { uuid: plantUuid })
 						},
+						tabPress: (e) => {
+							navigation.navigate(route.name, { uuid: plantUuid })
+						  },
+						
 					})} />
 					<PlantDetailTab.Screen name='care' options={{ title: t('careTab') }} listeners={({ navigation, route }) => ({
 						swipeEnd: (e) => {
 							navigation.navigate(route.name, { uuid: plantUuid })
 						},
+						tabPress: (e) => {
+							navigation.navigate(route.name, { uuid: plantUuid })
+						  },
 					})} />
 					<PlantDetailTab.Screen name='recipes' options={{ title: t('recipesTab') }} listeners={({ navigation, route }) => ({
 						swipeEnd: (e) => {
 							navigation.navigate(route.name, { uuid: plantUuid })
 						},
+						tabPress: (e) => {
+							navigation.navigate(route.name, { uuid: plantUuid })
+						  },
 
 					})} />
 				</PlantDetailTab>
