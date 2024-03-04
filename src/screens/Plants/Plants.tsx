@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useStyles } from 'react-native-unistyles';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,10 +17,7 @@ import {
 	getNextPlantPage,
 	renderListEmptyComponent,
 } from './Plant.callbacks';
-
-const ITEM_SIZE = 182;
-const INPUT_DELAY_TIME = 900;
-const PAGINATION_SIZE = 20;
+import { PLANTS_PAGINATION_SIZE, PLANT_ITEM_SIZE, SEARCH_PLANT_INPUT_DELAY_TIME } from '@src/constants/plant';
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);
@@ -29,7 +26,7 @@ export default function PlantsScreen() {
 
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, refetch } = useAPIGetAllInfinite(
 		{
-			size: PAGINATION_SIZE,
+			size: PLANTS_PAGINATION_SIZE,
 			name: searchInput,
 			category_uuids: categoryUuids,
 		},
@@ -49,7 +46,7 @@ export default function PlantsScreen() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			refetch();
-		}, INPUT_DELAY_TIME);
+		}, SEARCH_PLANT_INPUT_DELAY_TIME);
 		return () => clearTimeout(timer);
 	}, [searchInput]);
 
@@ -87,7 +84,7 @@ export default function PlantsScreen() {
 					data={plants}
 					onEndReachedThreshold={0.1}
 					contentContainerStyle={styles.plants}
-					estimatedItemSize={ITEM_SIZE}
+					estimatedItemSize={PLANT_ITEM_SIZE}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={renderListEmptyComponent}
 					keyExtractor={getKeyExtractor}
