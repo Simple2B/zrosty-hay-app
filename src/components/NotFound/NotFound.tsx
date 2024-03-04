@@ -1,10 +1,10 @@
-import React from "react";
-import { SafeAreaView, Text, TouchableOpacity } from "react-native";
-import { useStyles } from "react-native-unistyles";
-import { router } from "expo-router";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import { useStyles } from 'react-native-unistyles';
+import { router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
-import { styleSheet } from "./NotFound.style";
+import { styleSheet } from './NotFound.style';
 
 type Props = {
 	withGoBack?: boolean;
@@ -16,10 +16,10 @@ export const NotFound = ({ withGoBack = true }: Props) => {
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<Text style={styles.title}>{t("notFound")}</Text>
+			<Text style={styles.title}>{t('notFound')}</Text>
 			{withGoBack && (
 				<TouchableOpacity onPress={router.back}>
-					<Text style={styles.backBtn}>{t("goBack")}</Text>
+					<Text style={styles.backBtn}>{t('goBack')}</Text>
 				</TouchableOpacity>
 			)}
 		</SafeAreaView>
