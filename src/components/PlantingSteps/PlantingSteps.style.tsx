@@ -5,6 +5,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		paddingTop: theme.size.xl,
 		gap: theme.size.sm,
 		paddingHorizontal: theme.size.xxs,
+		zIndex: 1000
 	},
 	header: {
 		flexDirection: 'row',

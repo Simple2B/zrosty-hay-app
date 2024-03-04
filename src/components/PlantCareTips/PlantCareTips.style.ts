@@ -4,7 +4,6 @@ export const styleSheet = createStyleSheet((theme) => ({
 	wrapper: {
 		flex: 1,
 		gap: theme.size.md,
-		paddingBottom: theme.size.xxl,
 	},
 
 	titleWrapper: {
