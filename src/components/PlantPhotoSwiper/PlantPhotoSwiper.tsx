@@ -1,10 +1,11 @@
 import React from 'react';
-import { Dimensions, StatusBar, TouchableOpacity } from 'react-native';
+import { Dimensions, Pressable, StatusBar } from 'react-native';
 import { View, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import FastImage from 'react-native-fast-image';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from 'react-native-unistyles';
-import { router } from 'expo-router';
+import { Link } from 'expo-router';
 
 import { styleSheet } from './PlantPhotoSwiper.style';
 import { useAPIGetPlantPhotos } from '@src/api/plants/plants';
@@ -13,7 +14,6 @@ import BackIcon from '@assets/icons/leftIcon.svg';
 import { Spinner } from '../Spinner/Spinner';
 import { NotFound } from '../NotFound/NotFound';
 import placeholderImage from 'assets/images/plantPlaceholder.jpg';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TPlantScreenProps } from '@src/types/plant';
 import { sizes } from '@src/styling/sizes';
 
@@ -38,18 +38,17 @@ export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 
 	const statusBarHeight = useSafeAreaInsets().top;
 
-	const onPressBackIcon = () => {
-		router.push('/plants');
-	};
 
 	return (
 		<>
 			{data?.data.length ? (
 				<View style={styles.wrapper}>
 					<StatusBar barStyle='light-content' />
-					<TouchableOpacity style={styles.backIconwrapper(statusBarHeight)} onPress={onPressBackIcon}>
-						<BackIcon width={sizes.xl} height={sizes.xl} />
-					</TouchableOpacity>
+					<Link href="/plants" asChild>
+						<Pressable style={styles.backIconwrapper(statusBarHeight)}>
+							<BackIcon width={sizes.xl} height={sizes.xl} />
+						</Pressable>
+					</Link>
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{data?.data.map((photo) => (
 							<FastImage

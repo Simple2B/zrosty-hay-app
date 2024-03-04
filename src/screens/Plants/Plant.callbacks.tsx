@@ -1,14 +1,18 @@
-import { ListRenderItem, ListRenderItemInfo } from '@shopify/flash-list';
+import { AxiosResponse } from 'axios';
+
+import { ListRenderItemInfo } from '@shopify/flash-list';
 import { PagePlant } from '@src/api/model';
 import { Plant } from '@src/api/model/plant';
+import { NotFound } from '@src/components/NotFound/NotFound';
 import { PlantCardPreview } from '@src/components/PlantCardPreview/PlantCardPreview';
-import { sizes } from '@src/styling/sizes';
-import { AxiosResponse } from 'axios';
-import { View } from 'react-native';
 
 export const renderItemPlantCardPreview = ({ item }: ListRenderItemInfo<Plant>) => (
 	<PlantCardPreview plantInfo={item} />
 );
+
+export const renderListEmptyComponent = () => (
+	<NotFound withGoBack={false} />
+)
 
 export const getKeyExtractor = (item: Plant) => item.uuid;
 

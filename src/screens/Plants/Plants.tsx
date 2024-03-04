@@ -10,10 +10,14 @@ import { useAPIGetAllInfinite } from '@src/api/plants/plants';
 import { queryKeys } from '@src/constants/queryKeys';
 import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './Plant.style';
-import { renderItemPlantCardPreview, getKeyExtractor, getNextPlantPage } from './Plant.callbacks';
 
-const ITEM_SIZE = 182;
-const PAGINATION_SIZE = 20;
+import {
+	renderItemPlantCardPreview,
+	getKeyExtractor,
+	getNextPlantPage,
+	renderListEmptyComponent,
+} from './Plant.callbacks';
+import { PLANTS_PAGINATION_SIZE, PLANT_ITEM_SIZE, SEARCH_PLANT_INPUT_DELAY_TIME } from '@src/constants/plant';
 
 export default function PlantsScreen() {
 	const { styles } = useStyles(styleSheet);
@@ -22,7 +26,7 @@ export default function PlantsScreen() {
 
 	const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, refetch } = useAPIGetAllInfinite(
 		{
-			size: PAGINATION_SIZE,
+			size: PLANTS_PAGINATION_SIZE,
 			name: searchInput,
 			category_uuids: categoryUuids,
 		},
@@ -42,7 +46,7 @@ export default function PlantsScreen() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			refetch();
-		}, 1500);
+		}, SEARCH_PLANT_INPUT_DELAY_TIME);
 		return () => clearTimeout(timer);
 	}, [searchInput]);
 
@@ -80,8 +84,9 @@ export default function PlantsScreen() {
 					data={plants}
 					onEndReachedThreshold={0.1}
 					contentContainerStyle={styles.plants}
-					estimatedItemSize={ITEM_SIZE}
+					estimatedItemSize={PLANT_ITEM_SIZE}
 					showsVerticalScrollIndicator={false}
+					ListEmptyComponent={renderListEmptyComponent}
 					keyExtractor={getKeyExtractor}
 					onEndReached={onEndReached}
 					ListFooterComponent={renderLoader}
