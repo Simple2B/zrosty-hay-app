@@ -11,7 +11,7 @@ import { Spinner } from '../Spinner/Spinner';
 import { queryKeys } from '@src/constants/queryKeys';
 
 type Props = {
-	selectedStepTypeUuids: string[] | null;
+	selectedStepTypeUuids: string[];
 };
 
 export const PlantingStepTypes = ({ selectedStepTypeUuids }: Props) => {
