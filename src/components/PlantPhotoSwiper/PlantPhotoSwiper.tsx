@@ -38,15 +38,16 @@ export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 
 	const statusBarHeight = useSafeAreaInsets().top;
 
-
 	return (
 		<>
 			{data?.data.length ? (
 				<View style={styles.wrapper}>
 					<StatusBar barStyle='light-content' />
-					<Link href="/plants" asChild>
+					<Link href='/plants' asChild>
 						<Pressable style={styles.backIconwrapper(statusBarHeight)}>
-							<BackIcon width={sizes.xl} height={sizes.xl} />
+							<View style={styles.backButtonBackground}>
+								<BackIcon width={sizes.lg} height={sizes.lg} />
+							</View>
 						</Pressable>
 					</Link>
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
