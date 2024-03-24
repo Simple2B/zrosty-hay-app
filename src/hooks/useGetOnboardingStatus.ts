@@ -20,7 +20,6 @@ const useGetOnboardingStatus = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const firstLaunch = await checkIfFirstLaunch();
-			console.log(firstLaunch);
 			setIsFirstLaunch(firstLaunch);
 			setIsFirstLaunchIsLoading(false);
 		};

@@ -39,11 +39,13 @@ export default function LoginScreen() {
 
 					<Text style={styles.subTitle}>{t('login.subTitle')}</Text>
 				</View>
+				{/* 
+				TEMPORARY DISABLED (CURRENT VERSION WITHOUT LOGIN)
 				<View style={styles.innerButtons}>
 					<AuthButton type={AuthBtnType.google} onPress={handleGoogleLogin} disabled={isLoading} />
 					{isIos && <AuthButton type={AuthBtnType.apple} onPress={handleAppleLogin} disabled={isLoading} />}
-					{/* <AuthButton type={AuthBtnType.facebook} onPress={() => {}} /> */}
-				</View>
+					 <AuthButton type={AuthBtnType.facebook} onPress={() => {}} /> 
+				</View> */}
 			</View>
 
 			<Link style={styles.link} href='/plants' disabled={isLoading}>
