@@ -26,4 +26,6 @@ const Template: ComponentStory<typeof AuthButton> = (args) => <AuthButton {...ar
 export const Story = Template.bind({});
 Story.args = {
 	type: AuthBtnType.facebook,
+	onPress: () => {},
+	disabled: false,
 };

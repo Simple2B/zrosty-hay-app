@@ -4,7 +4,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	wrapper: {
 		flex: 1,
 		paddingTop: theme.size.lg,
-		backgroundColor: theme.colors.background,
+		paddingBottom: theme.size.xxl
 	},
 
 	infoWrapper: {
@@ -13,7 +13,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		gap: theme.size.sm,
 	},
 
-	subTitile: {
+	subTitle: {
 		fontSize: theme.size.lg,
 		fontWeight: theme.fontWeight.bold,
 	},

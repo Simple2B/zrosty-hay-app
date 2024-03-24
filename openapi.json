@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.26"
+		"version": "0.1.29"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -595,6 +595,85 @@
 				}
 			}
 		},
+		"/api/o_auth/google_validate": {
+			"post": {
+				"tags": ["API", "O-Auth"],
+				"summary": "Validate Google Token",
+				"description": "Validates google auth token and returns a JWT token",
+				"operationId": "API-validate_google_token",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GoogleAuthTokenIn"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Token"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/o_auth/apple_validate": {
+			"post": {
+				"tags": ["API", "O-Auth"],
+				"summary": "Validate Apple Token",
+				"operationId": "API-validate_apple_token",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AppleAuthTokenIn"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Token"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/list-endpoints/": {
 			"get": {
 				"tags": ["API"],
@@ -642,6 +721,17 @@
 				"type": "object",
 				"required": ["detail"],
 				"title": "ApiError404"
+			},
+			"AppleAuthTokenIn": {
+				"properties": {
+					"id_token": {
+						"type": "string",
+						"title": "Id Token"
+					}
+				},
+				"type": "object",
+				"required": ["id_token"],
+				"title": "AppleAuthTokenIn"
 			},
 			"Auth": {
 				"properties": {
@@ -716,6 +806,17 @@
 				"type": "string",
 				"enum": ["easy", "normal", "hard"],
 				"title": "CareType"
+			},
+			"GoogleAuthTokenIn": {
+				"properties": {
+					"id_token": {
+						"type": "string",
+						"title": "Id Token"
+					}
+				},
+				"type": "object",
+				"required": ["id_token"],
+				"title": "GoogleAuthTokenIn"
 			},
 			"HTTPValidationError": {
 				"properties": {
@@ -1006,9 +1107,9 @@
 						"type": "number",
 						"title": "Groundph"
 					},
-					"generalInfo": {
+					"groundType": {
 						"type": "string",
-						"title": "Generalinfo"
+						"title": "Groundtype"
 					},
 					"pests": {
 						"items": {
@@ -1033,7 +1134,7 @@
 					"maxTemperature",
 					"temperature_info",
 					"groundPh",
-					"generalInfo",
+					"groundType",
 					"pests",
 					"illnesses"
 				],

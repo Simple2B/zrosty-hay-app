@@ -9,6 +9,7 @@ import { Spinner } from '@src/components/Spinner/Spinner';
 import { styleSheet } from './PlantRecipes.style';
 import { getKeyExtractor, getNextPlantPage, renderItemPlantCardPreview } from './PlantRecipes.callbacks';
 import { TPlantScreenProps } from '@src/types/plant';
+import { NotFound } from '@src/components/NotFound/NotFound';
 
 const ITEM_SIZE = 177;
 const PAGINATION_SIZE = 4;
@@ -47,7 +48,8 @@ export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 	return (
 		<View style={styles.wrapper}>
 			{isLoading && <Spinner size={64} />}
-			{!!recipes && (
+			{/* biome-ignore lint: can be 0 or undefined */}
+			{!!recipes?.length ? (
 				<FlashList
 					refreshing={true}
 					data={recipes}
@@ -60,6 +62,8 @@ export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 					ListFooterComponent={renderLoader}
 					renderItem={renderItemPlantCardPreview}
 				/>
+			) : (
+				<NotFound />
 			)}
 		</View>
 	);
