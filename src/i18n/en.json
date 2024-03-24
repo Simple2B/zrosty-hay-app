@@ -66,5 +66,11 @@
 	"desirableSoilAcidity": "Desirable soil acidity",
 	"lightning": "Lightning",
 	"notFound": "Oops, nothing found!",
-	"goBack": "Go back"
+	"goBack": "Go back",
+	"onboardingTitle1": "ZrostyHay - your pocket guide for plant care",
+	"onboardingSubtitle1": "A plant care application that will make plant care simple and enjoyable",
+	"onboardingTitle2": "Everything for your plants",
+	"onboardingSubtitle2": "Meet new plants. Create a care plan in a few clicks. Get useful tips for caring for plants.",
+	"onboardingTitle3": "Effortless plant care!",
+	"onboardingSubtitle3": "Track activities, get reminders, and enjoy lush and healthy plants"
 }

@@ -1,28 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, SafeAreaView, View } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { useNavigation } from '@react-navigation/native';
-
 import { useStyles } from 'react-native-unistyles';
+import { useTranslation } from 'react-i18next';
+
 import { styleSheet } from './Onboarding.style';
+import useGetOnboardingStatus from '@src/hooks/useGetOnboardingStatus';
+import { DotIndicator } from './OnboardingButtons/Indicator';
+import { Next } from './OnboardingButtons/Next';
 
 import Onboarding1 from '@assets/images/onboarding/onboarding1.png';
 import Onboarding2 from '@assets/images/onboarding/onboarding2.png';
 import Onboarding3 from '@assets/images/onboarding/onboarding3.png';
 
-import { DotIndicator } from './OnboardingButtons/Indicator';
-import { Next } from './OnboardingButtons/Next';
-
 export const OnboardingScreen = () => {
+	const { isFirstLaunch, isLoading: onboardingIsLoading } = useGetOnboardingStatus();
+	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 	const navigation = useNavigation();
 
+	useEffect(() => {
+		if (!onboardingIsLoading && !isFirstLaunch) {
+			(navigation as any).navigate('login/index');
+		}
+	}, [isFirstLaunch, onboardingIsLoading, navigation]);
+
+	const setOnboardingStatus = async () => {
+		try {
+			await AsyncStorage.setItem('hasOnboardingSeen', 'false');
+		} catch (error) {
+			// Error saving data
+			console.log(error);
+		}
+	};
 	const onDone = () => {
-		console.log('Done');
+		setOnboardingStatus();
 		(navigation as any).navigate('login/index');
 	};
-
-	//TODO: fix text displaying, indicators at the left, save to storage, translate text
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
@@ -41,8 +57,8 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding1} />
 							</View>
 						),
-						title: 'ЗростиГай ваш садовий помічник',
-						subtitle: 'Додаток для догляду за рослинами, що зробить догляд за рослинами простим і приємним',
+						title: t('onboardingTitle1'),
+						subtitle: t('onboardingSubtitle1'),
 					},
 					{
 						backgroundColor: '#fff',
@@ -51,9 +67,8 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding2} />
 							</View>
 						),
-						title: 'Все для ваших рослин',
-						subtitle:
-							'Знайомтесь з новими рослинами. Створіть план догляду за кілька кліків. Отримуйте корисні поради для догляду за рослинами.',
+						title: t('onboardingTitle2'),
+						subtitle: t('onboardingSubtitle2'),
 					},
 					{
 						backgroundColor: '#fff',
@@ -62,8 +77,8 @@ export const OnboardingScreen = () => {
 								<Image source={Onboarding3} />
 							</View>
 						),
-						title: 'Догляд за рослинами без зусиль!',
-						subtitle: 'Відстежуйте дії, отримуйте нагадування, насолоджуйтесь пишними та здоровими рослинами',
+						title: t('onboardingTitle3'),
+						subtitle: t('onboardingSubtitle3'),
 					},
 				]}
 			/>
