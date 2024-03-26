@@ -23,4 +23,9 @@ export const styleSheet = createStyleSheet((theme) => ({
 		top: theme.size.xl,
 		left: theme.size.xl,
 	}),
+	backButtonBackground: {
+		backgroundColor: theme.colors.primary,
+		padding: theme.size.md,
+		borderRadius: theme.size.xxl,
+	},
 }));

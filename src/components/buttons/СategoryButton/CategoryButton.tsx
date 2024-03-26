@@ -23,7 +23,7 @@ export const CategoryButton = ({ category, onPress, isActive }: CategoryButtonPr
 	return (
 		<TouchableOpacity style={styles.wrapper(isActive)} onPress={handleOnPres}>
 			<SvgXml xml={category.svgIcon} width={sizes.lg} height={sizes.lg} />
-			<Text style={styles.text}>{category.name}</Text>
+			<Text style={styles.text(isActive)}>{category.name}</Text>
 		</TouchableOpacity>
 	);
 };
