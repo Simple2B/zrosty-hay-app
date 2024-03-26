@@ -11,6 +11,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		borderWidth: 1,
 		borderColor: isActive ? theme.colors.borderGreen : theme.colors.borderGrey,
 		borderRadius: theme.size.xxl,
+		backgroundColor: isActive ? theme.colors.primary : 'white',
 	}),
 
 	icon: {
@@ -18,8 +19,9 @@ export const styleSheet = createStyleSheet((theme) => ({
 		height: theme.size.md,
 	},
 
-	text: {
+	text: (isActive: boolean) => ({
 		fontSize: theme.size.md,
 		fontWeight: theme.fontWeight.normal,
-	},
+		color: isActive ? 'white' : theme.colors.text,
+	}),
 }));
