@@ -1,8 +1,8 @@
 import { Text, TouchableOpacity } from 'react-native';
 import React, { useMemo, useState } from 'react';
+import { useRouter } from 'expo-router';
 import { Image, SafeAreaView, View } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { useNavigation } from '@react-navigation/native';
 import { useStyles } from 'react-native-unistyles';
 import { useTranslation } from 'react-i18next';
 
@@ -20,12 +20,12 @@ export const OnboardingScreen = () => {
 	const [keyNumber, setKeyNumber] = useState(0);
 	const swiperRef = React.createRef<Swiper>();
 	const { styles } = useStyles(styleSheet);
-	const navigation = useNavigation();
+	const router = useRouter();
 
 	const onDone = () => {
-		console.log('done');
 		setOnboardingStatus(true);
-		(navigation as any).navigate('login/index');
+
+		router.push('/login/');
 	};
 
 	const onboardData = useMemo(

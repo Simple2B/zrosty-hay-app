@@ -19,6 +19,7 @@ export const useOnboardingStatus = () => {
 		}
 	};
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		loadStatus();
 	}, []);
