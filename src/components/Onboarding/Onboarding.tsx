@@ -1,6 +1,5 @@
 import { Text, TouchableOpacity } from 'react-native';
-import React, { useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'expo-router';
+import React, { useMemo, useState } from 'react';
 import { Image, SafeAreaView, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { useNavigation } from '@react-navigation/native';
@@ -16,19 +15,12 @@ import ArrowRight from '@assets/icons/arrowRight.svg';
 import { useOnboardingStatus } from '@src/hooks/useOnboardingStatus';
 
 export const OnboardingScreen = () => {
-	const { hasOnboardingSeen, setOnboardingStatus } = useOnboardingStatus();
+	const { setOnboardingStatus } = useOnboardingStatus();
 	const { t } = useTranslation();
 	const [keyNumber, setKeyNumber] = useState(0);
 	const swiperRef = React.createRef<Swiper>();
 	const { styles } = useStyles(styleSheet);
 	const navigation = useNavigation();
-	const router = useRouter();
-
-	useEffect(() => {
-		if (hasOnboardingSeen) {
-			router.push('/login/');
-		}
-	}, [hasOnboardingSeen, router]);
 
 	const onDone = () => {
 		console.log('done');

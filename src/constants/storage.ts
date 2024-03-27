@@ -1,1 +1,1 @@
-export const ONBOARDING_STATUS_KEY = 'hasOnboardingSeen';
+export const ONBOARDING_STATUS_KEY = 'isOnboardingSeen';
