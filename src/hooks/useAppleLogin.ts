@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
+import Toast from 'react-native-toast-message';
 import * as SecureStore from 'expo-secure-store';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { queryKeys } from '@src/constants/queryKeys';
@@ -25,9 +26,19 @@ export const useAppleLogin = () => {
 					refetchType: 'all',
 				});
 				router.replace('/plants');
+				Toast.show({
+					type: 'success',
+					text1: 'Apple login',
+					text2: 'You have successfully logged in',
+				});
 			},
 			onError: async (error: any) => {
 				console.log({ error });
+				Toast.show({
+					type: 'error',
+					text1: 'Apple login',
+					text2: `Error: Failed to login with apple: ${JSON.stringify(error)} 👋`,
+				});
 				await AppleAuthentication.signOutAsync({
 					user: credential?.user ?? '',
 				});
@@ -44,7 +55,11 @@ export const useAppleLogin = () => {
 				],
 			});
 			if (!credential.authorizationCode) {
-				// reportError('Auth code missing', 'apple_login_error', 'Authorization code is missing in apple Auth');
+				Toast.show({
+					type: 'error',
+					text1: 'Apple login',
+					text2: 'Error: Auth code missing 👋',
+				});
 			}
 			return credential;
 		},
@@ -60,7 +75,11 @@ export const useAppleLogin = () => {
 			mutate({ data: { id_token: data.identityToken } });
 		},
 		onError: (error) => {
-			console.log(error);
+			Toast.show({
+				type: 'error',
+				text1: 'Google login',
+				text2: `Error: ${JSON.stringify(error)}👋`,
+			});
 		},
 	});
 	const handleAppleLogin = () => {

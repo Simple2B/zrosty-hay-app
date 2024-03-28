@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useQueryClient } from '@tanstack/react-query';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import Toast from 'react-native-toast-message';
 import * as SecureStore from 'expo-secure-store';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { queryKeys } from '@src/constants/queryKeys';
@@ -32,8 +33,17 @@ export const useLogout = () => {
 				queryKey: [queryKeys.ME],
 				refetchType: 'all',
 			});
+			Toast.show({
+				type: 'success',
+				text1: 'Login out',
+				text2: 'You have successfully login out 👋',
+			});
 		} catch (error: any) {
-			// TODO errors
+			Toast.show({
+				type: 'error',
+				text1: 'Login out',
+				text2: `Error: Failed to login out: ${JSON.stringify(error)} 👋`,
+			});
 		}
 	};
 
