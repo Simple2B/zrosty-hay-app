@@ -7,6 +7,7 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
+import Toast from 'react-native-toast-message';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useStyles } from 'react-native-unistyles';
 import * as SecureStore from 'expo-secure-store';
@@ -92,6 +93,7 @@ function RootLayoutNav() {
 						<Stack.Screen name='login/index' />
 					</Stack>
 				</SafeAreaProvider>
+				<Toast />
 			</ThemeProvider>
 		</QueryClientProvider>
 	);

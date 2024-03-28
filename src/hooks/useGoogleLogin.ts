@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import { useAPIValidateGoogleToken } from '@src/api/o-auth/o-auth';
 import { queryKeys } from '@src/constants/queryKeys';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
+import Toast from 'react-native-toast-message';
 
 export const useGoogleLogin = () => {
 	const queryClient = useQueryClient();
@@ -25,11 +26,18 @@ export const useGoogleLogin = () => {
 				});
 
 				router.replace('/plants');
+				Toast.show({
+					type: 'success',
+					text1: 'Google login',
+					text2: 'You have successfully logged in',
+				});
 			},
 			onError: async (error) => {
-				console.log({ error });
-				// TODO add alert
-				// reportError('Failed to login with google', 'google_login_error', JSON.stringify(error));
+				Toast.show({
+					type: 'error',
+					text1: 'Google login',
+					text2: `Error: Failed to login with google: ${JSON.stringify(error)} 👋`,
+				});
 				await GoogleSignin.revokeAccess();
 				GoogleSignin.signOut();
 			},
@@ -42,7 +50,11 @@ export const useGoogleLogin = () => {
 			const userInfo = await GoogleSignin.signIn();
 
 			if (!userInfo.idToken) {
-				// reportError('Id token missing', 'google_login_error', 'Id token is missing in google Auth');
+				Toast.show({
+					type: 'error',
+					text1: 'Google login',
+					text2: 'Error: Id token missin 👋',
+				});
 			}
 			return userInfo;
 		},
@@ -53,8 +65,11 @@ export const useGoogleLogin = () => {
 			mutate({ data: { id_token: data.idToken } });
 		},
 		onError: (error: any) => {
-			console.log(error);
-			// reportError('Failed to login with google', 'google_login_error', JSON.stringify(error));
+			Toast.show({
+				type: 'error',
+				text1: 'Google login',
+				text2: `Error: ${JSON.stringify(error)}👋`,
+			});
 			if (error.code === statusCodes.SIGN_IN_CANCELLED) {
 				console.log('user cancelled the login flow');
 			} else if (error.code === statusCodes.IN_PROGRESS) {
