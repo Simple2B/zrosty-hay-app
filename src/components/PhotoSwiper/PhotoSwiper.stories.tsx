@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 
-import { PlantPhotoSwiper } from './PlantPhotoSwiper';
+import { PhotoSwiper } from './PhotoSwiper';
 import { View } from 'react-native';
 
 export default {
 	title: 'ui/PlantPhotoSwiper',
-	component: PlantPhotoSwiper,
+	component: PhotoSwiper,
 	args: {},
 
 	decorators: [
@@ -16,9 +16,9 @@ export default {
 			</View>
 		),
 	],
-} as ComponentMeta<typeof PlantPhotoSwiper>;
+} as ComponentMeta<typeof PhotoSwiper>;
 
-const Template: ComponentStory<typeof PlantPhotoSwiper> = (args) => <PlantPhotoSwiper {...args} />;
+const Template: ComponentStory<typeof PhotoSwiper> = (args) => <PhotoSwiper {...args} />;
 
 const plantPhotos = [
 	{
@@ -40,4 +40,4 @@ const plantPhotos = [
 ];
 
 export const Story = Template.bind({});
-Story.args = { plantUuid: '123' };
+Story.args = { photos: plantPhotos };

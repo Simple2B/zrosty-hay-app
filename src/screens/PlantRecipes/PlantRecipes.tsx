@@ -53,6 +53,7 @@ export const PlantRecipesScreen = ({ plantUuid }: TPlantScreenProps) => {
 				<FlashList
 					refreshing={true}
 					data={recipes}
+					extraData={{ plantUuid }}
 					onEndReachedThreshold={0.1}
 					contentContainerStyle={styles.recipes}
 					showsVerticalScrollIndicator={false}

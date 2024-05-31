@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.29"
+		"version": "0.1.40"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -674,6 +674,112 @@
 				}
 			}
 		},
+		"/api/recipes/{uuid}": {
+			"get": {
+				"tags": ["API", "Recipes"],
+				"summary": "Get Recipe Detail",
+				"description": "Returns the recipe detail",
+				"operationId": "API-get_recipe_detail",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RecipeDetail"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/recipes/{uuid}/photos": {
+			"get": {
+				"tags": ["API", "Recipes"],
+				"summary": "Get Recipe Photos",
+				"description": "Returns the recipe photos",
+				"operationId": "API-get_recipe_photos",
+				"parameters": [
+					{
+						"name": "uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"title": "Uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Photo"
+									},
+									"title": "Response Api-Get Recipe Photos"
+								}
+							}
+						}
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApiError404"
+								}
+							}
+						},
+						"description": "Not Found"
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HTTPValidationError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/api/list-endpoints/": {
 			"get": {
 				"tags": ["API"],
@@ -1321,6 +1427,21 @@
 				"required": ["uuid", "name", "description", "photo", "categories"],
 				"title": "Recipe"
 			},
+			"RecipeAdditionalIngredient": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"textQuantity": {
+						"type": "string",
+						"title": "Textquantity"
+					}
+				},
+				"type": "object",
+				"required": ["name", "textQuantity"],
+				"title": "RecipeAdditionalIngredient"
+			},
 			"RecipeCategory": {
 				"properties": {
 					"uuid": {
@@ -1335,6 +1456,89 @@
 				"type": "object",
 				"required": ["uuid", "name"],
 				"title": "RecipeCategory"
+			},
+			"RecipeDetail": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"cooking_time": {
+						"type": "integer",
+						"title": "Cooking Time"
+					},
+					"ingredients": {
+						"items": {
+							"$ref": "#/components/schemas/RecipeIngredient"
+						},
+						"type": "array",
+						"title": "Ingredients",
+						"default": []
+					},
+					"additionalIngredients": {
+						"items": {
+							"$ref": "#/components/schemas/RecipeAdditionalIngredient"
+						},
+						"type": "array",
+						"title": "Additionalingredients",
+						"default": []
+					},
+					"steps": {
+						"items": {
+							"$ref": "#/components/schemas/RecipeStep"
+						},
+						"type": "array",
+						"title": "Steps",
+						"default": []
+					}
+				},
+				"type": "object",
+				"required": ["name", "cooking_time"],
+				"title": "RecipeDetail"
+			},
+			"RecipeIngredient": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"title": "Name"
+					},
+					"quantity": {
+						"type": "number",
+						"title": "Quantity"
+					},
+					"quantityType": {
+						"type": "string",
+						"title": "Quantitytype"
+					},
+					"photo": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Photo"
+							},
+							{
+								"type": "null"
+							}
+						]
+					}
+				},
+				"type": "object",
+				"required": ["name", "quantity", "quantityType", "photo"],
+				"title": "RecipeIngredient"
+			},
+			"RecipeStep": {
+				"properties": {
+					"stepNumber": {
+						"type": "integer",
+						"title": "Stepnumber"
+					},
+					"instruction": {
+						"type": "string",
+						"title": "Instruction"
+					}
+				},
+				"type": "object",
+				"required": ["stepNumber", "instruction"],
+				"title": "RecipeStep"
 			},
 			"StepType": {
 				"properties": {
@@ -1385,6 +1589,17 @@
 						"type": "boolean",
 						"title": "Activated",
 						"default": true
+					},
+					"picture_url": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "null"
+							}
+						],
+						"title": "Picture Url"
 					}
 				},
 				"type": "object",

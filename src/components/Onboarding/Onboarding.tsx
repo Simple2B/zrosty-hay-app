@@ -95,14 +95,14 @@ export const OnboardingScreen = () => {
 				onIndexChanged={handleIndexChange}
 			>
 				{onboardData.map((slide) => (
-					<>
-						<View key={slide.title} style={styles.slideWrapper}>
+					<View key={slide.title}>
+						<View style={styles.slideWrapper}>
 							{slide.image}
 							<Text style={styles.title}>{slide.title}</Text>
 							<Text style={styles.subtitle}>{slide.subtitle}</Text>
 						</View>
 						{renderNextButton()}
-					</>
+					</View>
 				))}
 			</Swiper>
 		</SafeAreaView>

@@ -22,32 +22,42 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 				<StatusBar barStyle='dark-content' />
 
 				<PlantDetailTab tabBar={(props) => <PlantDetailTabBtns {...props} plantUuid={plantUuid} />}>
-					<PlantDetailTab.Screen name='index' options={{ title: t('descriptionTab') }} listeners={({ navigation, route }) => ({
-						swipeEnd: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						},
-						tabPress: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						  },
-						
-					})} />
-					<PlantDetailTab.Screen name='care' options={{ title: t('careTab') }} listeners={({ navigation, route }) => ({
-						swipeEnd: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						},
-						tabPress: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						  },
-					})} />
-					<PlantDetailTab.Screen name='recipes' options={{ title: t('recipesTab') }} listeners={({ navigation, route }) => ({
-						swipeEnd: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						},
-						tabPress: (e) => {
-							navigation.navigate(route.name, { uuid: plantUuid })
-						  },
-
-					})} />
+					<PlantDetailTab.Screen
+						name='index'
+						options={{ title: t('descriptionTab') }}
+						listeners={({ navigation, route }) => ({
+							swipeEnd: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+							tabPress: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+						})}
+					/>
+					<PlantDetailTab.Screen
+						name='care'
+						options={{ title: t('careTab') }}
+						listeners={({ navigation, route }) => ({
+							swipeEnd: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+							tabPress: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+						})}
+					/>
+					<PlantDetailTab.Screen
+						name='recipes'
+						options={{ title: t('recipesTab') }}
+						listeners={({ navigation, route }) => ({
+							swipeEnd: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+							tabPress: (e) => {
+								navigation.navigate(route.name, { uuid: plantUuid });
+							},
+						})}
+					/>
 				</PlantDetailTab>
 			</View>
 		</SafeAreaView>
