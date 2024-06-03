@@ -5,7 +5,7 @@ import Swiper from 'react-native-swiper';
 import FastImage from 'react-native-fast-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from 'react-native-unistyles';
-import { Href, Link, router } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 import { styleSheet } from './PhotoSwiper.style';
 import BackIcon from '@assets/icons/leftIcon.svg';
