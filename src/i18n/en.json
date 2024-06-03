@@ -79,5 +79,8 @@
 	"minutes": "minutes",
 	"easy": "Easy",
 	"Normal": "Normal",
-	"Hard": "Hard"
+	"Hard": "Hard",
+	"ingredientTitle": "Ingredients",
+	"additionalIngredientTitle": "Additional ingredients",
+	"recipeTitle": "Recipe"
 }

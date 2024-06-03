@@ -79,5 +79,8 @@
 	"minutes": "хвилини",
 	"easy": "Легко",
 	"Normal": "Нормально",
-	"Hard": "Важко"
+	"Hard": "Важко",
+	"ingredientTitle": "Інгредієнти",
+	"additionalIngredientTitle": "Додаткові інгредієнти",
+	"recipeTitle": "Рецепт"
 }
