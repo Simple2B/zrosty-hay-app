@@ -2,6 +2,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 import FastImage from 'react-native-fast-image';
+import { router } from 'expo-router';
 
 import { Recipe } from '@src/api/model';
 import defaultRecipe from '@assets/images/default-recipe.jpg';
@@ -10,13 +11,23 @@ import { RecipeCategory } from '../RecipeCategory/RecipeCategory';
 
 type Props = {
 	recipe: Recipe;
+	plantUuid: string;
 };
 
-export const PlantRecipe = ({ recipe }: Props) => {
+export const PlantRecipe = ({ recipe, plantUuid }: Props) => {
 	const { styles } = useStyles(styleSheet);
 
+	const onPressRecipe = () => {
+		router.push({
+			pathname: `/recipe/${recipe.uuid}`,
+			params: {
+				plantUuid,
+			},
+		});
+	};
+
 	return (
-		<TouchableOpacity style={styles.wrapper}>
+		<TouchableOpacity style={styles.wrapper} onPress={onPressRecipe}>
 			<FastImage
 				style={styles.recipeImage}
 				source={{

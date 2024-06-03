@@ -58,9 +58,9 @@ const getStories = () => {
     "./src/components/buttons/AuthButton/AuthButton.stories.tsx": require("../src/components/buttons/AuthButton/AuthButton.stories.tsx"),
     "./src/components/buttons/СategoryButton/CategoryButton.stories.tsx": require("../src/components/buttons/СategoryButton/CategoryButton.stories.tsx"),
     "./src/components/inputs/SearchInput/SearchInput.stories.tsx": require("../src/components/inputs/SearchInput/SearchInput.stories.tsx"),
+    "./src/components/PhotoSwiper/PhotoSwiper.stories.tsx": require("../src/components/PhotoSwiper/PhotoSwiper.stories.tsx"),
     "./src/components/PlantCardPreview/PlantCardPreview.stories.tsx": require("../src/components/PlantCardPreview/PlantCardPreview.stories.tsx"),
     "./src/components/PlantingStep/PlantingStep.stories.tsx": require("../src/components/PlantingStep/PlantingStep.stories.tsx"),
-    "./src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx": require("../src/components/PlantPhotoSwiper/PlantPhotoSwiper.stories.tsx"),
     "./src/components/PlantRecipe/PlantRecipe.stories.tsx": require("../src/components/PlantRecipe/PlantRecipe.stories.tsx"),
     "./src/components/Spinner/Spinner.stories.tsx": require("../src/components/Spinner/Spinner.stories.tsx"),
   };
