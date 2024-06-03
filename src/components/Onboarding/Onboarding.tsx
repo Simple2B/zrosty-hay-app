@@ -95,7 +95,7 @@ export const OnboardingScreen = () => {
 				onIndexChanged={handleIndexChange}
 			>
 				{onboardData.map((slide) => (
-					<View key={slide.title}>
+					<View key={slide.title} style={styles.wrapper}>
 						<View style={styles.slideWrapper}>
 							{slide.image}
 							<Text style={styles.title}>{slide.title}</Text>
