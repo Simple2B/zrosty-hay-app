@@ -23,5 +23,5 @@ export const PlantPhotoSwiper = ({ plantUuid }: TPlantScreenProps) => {
 		return <NotFound />;
 	}
 
-	return <PhotoSwiper photos={data.data} backIconHref='/plants/' />;
+	return <PhotoSwiper photos={data.data} />;
 };
