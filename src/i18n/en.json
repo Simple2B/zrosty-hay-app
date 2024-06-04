@@ -50,9 +50,9 @@
 	"careCalendarText": "Care calendar",
 	"careInfoHeader": "Care advice",
 	"watering": {
-		"easy": "Infrequent watering",
-		"normal": "Moderate watering",
-		"hard": "Frequent watering"
+		"easy": "Infrequent\nwatering",
+		"normal": "Moderate\nwatering",
+		"hard": "Frequent\nwatering"
 	},
 	"min": "min",
 	"max": "max",
@@ -82,5 +82,12 @@
 	"Hard": "Hard",
 	"ingredientTitle": "Ingredients",
 	"additionalIngredientTitle": "Additional ingredients",
-	"recipeTitle": "Recipe"
+	"recipeTitle": "Recipe",
+	"loginOut": "Login Out",
+	"loginOutMessage": "Do you want to log out?",
+	"loginOutOk": "Ok",
+	"loginOutCancel": "Cancel",
+	"goodMorning": "Good morning",
+	"goodAfternoon": "Good afternoon",
+	"goodEvenin": "Good evening"
 }

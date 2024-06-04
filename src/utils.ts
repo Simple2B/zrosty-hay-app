@@ -43,3 +43,15 @@ function formatMonths(number: number, t: TFunction<'translation', undefined>): s
 		return `${number} ${t('months')}`;
 	}
 }
+
+export function helloMessage(t: TFunction<'translation', undefined>): string {
+	const today = new Date();
+	const curHr = today.getHours();
+
+	if (curHr < 12) {
+		return t('goodMorning');
+	} else if (curHr < 18) {
+		return t('goodAfternoon');
+	}
+	return t('goodEvenin');
+}

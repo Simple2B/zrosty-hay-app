@@ -36,7 +36,6 @@ export function RecipeDetail({ recipeUuid }: Props) {
 	const cookingTime = recipeDetail.cooking_time / 60;
 	const complexity = cookingTime < 60 ? t('easy') : cookingTime < 120 ? t('Normal') : t('Hard');
 
-	// TODO use uuid instead of idx
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 			<View style={styles.wrapper}>
@@ -59,22 +58,22 @@ export function RecipeDetail({ recipeUuid }: Props) {
 				</View>
 				<Text style={styles.subTitle}>{t('ingredientTitle')}</Text>
 				<View style={styles.ingredientsWrapper}>
-					{recipeDetail.ingredients?.map((ingredient, idx) => (
-						<RecipeIngredient key={idx.toString()} ingredient={ingredient} />
+					{recipeDetail.ingredients?.map((ingredient) => (
+						<RecipeIngredient key={ingredient.uuid} ingredient={ingredient} />
 					))}
 				</View>
 				<Text style={styles.subTitle}>{t('additionalIngredientTitle')}</Text>
 				<View style={styles.additionalIngredientWrapper}>
-					{recipeDetail.additionalIngredients?.map((additionalIngredient, idx) => (
-						<Text key={idx.toString()} style={styles.additionalIngredientText}>
+					{recipeDetail.additionalIngredients?.map((additionalIngredient) => (
+						<Text key={additionalIngredient.uuid} style={styles.additionalIngredientText}>
 							{'\u2022'} {additionalIngredient.name} ({additionalIngredient.textQuantity})
 						</Text>
 					))}
 				</View>
 				<Text style={styles.subTitle}>{t('recipeTitle')}</Text>
 				<View style={styles.recipeSteps}>
-					{recipeDetail.steps?.map((step, idx) => (
-						<RecipeStep key={idx.toString()} {...step} />
+					{recipeDetail.steps?.map((step) => (
+						<RecipeStep key={step.uuid} {...step} />
 					))}
 				</View>
 			</View>
