@@ -6,12 +6,12 @@ import { TRecipeScreenProps } from '@src/types/recipe';
 import { RecipePhotoSwiper } from '@src/components/RecipePhotoSwiper/RecipePhotoSwiper';
 import { RecipeDetail } from '@src/components/RecipeDetail/RecipeDetail';
 
-export function RecipeDetailScreen({ recipeUuid, plantUuid }: TRecipeScreenProps) {
+export function RecipeDetailScreen({ recipeUuid, }: TRecipeScreenProps) {
 	const { styles } = useStyles(styleSheet);
 
 	return (
 		<SafeAreaView style={styles.wrapper}>
-			<RecipePhotoSwiper recipeUuid={recipeUuid} plantUuid={plantUuid} />
+			<RecipePhotoSwiper recipeUuid={recipeUuid} />
 			<RecipeDetail recipeUuid={recipeUuid} />
 		</SafeAreaView>
 	);

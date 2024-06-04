@@ -15,10 +15,10 @@ import { Photo } from '@src/api/model';
 
 interface PhotoSwiperProps {
 	photos: Photo[];
-	plantUuid?: string;
+	isGoBack?: boolean;
 }
 
-export const PhotoSwiper = ({ photos, plantUuid }: PhotoSwiperProps) => {
+export const PhotoSwiper = ({ photos, isGoBack = false }: PhotoSwiperProps) => {
 	const width = Dimensions.get('window').width;
 	const { styles } = useStyles(styleSheet);
 	const statusBarHeight = useSafeAreaInsets().top;
@@ -32,7 +32,7 @@ export const PhotoSwiper = ({ photos, plantUuid }: PhotoSwiperProps) => {
 			{photos.length ? (
 				<View style={styles.wrapper}>
 					<StatusBar barStyle='light-content' />
-					{!plantUuid ? (
+					{!isGoBack ? (
 						<Link href='/plants/' asChild>
 							<Pressable style={styles.backIconwrapper(statusBarHeight)}>
 								<View style={styles.backButtonBackground}>

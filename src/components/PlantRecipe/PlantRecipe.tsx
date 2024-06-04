@@ -11,17 +11,15 @@ import { RecipeCategory } from '../RecipeCategory/RecipeCategory';
 
 type Props = {
 	recipe: Recipe;
-	plantUuid: string;
 };
 
-export const PlantRecipe = ({ recipe, plantUuid }: Props) => {
+export const PlantRecipe = ({ recipe }: Props) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
 		<Link
 			href={{
 				pathname: `/recipes/${recipe.uuid}`,
-				params: { plantUuid: plantUuid },
 			}}
 			asChild
 		>

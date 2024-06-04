@@ -4,8 +4,8 @@ import { AxiosResponse } from 'axios';
 
 import { PlantRecipe } from '@src/components/PlantRecipe/PlantRecipe';
 
-export const renderItemPlantCardPreview = ({ item, extraData }: ListRenderItemInfo<Recipe>) => (
-	<PlantRecipe recipe={item} plantUuid={extraData.plantUuid} />
+export const renderItemPlantCardPreview = ({ item }: ListRenderItemInfo<Recipe>) => (
+	<PlantRecipe recipe={item} />
 );
 
 export const getKeyExtractor = (item: Recipe) => item.uuid;
