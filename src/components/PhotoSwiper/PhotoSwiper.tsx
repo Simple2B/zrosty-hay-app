@@ -23,16 +23,8 @@ export const PhotoSwiper = ({ photos, plantUuid }: PhotoSwiperProps) => {
 	const { styles } = useStyles(styleSheet);
 	const statusBarHeight = useSafeAreaInsets().top;
 
-	const onPressBackIcon = () => {
-		if (plantUuid) {
-			router.push({
-				pathname: `/plants/${plantUuid}/recipes`,
-			});
-			return;
-		}
-		router.push({
-			pathname: '/plants/',
-		});
+	const goBack = () => {
+		router.back();
 	};
 
 	return (
@@ -40,11 +32,21 @@ export const PhotoSwiper = ({ photos, plantUuid }: PhotoSwiperProps) => {
 			{photos.length ? (
 				<View style={styles.wrapper}>
 					<StatusBar barStyle='light-content' />
-					<Pressable onPress={onPressBackIcon} style={styles.backIconwrapper(statusBarHeight)}>
-						<View style={styles.backButtonBackground}>
-							<BackIcon width={sizes.lg} height={sizes.lg} />
-						</View>
-					</Pressable>
+					{!plantUuid ? (
+						<Link href='/plants/' asChild>
+							<Pressable style={styles.backIconwrapper(statusBarHeight)}>
+								<View style={styles.backButtonBackground}>
+									<BackIcon width={sizes.lg} height={sizes.lg} />
+								</View>
+							</Pressable>
+						</Link>
+					) : (
+						<Pressable onPress={goBack} style={styles.backIconwrapper(statusBarHeight)}>
+							<View style={styles.backButtonBackground}>
+								<BackIcon width={sizes.lg} height={sizes.lg} />
+							</View>
+						</Pressable>
+					)}
 					<Swiper loop={false} activeDotColor={styles.activeDot.backgroundColor} width={width}>
 						{photos.map((photo) => (
 							<FastImage
