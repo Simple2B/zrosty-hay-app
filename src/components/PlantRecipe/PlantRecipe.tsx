@@ -14,15 +14,12 @@ type Props = {
 	plantUuid: string;
 };
 
-export const PlantRecipe = ({ recipe, plantUuid }: Props) => {
+export const PlantRecipe = ({ recipe }: Props) => {
 	const { styles } = useStyles(styleSheet);
 
 	const onPressRecipe = () => {
 		router.push({
-			pathname: `/recipe/${recipe.uuid}`,
-			params: {
-				plantUuid,
-			},
+			pathname: `/recipes/${recipe.uuid}`,
 		});
 	};
 
