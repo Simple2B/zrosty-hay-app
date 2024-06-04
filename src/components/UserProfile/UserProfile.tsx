@@ -1,20 +1,38 @@
-import { Button, Text, View } from 'react-native';
+import { Alert, Button, Pressable, Text, View } from 'react-native';
 import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 
 import { styleSheet } from './UserProfile.style';
 import { useMe } from '@src/hooks/useMe';
 import { useLogout } from '@src/hooks/useLogout';
+import FastImage from 'react-native-fast-image';
+import { useTranslation } from 'react-i18next';
+import { helloMessage } from '@src/utils';
 
-// Temporary component
+// TODO: need to change, tempopary avatar
+const tempopary_icon_url = 'https://nretnil.com/avatar/LawrenceEzekielAmos.png';
+
 export const UserProfile = () => {
+	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 	const user = useMe();
 	const loginout = useLogout();
-	const handlerLogout = async () => {
-		if (!user) return;
-		await loginout();
-	};
+
+	const createLoginOutAlert = () =>
+		Alert.alert(t('loginOut'), t('loginOutMessage'), [
+			{
+				text: t('loginOutOk'),
+				onPress: async () => {
+					if (!user) return;
+					await loginout();
+				},
+			},
+			{
+				text: t('loginOutCancel'),
+			},
+		]);
+
+	const avatar_url = user && !!user.picture_url ? user.picture_url : tempopary_icon_url;
 
 	if (!user) {
 		return null;
@@ -22,8 +40,21 @@ export const UserProfile = () => {
 
 	return (
 		<View style={styles.profile}>
-			<Text style={styles.profileEmail}>{user.email}</Text>
-			<Button title='Login out' onPress={handlerLogout} />
+			<View>
+				<Text style={styles.helloText}>{helloMessage(t)}</Text>
+				<Text style={styles.profileEmail}>{user.email}</Text>
+			</View>
+			<Pressable style={styles.profileImageWrapper} onPress={createLoginOutAlert}>
+				<FastImage
+					key={user.id}
+					style={styles.image}
+					source={{
+						uri: avatar_url,
+						priority: FastImage.priority.normal,
+					}}
+					resizeMode={FastImage.resizeMode.contain}
+				/>
+			</Pressable>
 		</View>
 	);
 };

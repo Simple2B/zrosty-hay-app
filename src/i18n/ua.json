@@ -50,9 +50,9 @@
 	"careCalendarText": "Календар догляду",
 	"careInfoHeader": "Поради з догляду",
 	"watering": {
-		"easy": "Економний полив",
-		"normal": "Помірний полив",
-		"hard": "Частий полив"
+		"easy": "Економний\nпoлив",
+		"normal": "Помірний\nпoлив",
+		"hard": "Частий\nпoлив"
 	},
 	"min": "мін",
 	"max": "мак",
@@ -82,5 +82,12 @@
 	"Hard": "Важко",
 	"ingredientTitle": "Інгредієнти",
 	"additionalIngredientTitle": "Додаткові інгредієнти",
-	"recipeTitle": "Рецепт"
+	"recipeTitle": "Рецепт",
+	"loginOut": "Вихід",
+	"loginOutMessage": "Ви дійсно хочете вийти?",
+	"loginOutOk": "Так",
+	"loginOutCancel": "Ні",
+	"goodMorning": "Добрий ранок",
+	"goodAfternoon": "Добрий день",
+	"goodEvenin": "Добрий вечір"
 }
