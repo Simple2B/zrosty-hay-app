@@ -6,7 +6,7 @@ import { RecipeDetailScreen } from '@src/screens/RecipeDetailScreen/RecipeDetail
 export default function Recipe() {
 	const { recipeUuid, plantUuid } = useLocalSearchParams<{ recipeUuid?: string; plantUuid?: string }>();
 
-	if (!recipeUuid || !plantUuid) {
+	if (!recipeUuid) {
 		return <NotFound />;
 	}
 

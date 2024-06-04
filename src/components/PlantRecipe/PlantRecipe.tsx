@@ -2,7 +2,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useStyles } from 'react-native-unistyles';
 import FastImage from 'react-native-fast-image';
-import { router } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 import { Recipe } from '@src/api/model';
 import defaultRecipe from '@assets/images/default-recipe.jpg';
@@ -14,43 +14,45 @@ type Props = {
 	plantUuid: string;
 };
 
-export const PlantRecipe = ({ recipe }: Props) => {
+export const PlantRecipe = ({ recipe, plantUuid }: Props) => {
 	const { styles } = useStyles(styleSheet);
 
-	const onPressRecipe = () => {
-		router.push({
-			pathname: `/recipes/${recipe.uuid}`,
-		});
-	};
-
 	return (
-		<TouchableOpacity style={styles.wrapper} onPress={onPressRecipe}>
-			<FastImage
-				style={styles.recipeImage}
-				source={{
-					uri: recipe.photo?.urlPath || Image.resolveAssetSource(defaultRecipe).uri,
+		<Link
+			href={{
+				pathname: `/recipes/${recipe.uuid}`,
+				params: { plantUuid: plantUuid },
+			}}
+			asChild
+		>
+			<TouchableOpacity style={styles.wrapper}>
+				<FastImage
+					style={styles.recipeImage}
+					source={{
+						uri: recipe.photo?.urlPath || Image.resolveAssetSource(defaultRecipe).uri,
 
-					priority: FastImage.priority.normal,
-				}}
-				resizeMode={FastImage.resizeMode.cover}
-			/>
-			<View style={styles.content}>
-				<Text style={styles.title}>{recipe.name}</Text>
-				<Text numberOfLines={3} style={styles.description}>
-					{recipe.description}
-				</Text>
-				<View>
-					<ScrollView
-						contentContainerStyle={styles.categories}
-						horizontal={true}
-						showsHorizontalScrollIndicator={false}
-					>
-						{recipe.categories.map((category) => (
-							<RecipeCategory key={category.uuid} name={category.name} />
-						))}
-					</ScrollView>
+						priority: FastImage.priority.normal,
+					}}
+					resizeMode={FastImage.resizeMode.cover}
+				/>
+				<View style={styles.content}>
+					<Text style={styles.title}>{recipe.name}</Text>
+					<Text numberOfLines={3} style={styles.description}>
+						{recipe.description}
+					</Text>
+					<View>
+						<ScrollView
+							contentContainerStyle={styles.categories}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+						>
+							{recipe.categories.map((category) => (
+								<RecipeCategory key={category.uuid} name={category.name} />
+							))}
+						</ScrollView>
+					</View>
 				</View>
-			</View>
-		</TouchableOpacity>
+			</TouchableOpacity>
+		</Link>
 	);
 };

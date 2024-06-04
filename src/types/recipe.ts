@@ -1,4 +1,4 @@
 export type TRecipeScreenProps = {
 	recipeUuid: string;
-	plantUuid: string;
+	plantUuid?: string;
 };
