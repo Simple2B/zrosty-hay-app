@@ -32,7 +32,6 @@ export const UserProfile = () => {
 			},
 		]);
 
-	const avatar_url = user && !!user.picture_url ? user.picture_url : tempopary_icon_url;
 
 	if (!user) {
 		return null;
@@ -49,7 +48,7 @@ export const UserProfile = () => {
 					key={user.id}
 					style={styles.image}
 					source={{
-						uri: avatar_url,
+						uri: tempopary_icon_url,
 						priority: FastImage.priority.normal,
 					}}
 					resizeMode={FastImage.resizeMode.contain}
