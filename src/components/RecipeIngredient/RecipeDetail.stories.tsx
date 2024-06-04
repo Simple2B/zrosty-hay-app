@@ -23,6 +23,7 @@ const Template: ComponentStory<typeof RecipeIngredient> = (args) => <RecipeIngre
 export const Story = Template.bind({});
 Story.args = {
 	ingredient: {
+		uuid: "1",
 		name: 'Листя салату',
 		photo: {
 			urlPath: 'https://i.pinimg.com/564x/49/2c/6b/492c6b15184c213107b39fccebb33997.jpg',
