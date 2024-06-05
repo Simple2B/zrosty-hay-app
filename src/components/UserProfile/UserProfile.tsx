@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import { helloMessage } from '@src/utils';
 
 // TODO: need to change, tempopary avatar
-const tempopary_icon_url = 'https://nretnil.com/avatar/LawrenceEzekielAmos.png';
 
 export const UserProfile = () => {
 	const { t } = useTranslation();
@@ -32,7 +31,6 @@ export const UserProfile = () => {
 			},
 		]);
 
-
 	if (!user) {
 		return null;
 	}
@@ -48,7 +46,7 @@ export const UserProfile = () => {
 					key={user.id}
 					style={styles.image}
 					source={{
-						uri: tempopary_icon_url,
+						uri: user.avatar_url,
 						priority: FastImage.priority.normal,
 					}}
 					resizeMode={FastImage.resizeMode.contain}

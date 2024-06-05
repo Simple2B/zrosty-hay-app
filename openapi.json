@@ -2,7 +2,7 @@
 	"openapi": "3.1.0",
 	"info": {
 		"title": "FastAPI",
-		"version": "0.1.41"
+		"version": "0.1.42"
 	},
 	"paths": {
 		"/api/users/me": {
@@ -1602,20 +1602,13 @@
 						"title": "Activated",
 						"default": true
 					},
-					"picture_url": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Picture Url"
+					"avatar_url": {
+						"type": "string",
+						"title": "Avatar Url"
 					}
 				},
 				"type": "object",
-				"required": ["id", "username", "email"],
+				"required": ["id", "username", "email", "avatar_url"],
 				"title": "User"
 			},
 			"ValidationError": {
