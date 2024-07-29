@@ -31,9 +31,9 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 						options={{ title: t('descriptionTab'), swipeEnabled: isSwiperEnabled }}
 						listeners={({ navigation, route }) => ({
 							swipeEnd: (e) => {
-								// if (isSwiperEnabled) {
-								navigation.navigate(route.name, { uuid: plantUuid });
-								// }
+								if (isSwiperEnabled) {
+									navigation.navigate(route.name, { uuid: plantUuid });
+								}
 							},
 							tabPress: (e) => {
 								navigation.navigate(route.name, { uuid: plantUuid });
@@ -45,9 +45,9 @@ export const PlantDetailLayout = ({ plantUuid }: TPlantScreenProps) => {
 						options={{ title: t('careTab'), swipeEnabled: isSwiperEnabled }}
 						listeners={({ navigation, route }) => ({
 							swipeEnd: (e) => {
-								// if (isSwiperEnabled) {
-								navigation.navigate(route.name, { uuid: plantUuid });
-								// }
+								if (isSwiperEnabled) {
+									navigation.navigate(route.name, { uuid: plantUuid });
+								}
 							},
 							tabPress: (e) => {
 								navigation.navigate(route.name, { uuid: plantUuid });
