@@ -28,7 +28,7 @@ jobs:
 
   adroid-build-deploy:
     name: Android build and deploy
-    runs-on: hay-mac
+    runs-on: ios-shared-1
     needs:
       - on-develop-branch-check
     if: ${{ needs.on-develop-branch-check.outputs.on_develop == 'true' }}
