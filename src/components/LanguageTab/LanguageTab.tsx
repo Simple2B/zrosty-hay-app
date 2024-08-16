@@ -3,12 +3,12 @@ import { Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './LanguageTab.style';
 import { useTranslation } from 'react-i18next';
-import { Language } from '@src/constants/languages';
+import { UserPreferredLanguage } from '@src/api/model';
 
 type LanguageTabProps = {
-	language: Language;
+	language: UserPreferredLanguage;
 	isSelected: boolean;
-	onSelect: (lang: Language) => void;
+	onSelect: (lang: UserPreferredLanguage) => void;
 };
 
 export const LanguageTab = ({ language, isSelected, onSelect }: LanguageTabProps) => {

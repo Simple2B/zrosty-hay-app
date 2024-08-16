@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react-native';
 import { View } from 'react-native';
 import React from 'react';
 import { LanguageSelector } from './LanguageSelector';
-import { Language } from '@src/constants/languages';
+import { UserPreferredLanguage } from '@src/api/model/userPreferredLanguage';
 
 export default {
 	title: 'ui/LanguageSelector',
@@ -22,4 +22,4 @@ export default {
 const Template: ComponentStory<typeof LanguageSelector> = (args) => <LanguageSelector {...args} />;
 
 export const Story = Template.bind({});
-Story.args = { language: Language.UA };
+Story.args = { language: UserPreferredLanguage.ua };

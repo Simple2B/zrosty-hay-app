@@ -3,19 +3,19 @@ import { View } from 'react-native';
 import { LanguageTab } from '../LanguageTab/LanguageTab';
 import { useStyles } from 'react-native-unistyles';
 import { styleSheet } from './LanguageSelector.style';
-import { Language } from '@src/constants/languages';
+import { UserPreferredLanguage } from '@src/api/model';
 
 type Props = {
-	language: Language;
+	language: UserPreferredLanguage;
 };
 
 export const LanguageSelector = ({ language }: Props) => {
 	const { styles } = useStyles(styleSheet);
-	const [selectedLanguage, setSelectedLanguage] = useState<Language>(language);
+	const [selectedLanguage, setSelectedLanguage] = useState<UserPreferredLanguage>(language);
 
 	return (
 		<View style={styles.selectorWrapper}>
-			{Object.values(Language).map((lang) => (
+			{Object.values(UserPreferredLanguage).map((lang) => (
 				<LanguageTab key={lang} language={lang} isSelected={selectedLanguage === lang} onSelect={setSelectedLanguage} />
 			))}
 		</View>

@@ -7,5 +7,6 @@ export const styleSheet = createStyleSheet((theme) => ({
 		justifyContent: 'space-evenly',
 		width: '100%',
 		gap: theme.size.sm,
+		alignSelf: 'stretch',
 	},
 }));
