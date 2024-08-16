@@ -1,9 +1,6 @@
 {
 	"openapi": "3.1.0",
-	"info": {
-		"title": "FastAPI",
-		"version": "0.1.42"
-	},
+	"info": { "title": "FastAPI", "version": "0.1.44" },
 	"paths": {
 		"/api/users/me": {
 			"get": {
@@ -14,20 +11,39 @@
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
 					}
 				},
-				"security": [
-					{
-						"OAuth2PasswordBearer": []
+				"security": [{ "OAuth2PasswordBearer": [] }]
+			},
+			"delete": {
+				"tags": ["API", "Users"],
+				"summary": "Delete User",
+				"description": "Deletes the current user",
+				"operationId": "API-delete_user",
+				"responses": { "204": { "description": "Successful Response" } },
+				"security": [{ "OAuth2PasswordBearer": [] }]
+			},
+			"patch": {
+				"tags": ["API", "Users"],
+				"summary": "Update User Info",
+				"description": "Updates the current user's info",
+				"operationId": "API-update_user_info",
+				"requestBody": {
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserUpdate" } } },
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+					},
+					"422": {
+						"description": "Validation Error",
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
-				]
+				},
+				"security": [{ "OAuth2PasswordBearer": [] }]
 			}
 		},
 		"/api/auth/login": {
@@ -38,34 +54,18 @@
 				"operationId": "API-login",
 				"requestBody": {
 					"content": {
-						"application/x-www-form-urlencoded": {
-							"schema": {
-								"$ref": "#/components/schemas/Body_API-login"
-							}
-						}
+						"application/x-www-form-urlencoded": { "schema": { "$ref": "#/components/schemas/Body_API-login" } }
 					},
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Token"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -77,35 +77,17 @@
 				"description": "Logs in a user",
 				"operationId": "API-get_token",
 				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/Auth"
-							}
-						}
-					},
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Auth" } } },
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Token"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -121,37 +103,19 @@
 						"name": "name",
 						"in": "query",
 						"required": false,
-						"schema": {
-							"type": "string",
-							"maxLength": 64,
-							"default": "",
-							"title": "Name"
-						}
+						"schema": { "type": "string", "maxLength": 64, "default": "", "title": "Name" }
 					},
 					{
 						"name": "category_uuids",
 						"in": "query",
 						"required": false,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							},
-							"default": [],
-							"title": "Category Uuids"
-						}
+						"schema": { "type": "array", "items": { "type": "string" }, "default": [], "title": "Category Uuids" }
 					},
 					{
 						"name": "page",
 						"in": "query",
 						"required": false,
-						"schema": {
-							"type": "integer",
-							"minimum": 1,
-							"description": "Page number",
-							"default": 1,
-							"title": "Page"
-						},
+						"schema": { "type": "integer", "minimum": 1, "description": "Page number", "default": 1, "title": "Page" },
 						"description": "Page number"
 					},
 					{
@@ -172,23 +136,11 @@
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Page_Plant_"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Page_Plant_" } } }
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -205,9 +157,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/PlantCategory"
-									},
+									"items": { "$ref": "#/components/schemas/PlantCategory" },
 									"type": "array",
 									"title": "Response Api-Get Categories"
 								}
@@ -224,46 +174,20 @@
 				"description": "Returns the plant detail",
 				"operationId": "API-get_plant_detail",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PlantDetail"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlantDetail" } } }
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -275,46 +199,20 @@
 				"description": "Returns the plant care trips",
 				"operationId": "API-get_plant_care_tips",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PlantCareTips"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlantCareTips" } } }
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -326,15 +224,7 @@
 				"description": "Returns the plant photos",
 				"operationId": "API-get_plant_photos",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
@@ -343,33 +233,19 @@
 							"application/json": {
 								"schema": {
 									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/Photo"
-									},
+									"items": { "$ref": "#/components/schemas/Photo" },
 									"title": "Response Api-Get Plant Photos"
 								}
 							}
 						}
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -381,15 +257,7 @@
 				"description": "Returns the plant program steps",
 				"operationId": "API-get_planting_steps",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
@@ -398,33 +266,19 @@
 							"application/json": {
 								"schema": {
 									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/PlantingStep"
-									},
+									"items": { "$ref": "#/components/schemas/PlantingStep" },
 									"title": "Response Api-Get Planting Steps"
 								}
 							}
 						}
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -436,24 +290,8 @@
 				"description": "Returns the plant program step day details",
 				"operationId": "API-get_planting_step_by_day",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					},
-					{
-						"name": "day",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "integer",
-							"title": "Day"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } },
+					{ "name": "day", "in": "path", "required": true, "schema": { "type": "integer", "title": "Day" } }
 				],
 				"responses": {
 					"200": {
@@ -462,33 +300,19 @@
 							"application/json": {
 								"schema": {
 									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/PlantingStepDay"
-									},
+									"items": { "$ref": "#/components/schemas/PlantingStepDay" },
 									"title": "Response Api-Get Planting Step By Day"
 								}
 							}
 						}
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -500,26 +324,12 @@
 				"description": "Returns the plants",
 				"operationId": "API-get_plant_recipes",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					},
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } },
 					{
 						"name": "page",
 						"in": "query",
 						"required": false,
-						"schema": {
-							"type": "integer",
-							"minimum": 1,
-							"description": "Page number",
-							"default": 1,
-							"title": "Page"
-						},
+						"schema": { "type": "integer", "minimum": 1, "description": "Page number", "default": 1, "title": "Page" },
 						"description": "Page number"
 					},
 					{
@@ -540,33 +350,15 @@
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Page_Recipe_"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Page_Recipe_" } } }
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -583,9 +375,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/PlantingStepType"
-									},
+									"items": { "$ref": "#/components/schemas/PlantingStepType" },
 									"type": "array",
 									"title": "Response Api-Get All Planting Step Types"
 								}
@@ -602,35 +392,17 @@
 				"description": "Validates google auth token and returns a JWT token",
 				"operationId": "API-validate_google_token",
 				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/GoogleAuthTokenIn"
-							}
-						}
-					},
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/GoogleAuthTokenIn" } } },
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Token"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -641,35 +413,17 @@
 				"summary": "Validate Apple Token",
 				"operationId": "API-validate_apple_token",
 				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AppleAuthTokenIn"
-							}
-						}
-					},
+					"content": { "application/json": { "schema": { "$ref": "#/components/schemas/AppleAuthTokenIn" } } },
 					"required": true
 				},
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Token"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/Token" } } }
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -681,46 +435,20 @@
 				"description": "Returns the recipe detail",
 				"operationId": "API-get_recipe_detail",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
 						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/RecipeDetail"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/RecipeDetail" } } }
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -732,15 +460,7 @@
 				"description": "Returns the recipe photos",
 				"operationId": "API-get_recipe_photos",
 				"parameters": [
-					{
-						"name": "uuid",
-						"in": "path",
-						"required": true,
-						"schema": {
-							"type": "string",
-							"title": "Uuid"
-						}
-					}
+					{ "name": "uuid", "in": "path", "required": true, "schema": { "type": "string", "title": "Uuid" } }
 				],
 				"responses": {
 					"200": {
@@ -749,33 +469,19 @@
 							"application/json": {
 								"schema": {
 									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/Photo"
-									},
+									"items": { "$ref": "#/components/schemas/Photo" },
 									"title": "Response Api-Get Recipe Photos"
 								}
 							}
 						}
 					},
 					"404": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ApiError404"
-								}
-							}
-						},
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/ApiError404" } } },
 						"description": "Not Found"
 					},
 					"422": {
 						"description": "Validation Error",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HTTPValidationError"
-								}
-							}
-						}
+						"content": { "application/json": { "schema": { "$ref": "#/components/schemas/HTTPValidationError" } } }
 					}
 				}
 			}
@@ -786,14 +492,7 @@
 				"summary": "List Endpoints",
 				"operationId": "API-list_endpoints",
 				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
+					"200": { "description": "Successful Response", "content": { "application/json": { "schema": {} } } }
 				}
 			}
 		},
@@ -803,14 +502,7 @@
 				"summary": "Root",
 				"operationId": "root-root",
 				"responses": {
-					"200": {
-						"description": "Successful Response",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
+					"200": { "description": "Successful Response", "content": { "application/json": { "schema": {} } } }
 				}
 			}
 		}
@@ -818,37 +510,21 @@
 	"components": {
 		"schemas": {
 			"ApiError404": {
-				"properties": {
-					"detail": {
-						"type": "string",
-						"title": "Detail"
-					}
-				},
+				"properties": { "detail": { "type": "string", "title": "Detail" } },
 				"type": "object",
 				"required": ["detail"],
 				"title": "ApiError404"
 			},
 			"AppleAuthTokenIn": {
-				"properties": {
-					"id_token": {
-						"type": "string",
-						"title": "Id Token"
-					}
-				},
+				"properties": { "id_token": { "type": "string", "title": "Id Token" } },
 				"type": "object",
 				"required": ["id_token"],
 				"title": "AppleAuthTokenIn"
 			},
 			"Auth": {
 				"properties": {
-					"username": {
-						"type": "string",
-						"title": "Username"
-					},
-					"password": {
-						"type": "string",
-						"title": "Password"
-					}
+					"username": { "type": "string", "title": "Username" },
+					"password": { "type": "string", "title": "Password" }
 				},
 				"type": "object",
 				"required": ["username", "password"],
@@ -857,158 +533,46 @@
 			"Body_API-login": {
 				"properties": {
 					"grant_type": {
-						"anyOf": [
-							{
-								"type": "string",
-								"pattern": "password"
-							},
-							{
-								"type": "null"
-							}
-						],
+						"anyOf": [{ "type": "string", "pattern": "password" }, { "type": "null" }],
 						"title": "Grant Type"
 					},
-					"username": {
-						"type": "string",
-						"title": "Username"
-					},
-					"password": {
-						"type": "string",
-						"title": "Password"
-					},
-					"scope": {
-						"type": "string",
-						"title": "Scope",
-						"default": ""
-					},
-					"client_id": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Client Id"
-					},
-					"client_secret": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Client Secret"
-					}
+					"username": { "type": "string", "title": "Username" },
+					"password": { "type": "string", "title": "Password" },
+					"scope": { "type": "string", "title": "Scope", "default": "" },
+					"client_id": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Id" },
+					"client_secret": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Client Secret" }
 				},
 				"type": "object",
 				"required": ["username", "password"],
 				"title": "Body_API-login"
 			},
-			"CareType": {
-				"type": "string",
-				"enum": ["easy", "normal", "hard"],
-				"title": "CareType"
-			},
+			"CareType": { "type": "string", "enum": ["easy", "normal", "hard"], "title": "CareType" },
 			"GoogleAuthTokenIn": {
-				"properties": {
-					"id_token": {
-						"type": "string",
-						"title": "Id Token"
-					}
-				},
+				"properties": { "id_token": { "type": "string", "title": "Id Token" } },
 				"type": "object",
 				"required": ["id_token"],
 				"title": "GoogleAuthTokenIn"
 			},
 			"HTTPValidationError": {
 				"properties": {
-					"detail": {
-						"items": {
-							"$ref": "#/components/schemas/ValidationError"
-						},
-						"type": "array",
-						"title": "Detail"
-					}
+					"detail": { "items": { "$ref": "#/components/schemas/ValidationError" }, "type": "array", "title": "Detail" }
 				},
 				"type": "object",
 				"title": "HTTPValidationError"
 			},
 			"InstanceName": {
-				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					}
-				},
+				"properties": { "uuid": { "type": "string", "title": "Uuid" }, "name": { "type": "string", "title": "Name" } },
 				"type": "object",
 				"required": ["uuid", "name"],
 				"title": "InstanceName"
 			},
 			"Page_Plant_": {
 				"properties": {
-					"items": {
-						"items": {
-							"$ref": "#/components/schemas/Plant"
-						},
-						"type": "array",
-						"title": "Items"
-					},
-					"total": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 0.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Total"
-					},
-					"page": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 1.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Page"
-					},
-					"size": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 1.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Size"
-					},
-					"pages": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 0.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Pages"
-					}
+					"items": { "items": { "$ref": "#/components/schemas/Plant" }, "type": "array", "title": "Items" },
+					"total": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Total" },
+					"page": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Page" },
+					"size": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Size" },
+					"pages": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Pages" }
 				},
 				"type": "object",
 				"required": ["items", "total", "page", "size"],
@@ -1016,61 +580,11 @@
 			},
 			"Page_Recipe_": {
 				"properties": {
-					"items": {
-						"items": {
-							"$ref": "#/components/schemas/Recipe"
-						},
-						"type": "array",
-						"title": "Items"
-					},
-					"total": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 0.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Total"
-					},
-					"page": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 1.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Page"
-					},
-					"size": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 1.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Size"
-					},
-					"pages": {
-						"anyOf": [
-							{
-								"type": "integer",
-								"minimum": 0.0
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Pages"
-					}
+					"items": { "items": { "$ref": "#/components/schemas/Recipe" }, "type": "array", "title": "Items" },
+					"total": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Total" },
+					"page": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Page" },
+					"size": { "anyOf": [{ "type": "integer", "minimum": 1.0 }, { "type": "null" }], "title": "Size" },
+					"pages": { "anyOf": [{ "type": "integer", "minimum": 0.0 }, { "type": "null" }], "title": "Pages" }
 				},
 				"type": "object",
 				"required": ["items", "total", "page", "size"],
@@ -1078,21 +592,8 @@
 			},
 			"Photo": {
 				"properties": {
-					"urlPath": {
-						"type": "string",
-						"title": "Urlpath"
-					},
-					"originalName": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Originalname"
-					}
+					"urlPath": { "type": "string", "title": "Urlpath" },
+					"originalName": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Originalname" }
 				},
 				"type": "object",
 				"required": ["urlPath", "originalName"],
@@ -1100,64 +601,16 @@
 			},
 			"Plant": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"careType": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"isSunLoving": {
-						"type": "boolean",
-						"title": "Issunloving"
-					},
-					"minSize": {
-						"type": "number",
-						"title": "Minsize"
-					},
-					"maxSize": {
-						"type": "number",
-						"title": "Maxsize"
-					},
-					"watering": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"photo": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Photo"
-							},
-							{
-								"type": "null"
-							}
-						]
-					},
-					"minTemperature": {
-						"anyOf": [
-							{
-								"type": "number"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Mintemperature"
-					},
-					"maxTemperature": {
-						"anyOf": [
-							{
-								"type": "number"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Maxtemperature"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"careType": { "$ref": "#/components/schemas/CareType" },
+					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
+					"minSize": { "type": "number", "title": "Minsize" },
+					"maxSize": { "type": "number", "title": "Maxsize" },
+					"watering": { "$ref": "#/components/schemas/CareType" },
+					"photo": { "anyOf": [{ "$ref": "#/components/schemas/Photo" }, { "type": "null" }] },
+					"minTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Mintemperature" },
+					"maxTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Maxtemperature" }
 				},
 				"type": "object",
 				"required": [
@@ -1176,58 +629,16 @@
 			},
 			"PlantCareTips": {
 				"properties": {
-					"watering": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"wateringInfo": {
-						"type": "string",
-						"title": "Wateringinfo"
-					},
-					"minTemperature": {
-						"anyOf": [
-							{
-								"type": "number"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Mintemperature"
-					},
-					"maxTemperature": {
-						"anyOf": [
-							{
-								"type": "number"
-							},
-							{
-								"type": "null"
-							}
-						],
-						"title": "Maxtemperature"
-					},
-					"temperature_info": {
-						"type": "string",
-						"title": "Temperature Info"
-					},
-					"groundPh": {
-						"type": "number",
-						"title": "Groundph"
-					},
-					"groundType": {
-						"type": "string",
-						"title": "Groundtype"
-					},
-					"pests": {
-						"items": {
-							"$ref": "#/components/schemas/InstanceName"
-						},
-						"type": "array",
-						"title": "Pests"
-					},
+					"watering": { "$ref": "#/components/schemas/CareType" },
+					"wateringInfo": { "type": "string", "title": "Wateringinfo" },
+					"minTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Mintemperature" },
+					"maxTemperature": { "anyOf": [{ "type": "number" }, { "type": "null" }], "title": "Maxtemperature" },
+					"temperature_info": { "type": "string", "title": "Temperature Info" },
+					"groundPh": { "type": "number", "title": "Groundph" },
+					"groundType": { "type": "string", "title": "Groundtype" },
+					"pests": { "items": { "$ref": "#/components/schemas/InstanceName" }, "type": "array", "title": "Pests" },
 					"illnesses": {
-						"items": {
-							"$ref": "#/components/schemas/InstanceName"
-						},
+						"items": { "$ref": "#/components/schemas/InstanceName" },
 						"type": "array",
 						"title": "Illnesses"
 					}
@@ -1248,18 +659,9 @@
 			},
 			"PlantCategory": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"svgIcon": {
-						"type": "string",
-						"title": "Svgicon"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"svgIcon": { "type": "string", "title": "Svgicon" }
 				},
 				"type": "object",
 				"required": ["uuid", "name", "svgIcon"],
@@ -1267,52 +669,18 @@
 			},
 			"PlantDetail": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"careType": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"isSunLoving": {
-						"type": "boolean",
-						"title": "Issunloving"
-					},
-					"minSize": {
-						"type": "number",
-						"title": "Minsize"
-					},
-					"maxSize": {
-						"type": "number",
-						"title": "Maxsize"
-					},
-					"watering": {
-						"$ref": "#/components/schemas/CareType"
-					},
-					"generalInfo": {
-						"type": "string",
-						"title": "Generalinfo"
-					},
-					"features": {
-						"type": "string",
-						"title": "Features"
-					},
-					"humidityPercentage": {
-						"type": "number",
-						"title": "Humiditypercentage"
-					},
-					"harvestTime": {
-						"type": "integer",
-						"title": "Harvesttime"
-					},
-					"plantingTime": {
-						"type": "integer",
-						"title": "Plantingtime"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"careType": { "$ref": "#/components/schemas/CareType" },
+					"isSunLoving": { "type": "boolean", "title": "Issunloving" },
+					"minSize": { "type": "number", "title": "Minsize" },
+					"maxSize": { "type": "number", "title": "Maxsize" },
+					"watering": { "$ref": "#/components/schemas/CareType" },
+					"generalInfo": { "type": "string", "title": "Generalinfo" },
+					"features": { "type": "string", "title": "Features" },
+					"humidityPercentage": { "type": "number", "title": "Humiditypercentage" },
+					"harvestTime": { "type": "integer", "title": "Harvesttime" },
+					"plantingTime": { "type": "integer", "title": "Plantingtime" }
 				},
 				"type": "object",
 				"required": [
@@ -1333,17 +701,8 @@
 			},
 			"PlantingStep": {
 				"properties": {
-					"day": {
-						"type": "integer",
-						"title": "Day"
-					},
-					"stepTypes": {
-						"items": {
-							"$ref": "#/components/schemas/StepType"
-						},
-						"type": "array",
-						"title": "Steptypes"
-					}
+					"day": { "type": "integer", "title": "Day" },
+					"stepTypes": { "items": { "$ref": "#/components/schemas/StepType" }, "type": "array", "title": "Steptypes" }
 				},
 				"type": "object",
 				"required": ["day", "stepTypes"],
@@ -1351,22 +710,10 @@
 			},
 			"PlantingStepDay": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"svgIcon": {
-						"type": "string",
-						"title": "Svgicon"
-					},
-					"instruction": {
-						"type": "string",
-						"title": "Instruction"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"svgIcon": { "type": "string", "title": "Svgicon" },
+					"instruction": { "type": "string", "title": "Instruction" }
 				},
 				"type": "object",
 				"required": ["uuid", "name", "svgIcon", "instruction"],
@@ -1374,18 +721,9 @@
 			},
 			"PlantingStepType": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"svgIcon": {
-						"type": "string",
-						"title": "Svgicon"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"svgIcon": { "type": "string", "title": "Svgicon" },
+					"name": { "type": "string", "title": "Name" }
 				},
 				"type": "object",
 				"required": ["uuid", "svgIcon", "name"],
@@ -1393,32 +731,12 @@
 			},
 			"Recipe": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"description": {
-						"type": "string",
-						"title": "Description"
-					},
-					"photo": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Photo"
-							},
-							{
-								"type": "null"
-							}
-						]
-					},
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"description": { "type": "string", "title": "Description" },
+					"photo": { "anyOf": [{ "$ref": "#/components/schemas/Photo" }, { "type": "null" }] },
 					"categories": {
-						"items": {
-							"$ref": "#/components/schemas/RecipeCategory"
-						},
+						"items": { "$ref": "#/components/schemas/RecipeCategory" },
 						"type": "array",
 						"title": "Categories"
 					}
@@ -1429,68 +747,38 @@
 			},
 			"RecipeAdditionalIngredient": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"textQuantity": {
-						"type": "string",
-						"title": "Textquantity"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"textQuantity": { "type": "string", "title": "Textquantity" }
 				},
 				"type": "object",
 				"required": ["uuid", "name", "textQuantity"],
 				"title": "RecipeAdditionalIngredient"
 			},
 			"RecipeCategory": {
-				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					}
-				},
+				"properties": { "uuid": { "type": "string", "title": "Uuid" }, "name": { "type": "string", "title": "Name" } },
 				"type": "object",
 				"required": ["uuid", "name"],
 				"title": "RecipeCategory"
 			},
 			"RecipeDetail": {
 				"properties": {
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"cooking_time": {
-						"type": "integer",
-						"title": "Cooking Time"
-					},
+					"name": { "type": "string", "title": "Name" },
+					"cooking_time": { "type": "integer", "title": "Cooking Time" },
 					"ingredients": {
-						"items": {
-							"$ref": "#/components/schemas/RecipeIngredient"
-						},
+						"items": { "$ref": "#/components/schemas/RecipeIngredient" },
 						"type": "array",
 						"title": "Ingredients",
 						"default": []
 					},
 					"additionalIngredients": {
-						"items": {
-							"$ref": "#/components/schemas/RecipeAdditionalIngredient"
-						},
+						"items": { "$ref": "#/components/schemas/RecipeAdditionalIngredient" },
 						"type": "array",
 						"title": "Additionalingredients",
 						"default": []
 					},
 					"steps": {
-						"items": {
-							"$ref": "#/components/schemas/RecipeStep"
-						},
+						"items": { "$ref": "#/components/schemas/RecipeStep" },
 						"type": "array",
 						"title": "Steps",
 						"default": []
@@ -1502,32 +790,11 @@
 			},
 			"RecipeIngredient": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"name": {
-						"type": "string",
-						"title": "Name"
-					},
-					"quantity": {
-						"type": "number",
-						"title": "Quantity"
-					},
-					"quantityType": {
-						"type": "string",
-						"title": "Quantitytype"
-					},
-					"photo": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Photo"
-							},
-							{
-								"type": "null"
-							}
-						]
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"name": { "type": "string", "title": "Name" },
+					"quantity": { "type": "number", "title": "Quantity" },
+					"quantityType": { "type": "string", "title": "Quantitytype" },
+					"photo": { "anyOf": [{ "$ref": "#/components/schemas/Photo" }, { "type": "null" }] }
 				},
 				"type": "object",
 				"required": ["uuid", "name", "quantity", "quantityType", "photo"],
@@ -1535,18 +802,9 @@
 			},
 			"RecipeStep": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"stepNumber": {
-						"type": "integer",
-						"title": "Stepnumber"
-					},
-					"instruction": {
-						"type": "string",
-						"title": "Instruction"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"stepNumber": { "type": "integer", "title": "Stepnumber" },
+					"instruction": { "type": "string", "title": "Instruction" }
 				},
 				"type": "object",
 				"required": ["uuid", "stepNumber", "instruction"],
@@ -1554,14 +812,8 @@
 			},
 			"StepType": {
 				"properties": {
-					"uuid": {
-						"type": "string",
-						"title": "Uuid"
-					},
-					"color": {
-						"type": "string",
-						"title": "Color"
-					}
+					"uuid": { "type": "string", "title": "Uuid" },
+					"color": { "type": "string", "title": "Color" }
 				},
 				"type": "object",
 				"required": ["uuid", "color"],
@@ -1569,15 +821,8 @@
 			},
 			"Token": {
 				"properties": {
-					"access_token": {
-						"type": "string",
-						"title": "Access Token"
-					},
-					"token_type": {
-						"type": "string",
-						"title": "Token Type",
-						"default": "bearer"
-					}
+					"access_token": { "type": "string", "title": "Access Token" },
+					"token_type": { "type": "string", "title": "Token Type", "default": "bearer" }
 				},
 				"type": "object",
 				"required": ["access_token"],
@@ -1585,56 +830,36 @@
 			},
 			"User": {
 				"properties": {
-					"id": {
-						"type": "integer",
-						"title": "Id"
-					},
-					"username": {
-						"type": "string",
-						"title": "Username"
-					},
-					"email": {
-						"type": "string",
-						"title": "Email"
-					},
-					"activated": {
-						"type": "boolean",
-						"title": "Activated",
-						"default": true
-					},
-					"avatar_url": {
-						"type": "string",
-						"title": "Avatar Url"
-					}
+					"id": { "type": "integer", "title": "Id" },
+					"username": { "type": "string", "title": "Username" },
+					"alias": { "type": "string", "title": "Alias" },
+					"email": { "type": "string", "title": "Email" },
+					"activated": { "type": "boolean", "title": "Activated", "default": true },
+					"avatar_url": { "type": "string", "title": "Avatar Url" },
+					"language": { "$ref": "#/components/schemas/UserPreferredLanguage" }
 				},
 				"type": "object",
-				"required": ["id", "username", "email", "avatar_url"],
+				"required": ["id", "username", "alias", "email", "avatar_url", "language"],
 				"title": "User"
+			},
+			"UserPreferredLanguage": { "type": "string", "enum": ["en", "ua"], "title": "UserPreferredLanguage" },
+			"UserUpdate": {
+				"properties": {
+					"alias": { "anyOf": [{ "type": "string" }, { "type": "null" }], "title": "Alias" },
+					"language": { "anyOf": [{ "$ref": "#/components/schemas/UserPreferredLanguage" }, { "type": "null" }] }
+				},
+				"type": "object",
+				"title": "UserUpdate"
 			},
 			"ValidationError": {
 				"properties": {
 					"loc": {
-						"items": {
-							"anyOf": [
-								{
-									"type": "string"
-								},
-								{
-									"type": "integer"
-								}
-							]
-						},
+						"items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
 						"type": "array",
 						"title": "Location"
 					},
-					"msg": {
-						"type": "string",
-						"title": "Message"
-					},
-					"type": {
-						"type": "string",
-						"title": "Error Type"
-					}
+					"msg": { "type": "string", "title": "Message" },
+					"type": { "type": "string", "title": "Error Type" }
 				},
 				"type": "object",
 				"required": ["loc", "msg", "type"],
@@ -1644,12 +869,7 @@
 		"securitySchemes": {
 			"OAuth2PasswordBearer": {
 				"type": "oauth2",
-				"flows": {
-					"password": {
-						"scopes": {},
-						"tokenUrl": "/api/auth/login"
-					}
-				}
+				"flows": { "password": { "scopes": {}, "tokenUrl": "/api/auth/login" } }
 			}
 		}
 	}

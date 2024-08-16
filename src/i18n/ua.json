@@ -83,11 +83,17 @@
 	"ingredientTitle": "Інгредієнти",
 	"additionalIngredientTitle": "Додаткові інгредієнти",
 	"recipeTitle": "Рецепт",
-	"loginOut": "Вихід",
+	"loginOut": "Вийти",
 	"loginOutMessage": "Ви дійсно хочете вийти?",
 	"loginOutOk": "Так",
 	"loginOutCancel": "Ні",
 	"goodMorning": "Добрий ранок",
 	"goodAfternoon": "Добрий день",
-	"goodEvenin": "Добрий вечір"
+	"goodEvenin": "Добрий вечір",
+	"username": "Iм'я",
+	"selectLanguage": "Оберіть мову додатку",
+	"deleteAccount": "Видалити акаунт",
+	"ua": "Українська",
+	"en": "Англійська",
+	"settings": "Налаштування"
 }

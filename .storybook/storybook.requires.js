@@ -64,6 +64,7 @@ const getStories = () => {
     "./src/components/PlantRecipe/PlantRecipe.stories.tsx": require("../src/components/PlantRecipe/PlantRecipe.stories.tsx"),
     "./src/components/RecipeIngredient/RecipeDetail.stories.tsx": require("../src/components/RecipeIngredient/RecipeDetail.stories.tsx"),
     "./src/components/Spinner/Spinner.stories.tsx": require("../src/components/Spinner/Spinner.stories.tsx"),
+    ".src/components/LanguageSelector/LanguageSelector.stories.tsx": require("../src/components/LanguageSelector/LanguageSelector.stories.tsx"),
   };
 };
 

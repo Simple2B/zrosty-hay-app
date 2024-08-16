@@ -89,5 +89,11 @@
 	"loginOutCancel": "Cancel",
 	"goodMorning": "Good morning",
 	"goodAfternoon": "Good afternoon",
-	"goodEvenin": "Good evening"
+	"goodEvenin": "Good evening",
+	"username": "Name",
+	"selectLanguage": "Select app language",
+	"deleteAccount": "Delete account",
+	"ua": "Ukrainian",
+	"en": "English",
+	"settings": "Settings"
 }
