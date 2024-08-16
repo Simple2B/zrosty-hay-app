@@ -8,11 +8,15 @@ export const styleSheet = createStyleSheet((theme) => ({
 		padding: theme.size.md + theme.size.xxs,
 		width: '100%',
 		flex: 1,
-	},
-	selected: {
-		borderColor: theme.colors.primary,
-	},
-	unselected: {
-		borderColor: theme.colors.borderGrey,
+		variants: {
+			active: {
+				true: {
+					borderColor: theme.colors.primary,
+				},
+				false: {
+					borderColor: theme.colors.borderGrey,
+				},
+			},
+		},
 	},
 }));

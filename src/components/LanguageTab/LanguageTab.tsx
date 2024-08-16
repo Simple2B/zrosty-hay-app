@@ -13,13 +13,13 @@ type LanguageTabProps = {
 
 export const LanguageTab = ({ language, isSelected, onSelect }: LanguageTabProps) => {
 	const { t } = useTranslation();
-	const { styles } = useStyles(styleSheet);
+	const { styles } = useStyles(styleSheet, { active: isSelected });
 
 	const handleSelected = () => {
 		onSelect(language);
 	};
 	return (
-		<Text style={[styles.tabWrapper, isSelected ? styles.selected : styles.unselected]} onPress={handleSelected}>
+		<Text style={styles.tabWrapper} onPress={handleSelected}>
 			{t(language)}
 		</Text>
 	);
