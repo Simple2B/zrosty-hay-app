@@ -13,19 +13,10 @@ export const LanguageSelector = ({ language }: Props) => {
 	const { styles } = useStyles(styleSheet);
 	const [selectedLanguage, setSelectedLanguage] = useState<Language>(language);
 
-	const handleSelectLanguage = (newLanguage: Language) => {
-		setSelectedLanguage(newLanguage);
-	};
-
 	return (
 		<View style={styles.selectorWrapper}>
 			{Object.values(Language).map((lang) => (
-				<LanguageTab
-					key={lang}
-					language={lang}
-					isSelected={selectedLanguage === lang}
-					onSelect={handleSelectLanguage}
-				/>
+				<LanguageTab key={lang} language={lang} isSelected={selectedLanguage === lang} onSelect={setSelectedLanguage} />
 			))}
 		</View>
 	);
