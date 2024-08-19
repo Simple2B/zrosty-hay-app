@@ -11,7 +11,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		width: '100%',
 		textAlign: 'center',
 		paddingVertical: theme.size.lg + theme.size.xxs,
-		borderWidth: 1,
+		borderWidth: theme.size.one,
 		borderColor: theme.colors.borderGrey,
 		borderRadius: theme.size.lg + theme.size.xxs,
 	},
