@@ -12,8 +12,16 @@ type Props = {
 };
 
 export const FormInput = ({ label, defaultValue, placeholder, onChange }: Props) => {
-	const { styles, theme } = useStyles(styleSheet);
-	const [isFocused, setIsFocused] = useState(false);
+	const [isFocused, setFocused] = useState(false);
+	const { styles, theme } = useStyles(styleSheet, { isFocused });
+
+	const handleFocus = () => {
+		setFocused(true);
+	};
+
+	const handleBlur = () => {
+		setFocused(false);
+	};
 
 	return (
 		<View style={styles.formSection}>
@@ -21,13 +29,11 @@ export const FormInput = ({ label, defaultValue, placeholder, onChange }: Props)
 			<TextInput
 				placeholder={placeholder}
 				value={defaultValue}
-				onChangeText={(text) => {
-					onChange(text);
-				}}
+				onChangeText={onChange}
 				placeholderTextColor={theme.colors.borderGrey}
-				style={styles.formField(isFocused)}
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(false)}
+				style={styles.formField}
+				onFocus={handleFocus}
+				onBlur={handleBlur}
 			/>
 		</View>
 	);
