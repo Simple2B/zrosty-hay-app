@@ -22,6 +22,6 @@ const Template: ComponentStory<typeof SystemButton> = (args) => <SystemButton {.
 export const Story = Template.bind({});
 Story.args = {
 	onPress: () => console.log('Button pressed'),
-	icon: <View style={{ width: 24, height: 24, backgroundColor: 'red' }} />,
+	Icon: <View style={{ width: 24, height: 24, backgroundColor: 'red' }} />,
 	label: 'Button label',
 };

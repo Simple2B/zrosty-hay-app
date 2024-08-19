@@ -6,16 +6,16 @@ import { styleSheet } from './SystemButton.style';
 
 type SettingButtonProps = {
 	onPress: () => void;
-	icon: React.ReactNode;
+	Icon: React.ReactNode;
 	label: string;
 };
 
-export const SystemButton = ({ onPress, icon, label }: SettingButtonProps) => {
+export const SystemButton = ({ onPress, Icon, label }: SettingButtonProps) => {
 	const { styles } = useStyles(styleSheet);
 
 	return (
 		<TouchableOpacity style={styles.button} onPress={onPress}>
-			{icon}
+			{Icon}
 			<Text style={styles.buttonText}>{label}</Text>
 		</TouchableOpacity>
 	);
