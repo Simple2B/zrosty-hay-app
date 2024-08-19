@@ -67,6 +67,7 @@ const getStories = () => {
     ".src/components/LanguageSelector/LanguageSelector.stories.tsx": require("../src/components/LanguageSelector/LanguageSelector.stories.tsx"),
     ".src/components/UserSettingsPhoto/UserSettingsPhoto.stories.tsx": require("../src/components/UserSettingsPhoto/UserSettingsPhoto.stories.tsx"),
     ".src/components/inputs/FormInput/FormInput.stories.tsx": require("../src/components/inputs/FormInput/FormInput.stories.tsx"),
+    ".src/components/buttons/SystemButton/SystemButton.stories.tsx": require("../src/components/buttons/SystemButton/SystemButton.stories.tsx"),
   };
 };
 
