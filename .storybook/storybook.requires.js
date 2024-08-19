@@ -66,6 +66,7 @@ const getStories = () => {
     "./src/components/Spinner/Spinner.stories.tsx": require("../src/components/Spinner/Spinner.stories.tsx"),
     ".src/components/LanguageSelector/LanguageSelector.stories.tsx": require("../src/components/LanguageSelector/LanguageSelector.stories.tsx"),
     ".src/components/UserSettingsPhoto/UserSettingsPhoto.stories.tsx": require("../src/components/UserSettingsPhoto/UserSettingsPhoto.stories.tsx"),
+    ".src/components/inputs/FormInput/FormInput.stories.tsx": require("../src/components/inputs/FormInput/FormInput.stories.tsx"),
   };
 };
 
