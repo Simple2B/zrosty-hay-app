@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { useRouter } from 'expo-router';
@@ -12,9 +12,10 @@ import LogoutIcon from '@assets/icons/logout.svg';
 import RubbishBin from '@assets/icons/rubbishBin.svg';
 import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 import { UserSettingsPhoto } from '../UserSettingsPhoto/UserSettingsPhoto';
-import { FormInput } from '../inputs/FormInput/FormInput';
 import { SystemButton } from '../buttons/SystemButton/SystemButton';
 import { styleSheet } from './UserSettings.style';
+
+import { DisplayedNameChangeController } from '../DisplayedNameChangeController/DisplayedNameChangeController';
 
 export const UserSettings = () => {
 	const { t } = useTranslation();
@@ -24,8 +25,6 @@ export const UserSettings = () => {
 	const user = useMe();
 	const loginout = useLogout();
 
-	const [username, setUsername] = useState(user?.username || '');
-
 	const createLoginOutAlert = () =>
 		Alert.alert(t('loginOut'), t('loginOutMessage'), [
 			{
@@ -33,6 +32,7 @@ export const UserSettings = () => {
 				onPress: async () => {
 					if (!user) return;
 					await loginout();
+					router.push('/');
 				},
 			},
 			{
@@ -43,10 +43,6 @@ export const UserSettings = () => {
 	if (!user) {
 		return null;
 	}
-
-	const handleUsernameChange = (username: string) => {
-		setUsername(username);
-	};
 
 	const handleDeleteAccount = () => {
 		router.push('/');
@@ -64,12 +60,7 @@ export const UserSettings = () => {
 				<Text style={styles.settingsTitle}>{t('settings')}</Text>
 				<UserSettingsPhoto photoUrl={user.avatar_url} />
 
-				<FormInput
-					label={t('username')}
-					defaultValue={username}
-					placeholder={t('username')}
-					onChange={handleUsernameChange}
-				/>
+				<DisplayedNameChangeController displayedName={user.alias} />
 
 				<View style={styles.formSection}>
 					<Text style={styles.formFieldTitle}>{t('selectLanguage')}:</Text>

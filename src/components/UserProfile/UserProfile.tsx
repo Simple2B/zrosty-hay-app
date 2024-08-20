@@ -21,7 +21,7 @@ export const UserProfile = () => {
 		<View style={styles.profile}>
 			<View>
 				<Text style={styles.helloText}>{helloMessage(t)}</Text>
-				<Text style={styles.profileEmail}>{user.email}</Text>
+				<Text style={styles.profileEmail}>{user.alias}</Text>
 			</View>
 			<Link href='/settings' style={styles.profileImageWrapper}>
 				<FastImage
