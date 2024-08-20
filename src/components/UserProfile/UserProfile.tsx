@@ -1,13 +1,12 @@
-import { Alert, Button, Pressable, Text, View } from 'react-native';
 import React from 'react';
+import { Text, View } from 'react-native';
+import { Link } from 'expo-router';
 import { useStyles } from 'react-native-unistyles';
-
-import { styleSheet } from './UserProfile.style';
-import { useMe } from '@src/hooks/useMe';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import { useMe } from '@src/hooks/useMe';
 import { helloMessage } from '@src/utils';
-import { Link } from 'expo-router';
+import { styleSheet } from './UserProfile.style';
 
 export const UserProfile = () => {
 	const { t } = useTranslation();
