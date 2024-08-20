@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import { Alert, Pressable, SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -41,6 +41,7 @@ export const UserSettings = () => {
 		]);
 
 	if (!user) {
+		router.back();
 		return null;
 	}
 
@@ -48,12 +49,8 @@ export const UserSettings = () => {
 		router.push('/');
 	};
 
-	const goBack = () => {
-		router.back();
-	};
-
 	return (
-		<View style={styles.filler}>
+		<SafeAreaView style={styles.filler}>
 			<StatusBar barStyle='dark-content' />
 
 			<ScrollView contentContainerStyle={styles.settingsWrapper} style={styles.filler}>
@@ -74,9 +71,9 @@ export const UserSettings = () => {
 					<SystemButton onPress={createLoginOutAlert} Icon={<LogoutIcon />} label={t('loginOut')} />
 				</View>
 			</ScrollView>
-			<Pressable onPress={goBack} style={styles.backButtonBackground}>
+			<Pressable onPress={router.back} style={styles.backButtonBackground}>
 				<BackIcon width={sizes.xl} height={sizes.xl} />
 			</Pressable>
-		</View>
+		</SafeAreaView>
 	);
 };

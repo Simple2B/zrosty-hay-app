@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { LanguageTab } from '../LanguageTab/LanguageTab';
+import Toast from 'react-native-toast-message';
+import { AxiosError } from 'axios';
+
 import { useStyles } from 'react-native-unistyles';
-import { styleSheet } from './LanguageSelector.style';
 import { UserPreferredLanguage } from '@src/api/model';
 import { useAPIUpdateUserInfo } from '@src/api/users/users';
-import { AxiosError } from 'axios';
-import Toast from 'react-native-toast-message';
+
+import { LanguageTab } from '../LanguageTab/LanguageTab';
+import { styleSheet } from './LanguageSelector.style';
 
 type Props = {
 	language: UserPreferredLanguage;
@@ -23,7 +25,6 @@ export const LanguageSelector = ({ language }: Props) => {
 			},
 			onError: (error) => {
 				Toast.show({ type: 'error', text1: 'Failed to save language' });
-				console.error('Error updating language:', error);
 			},
 		},
 	});

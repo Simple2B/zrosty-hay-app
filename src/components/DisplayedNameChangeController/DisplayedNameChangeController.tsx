@@ -34,7 +34,6 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 			},
 			onError: (error) => {
 				Toast.show({ type: 'error', text1: 'Failed to save name' });
-				console.error('Error updating name:', error);
 			},
 		},
 	});

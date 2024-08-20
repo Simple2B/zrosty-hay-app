@@ -37,6 +37,5 @@ export const styleSheet = createStyleSheet((theme) => ({
 		position: 'absolute',
 		top: theme.size.sm,
 		left: theme.size.xl,
-		zIndex: 1000,
 	},
 }));
