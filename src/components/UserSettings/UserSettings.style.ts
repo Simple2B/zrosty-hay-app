@@ -35,7 +35,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		width: theme.size.xl,
 		alignItems: 'center',
 		position: 'absolute',
-		top: theme.size.sm,
+		top: theme.size.xxl * 2,
 		left: theme.size.xl,
 	},
 }));
