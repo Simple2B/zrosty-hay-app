@@ -23,21 +23,25 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 		mutation: {
 			onMutate: async (newName) => {
 				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
-				const user = queryClient.getQueryData<{ data: { alias: string } } | undefined>([queryKeys.ME]);
-				const prevName = user?.data?.alias;
+				const oldUser = queryClient.getQueryData<{ data: { alias: string } } | undefined>([queryKeys.ME]);
+				const prevName = oldUser?.data?.alias;
 				queryClient.setQueryData([queryKeys.ME], {
-					...user,
+					...oldUser,
 					data: {
-						...user?.data,
+						...oldUser?.data,
 						alias: newName.data.alias,
 					},
 				});
-				return prevName;
+				return oldUser;
 			},
-			onError: async (error: AxiosError, context, prevName) => {
+			onError: async (error: AxiosError, context, oldUser) => {
+				const prevName = oldUser?.data?.alias;
 				if (prevName) {
 					setName(prevName);
 				}
+				queryClient.setQueryData([queryKeys.ME], {
+					...oldUser,
+				});
 				Toast.show({
 					type: 'error',
 					text1: 'Failed to update name',

@@ -22,24 +22,24 @@ export const LanguageSelector = () => {
 			onMutate: async (newLanguage) => {
 				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
 
-				const user = queryClient.getQueryData<{ data: { language: UserPreferredLanguage } } | undefined>([
+				const oldUser = queryClient.getQueryData<{ data: { language: UserPreferredLanguage } } | undefined>([
 					queryKeys.ME,
 				]);
-				const previousLanguage = user?.data?.language;
+				const previousLanguage = oldUser?.data?.language;
 				queryClient.setQueryData([queryKeys.ME], {
-					...user,
+					...oldUser,
 					data: {
-						...user?.data,
+						...oldUser?.data,
 						language: newLanguage.data.language,
 					},
 				});
 
-				return { previousLanguage };
+				return { oldUser };
 			},
 
-			onError: async (error: AxiosError, context, previousLanguage) => {
-				if (previousLanguage) {
-					queryClient.setQueryData([queryKeys.UPDATE_USER_INFO], previousLanguage);
+			onError: async (error: AxiosError, context, oldUser) => {
+				if (oldUser) {
+					queryClient.setQueryData([queryKeys.ME], oldUser);
 				}
 				Toast.show({
 					type: 'error',
