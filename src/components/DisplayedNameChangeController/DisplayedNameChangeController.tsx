@@ -9,6 +9,7 @@ import { UPDATE_USER_INPUT_DELAY_TIME } from '@src/constants/userSettings';
 import Toast from 'react-native-toast-message';
 import { queryClient } from '@src/queryClient';
 import { queryKeys } from '@src/constants/queryKeys';
+import { User } from '@src/api/model';
 
 type DisplayedNameChangeControllerProps = {
 	displayedName?: string;
@@ -23,7 +24,7 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 		mutation: {
 			onMutate: async (newName) => {
 				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
-				const oldUser = queryClient.getQueryData<{ data: { alias: string } } | undefined>([queryKeys.ME]);
+				const oldUser = queryClient.getQueryData<{ data: User } | undefined>([queryKeys.ME]);
 				queryClient.setQueryData([queryKeys.ME], {
 					...oldUser,
 					data: {

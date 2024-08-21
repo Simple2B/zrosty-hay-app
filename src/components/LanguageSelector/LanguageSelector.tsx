@@ -1,17 +1,17 @@
 import React from 'react';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
+import { AxiosError } from 'axios';
 
 import { useStyles } from 'react-native-unistyles';
-import { UserPreferredLanguage } from '@src/api/model';
+import { User, UserPreferredLanguage } from '@src/api/model';
 import { useAPIUpdateUserInfo } from '@src/api/users/users';
-
-import { LanguageTab } from '../LanguageTab/LanguageTab';
-import { styleSheet } from './LanguageSelector.style';
 import { useMe } from '@src/hooks/useMe';
 import { queryClient } from '@src/queryClient';
 import { queryKeys } from '@src/constants/queryKeys';
-import { AxiosError } from 'axios';
+
+import { LanguageTab } from '../LanguageTab/LanguageTab';
+import { styleSheet } from './LanguageSelector.style';
 
 export const LanguageSelector = () => {
 	const { styles } = useStyles(styleSheet);
@@ -22,9 +22,7 @@ export const LanguageSelector = () => {
 			onMutate: async (newLanguage) => {
 				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
 
-				const oldUser = queryClient.getQueryData<{ data: { language: UserPreferredLanguage } } | undefined>([
-					queryKeys.ME,
-				]);
+				const oldUser = queryClient.getQueryData<{ data: User } | undefined>([queryKeys.ME]);
 				queryClient.setQueryData([queryKeys.ME], {
 					...oldUser,
 					data: {
