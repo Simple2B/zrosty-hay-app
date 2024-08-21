@@ -19,7 +19,7 @@ export default {
 	],
 } as ComponentMeta<typeof LanguageSelector>;
 
-const Template: ComponentStory<typeof LanguageSelector> = (args) => <LanguageSelector {...args} />;
+const Template: ComponentStory<typeof LanguageSelector> = (args) => <LanguageSelector />;
 
 export const Story = Template.bind({});
-Story.args = { language: UserPreferredLanguage.ua };
+Story.args = {};
