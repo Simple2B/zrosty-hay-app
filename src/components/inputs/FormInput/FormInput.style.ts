@@ -12,6 +12,9 @@ export const styleSheet = createStyleSheet((theme) => ({
 		borderWidth: theme.size.one,
 		borderColor: theme.colors.borderGrey,
 		borderRadius: theme.size.md,
+		justifyContent: 'space-around',
+		flexDirection: 'row',
+		alignItems: 'center',
 		variants: {
 			isFocused: {
 				true: {
@@ -26,5 +29,20 @@ export const styleSheet = createStyleSheet((theme) => ({
 	formFieldTitle: {
 		fontSize: theme.size.lg,
 		fontWeight: '500',
+	},
+	textInput: {
+		flex: 1,
+	},
+	spinnerWrapper: {
+		variants: {
+			isPending: {
+				true: {
+					opacity: 1,
+				},
+				false: {
+					opacity: 0,
+				},
+			},
+		},
 	},
 }));
