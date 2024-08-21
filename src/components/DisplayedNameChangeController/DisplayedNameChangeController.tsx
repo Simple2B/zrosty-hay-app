@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +24,6 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 			onMutate: async (newName) => {
 				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
 				const oldUser = queryClient.getQueryData<{ data: { alias: string } } | undefined>([queryKeys.ME]);
-				const prevName = oldUser?.data?.alias;
 				queryClient.setQueryData([queryKeys.ME], {
 					...oldUser,
 					data: {

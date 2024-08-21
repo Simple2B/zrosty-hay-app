@@ -25,7 +25,6 @@ export const LanguageSelector = () => {
 				const oldUser = queryClient.getQueryData<{ data: { language: UserPreferredLanguage } } | undefined>([
 					queryKeys.ME,
 				]);
-				const previousLanguage = oldUser?.data?.language;
 				queryClient.setQueryData([queryKeys.ME], {
 					...oldUser,
 					data: {
