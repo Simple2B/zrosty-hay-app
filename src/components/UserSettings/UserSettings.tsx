@@ -42,7 +42,6 @@ export const UserSettings = () => {
 
 	if (!user) {
 		router.back();
-		return null;
 	}
 
 	const handleDeleteAccount = () => {
@@ -50,30 +49,32 @@ export const UserSettings = () => {
 	};
 
 	return (
-		<SafeAreaView style={styles.filler}>
-			<StatusBar barStyle='dark-content' />
+		!!user && (
+			<SafeAreaView style={styles.filler}>
+				<StatusBar barStyle='dark-content' />
 
-			<ScrollView contentContainerStyle={styles.settingsWrapper} style={styles.filler}>
-				<Text style={styles.settingsTitle}>{t('settings')}</Text>
-				<UserSettingsPhoto photoUrl={user.avatar_url} />
+				<ScrollView contentContainerStyle={styles.settingsWrapper} style={styles.filler}>
+					<Text style={styles.settingsTitle}>{t('settings')}</Text>
+					<UserSettingsPhoto photoUrl={user.avatar_url} />
 
-				<DisplayedNameChangeController displayedName={user.alias} />
+					<DisplayedNameChangeController displayedName={user.alias} />
 
-				<View style={styles.formSection}>
-					<Text style={styles.formFieldTitle}>{t('selectLanguage')}:</Text>
-					<LanguageSelector />
-				</View>
+					<View style={styles.formSection}>
+						<Text style={styles.formFieldTitle}>{t('selectLanguage')}:</Text>
+						<LanguageSelector />
+					</View>
 
-				<View style={styles.filler} />
+					<View style={styles.filler} />
 
-				<View style={styles.buttonWrapper}>
-					<SystemButton onPress={handleDeleteAccount} Icon={<RubbishBin />} label={t('deleteAccount')} />
-					<SystemButton onPress={createLoginOutAlert} Icon={<LogoutIcon />} label={t('loginOut')} />
-				</View>
-			</ScrollView>
-			<Pressable onPress={router.back} style={styles.backButtonBackground}>
-				<BackIcon width={sizes.xl} height={sizes.xl} />
-			</Pressable>
-		</SafeAreaView>
+					<View style={styles.buttonWrapper}>
+						<SystemButton onPress={handleDeleteAccount} Icon={<RubbishBin />} label={t('deleteAccount')} />
+						<SystemButton onPress={createLoginOutAlert} Icon={<LogoutIcon />} label={t('loginOut')} />
+					</View>
+				</ScrollView>
+				<Pressable onPress={router.back} style={styles.backButtonBackground}>
+					<BackIcon width={sizes.xl} height={sizes.xl} />
+				</Pressable>
+			</SafeAreaView>
+		)
 	);
 };
