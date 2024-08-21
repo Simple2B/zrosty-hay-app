@@ -1,35 +1,17 @@
-import { Alert, Button, Pressable, Text, View } from 'react-native';
 import React from 'react';
+import { Text, View } from 'react-native';
+import { Link } from 'expo-router';
 import { useStyles } from 'react-native-unistyles';
-
-import { styleSheet } from './UserProfile.style';
-import { useMe } from '@src/hooks/useMe';
-import { useLogout } from '@src/hooks/useLogout';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
+import { useMe } from '@src/hooks/useMe';
 import { helloMessage } from '@src/utils';
-
-// TODO: need to change, tempopary avatar
+import { styleSheet } from './UserProfile.style';
 
 export const UserProfile = () => {
 	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 	const user = useMe();
-	const loginout = useLogout();
-
-	const createLoginOutAlert = () =>
-		Alert.alert(t('loginOut'), t('loginOutMessage'), [
-			{
-				text: t('loginOutOk'),
-				onPress: async () => {
-					if (!user) return;
-					await loginout();
-				},
-			},
-			{
-				text: t('loginOutCancel'),
-			},
-		]);
 
 	if (!user) {
 		return null;
@@ -39,9 +21,9 @@ export const UserProfile = () => {
 		<View style={styles.profile}>
 			<View>
 				<Text style={styles.helloText}>{helloMessage(t)}</Text>
-				<Text style={styles.profileEmail}>{user.email}</Text>
+				<Text style={styles.profileEmail}>{user.alias}</Text>
 			</View>
-			<Pressable style={styles.profileImageWrapper} onPress={createLoginOutAlert}>
+			<Link href='/settings' style={styles.profileImageWrapper}>
 				<FastImage
 					key={user.id}
 					style={styles.image}
@@ -51,7 +33,7 @@ export const UserProfile = () => {
 					}}
 					resizeMode={FastImage.resizeMode.contain}
 				/>
-			</Pressable>
+			</Link>
 		</View>
 	);
 };

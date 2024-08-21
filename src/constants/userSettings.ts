@@ -1,0 +1,1 @@
+export const UPDATE_USER_INPUT_DELAY_TIME = 1200;
