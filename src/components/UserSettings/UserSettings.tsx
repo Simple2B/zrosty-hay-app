@@ -61,7 +61,7 @@ export const UserSettings = () => {
 
 				<View style={styles.formSection}>
 					<Text style={styles.formFieldTitle}>{t('selectLanguage')}:</Text>
-					<LanguageSelector language={user.language} />
+					<LanguageSelector />
 				</View>
 
 				<View style={styles.filler} />

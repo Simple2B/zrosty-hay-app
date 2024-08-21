@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
-import { AxiosError } from 'axios';
 
 import { useStyles } from 'react-native-unistyles';
 import { UserPreferredLanguage } from '@src/api/model';
@@ -9,22 +8,46 @@ import { useAPIUpdateUserInfo } from '@src/api/users/users';
 
 import { LanguageTab } from '../LanguageTab/LanguageTab';
 import { styleSheet } from './LanguageSelector.style';
+import { useMe } from '@src/hooks/useMe';
+import { queryClient } from '@src/queryClient';
+import { queryKeys } from '@src/constants/queryKeys';
+import { AxiosError } from 'axios';
 
-type Props = {
-	language: UserPreferredLanguage;
-};
-
-export const LanguageSelector = ({ language }: Props) => {
+export const LanguageSelector = () => {
 	const { styles } = useStyles(styleSheet);
-	const [selectedLanguage, setSelectedLanguage] = useState<UserPreferredLanguage>(language);
+	const user = useMe();
 
-	const { mutate: updateUserInfo } = useAPIUpdateUserInfo<AxiosError, unknown>({
+	const { mutate: updateUserInfo } = useAPIUpdateUserInfo({
 		mutation: {
-			onSuccess: (data) => {
-				setSelectedLanguage(data.data.language);
+			onMutate: async (newLanguage) => {
+				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
+
+				const user = queryClient.getQueryData<{ data: { language: UserPreferredLanguage } } | undefined>([
+					queryKeys.ME,
+				]);
+				const previousLanguage = user?.data?.language;
+				queryClient.setQueryData([queryKeys.ME], {
+					...user,
+					data: {
+						...user?.data,
+						language: newLanguage.data.language,
+					},
+				});
+
+				return { previousLanguage };
 			},
-			onError: (error) => {
-				Toast.show({ type: 'error', text1: 'Failed to save language' });
+
+			onError: async (error: AxiosError, context, previousLanguage) => {
+				if (previousLanguage) {
+					queryClient.setQueryData([queryKeys.UPDATE_USER_INFO], previousLanguage);
+				}
+				Toast.show({
+					type: 'error',
+					text1: 'Failed to update language',
+				});
+			},
+			onSettled: () => {
+				queryClient.invalidateQueries({ queryKey: [queryKeys.ME] });
 			},
 		},
 	});
@@ -34,15 +57,12 @@ export const LanguageSelector = ({ language }: Props) => {
 	};
 
 	return (
-		<View style={styles.selectorWrapper}>
-			{Object.values(UserPreferredLanguage).map((lang) => (
-				<LanguageTab
-					key={lang}
-					language={lang}
-					isSelected={selectedLanguage === lang}
-					onSelect={handleUpdateLanguage}
-				/>
-			))}
-		</View>
+		!!user && (
+			<View style={styles.selectorWrapper}>
+				{Object.values(UserPreferredLanguage).map((lang) => (
+					<LanguageTab key={lang} language={lang} isSelected={user.language === lang} onSelect={handleUpdateLanguage} />
+				))}
+			</View>
+		)
 	);
 };

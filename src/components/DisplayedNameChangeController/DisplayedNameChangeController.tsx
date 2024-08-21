@@ -7,6 +7,8 @@ import { useAPIUpdateUserInfo } from '@src/api/users/users';
 import { AxiosError } from 'axios';
 import { UPDATE_USER_INPUT_DELAY_TIME } from '@src/constants/userSettings';
 import Toast from 'react-native-toast-message';
+import { queryClient } from '@src/queryClient';
+import { queryKeys } from '@src/constants/queryKeys';
 
 type DisplayedNameChangeControllerProps = {
 	displayedName?: string;
@@ -17,26 +19,49 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 
 	const [name, setName] = useState(displayedName || '');
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			if (name) {
-				updateUserInfo({ data: { alias: name } });
-			}
-		}, UPDATE_USER_INPUT_DELAY_TIME);
-
-		return () => clearTimeout(timer);
-	}, [name]);
-
-	const { mutate: updateUserInfo } = useAPIUpdateUserInfo<AxiosError, unknown>({
+	const { mutate: updateUserInfo, isPending } = useAPIUpdateUserInfo({
 		mutation: {
-			onSuccess: (data) => {
-				setName(data.data.alias);
+			onMutate: async (newName) => {
+				await queryClient.cancelQueries({ queryKey: [queryKeys.ME] });
+				const user = queryClient.getQueryData<{ data: { alias: string } } | undefined>([queryKeys.ME]);
+				const prevName = user?.data?.alias;
+				queryClient.setQueryData([queryKeys.ME], {
+					...user,
+					data: {
+						...user?.data,
+						alias: newName.data.alias,
+					},
+				});
+				return prevName;
 			},
-			onError: (error) => {
-				Toast.show({ type: 'error', text1: 'Failed to save name' });
+			onError: async (error: AxiosError, context, prevName) => {
+				if (prevName) {
+					setName(prevName);
+				}
+				Toast.show({
+					type: 'error',
+					text1: 'Failed to update name',
+				});
+			},
+			onSettled: () => {
+				queryClient.invalidateQueries({ queryKey: [queryKeys.ME] });
 			},
 		},
 	});
 
-	return <FormInput label={t('username')} defaultValue={name} placeholder={t('username')} onChange={setName} />;
+	const handleUpdateName = (name: string) => {
+		setName(name);
+		setTimeout(() => {
+			updateUserInfo({ data: { alias: name } });
+		}, UPDATE_USER_INPUT_DELAY_TIME);
+	};
+	return (
+		<FormInput
+			label={t('username')}
+			defaultValue={name}
+			placeholder={t('username')}
+			onChange={handleUpdateName}
+			isPending={isPending}
+		/>
+	);
 };
