@@ -31,7 +31,7 @@ export const UserSettings = () => {
 	const createLoginOutAlert = () =>
 		Alert.alert(t('loginOut'), t('loginOutMessage'), [
 			{
-				text: t('loginOutOk'),
+				text: t('ok'),
 				onPress: async () => {
 					if (!user) return;
 					await loginout();
@@ -39,17 +39,28 @@ export const UserSettings = () => {
 				},
 			},
 			{
-				text: t('loginOutCancel'),
+				text: t('cancel'),
+			},
+		]);
+
+	const createDeleteAccountAlert = () =>
+		Alert.alert(t('deleteAccount'), t('deleteAccountMessage'), [
+			{
+				text: t('ok'),
+				onPress: async () => {
+					if (!user) return;
+					await loginout();
+					router.push('/');
+				},
+			},
+			{
+				text: t('cancel'),
 			},
 		]);
 
 	if (!user) {
 		router.back();
 	}
-
-	const handleDeleteAccount = () => {
-		router.push('/');
-	};
 
 	return (
 		!!user && (
@@ -69,7 +80,7 @@ export const UserSettings = () => {
 					<View style={styles.filler} />
 
 					<View style={styles.buttonWrapper}>
-						<SystemButton onPress={handleDeleteAccount} Icon={<RubbishBin />} label={t('deleteAccount')} />
+						<SystemButton onPress={createDeleteAccountAlert} Icon={<RubbishBin />} label={t('deleteAccount')} />
 						<SystemButton onPress={createLoginOutAlert} Icon={<LogoutIcon />} label={t('loginOut')} />
 					</View>
 				</ScrollView>
