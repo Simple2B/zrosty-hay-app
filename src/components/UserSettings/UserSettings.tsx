@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Pressable, SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from 'react-native-unistyles';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +25,8 @@ export const UserSettings = () => {
 
 	const user = useMe();
 	const loginout = useLogout();
+
+	const statusBarHeight = useSafeAreaInsets().top;
 
 	const createLoginOutAlert = () =>
 		Alert.alert(t('loginOut'), t('loginOutMessage'), [
@@ -50,10 +53,9 @@ export const UserSettings = () => {
 
 	return (
 		!!user && (
-			<SafeAreaView style={styles.filler}>
-				<StatusBar barStyle='dark-content' />
-
-				<ScrollView contentContainerStyle={styles.settingsWrapper} style={styles.filler}>
+			<View style={styles.filler}>
+				<ScrollView contentContainerStyle={styles.settingsWrapper(statusBarHeight)} style={styles.filler}>
+					<StatusBar barStyle='dark-content' />
 					<Text style={styles.settingsTitle}>{t('settings')}</Text>
 					<UserSettingsPhoto photoUrl={user.avatar_url} />
 
@@ -74,7 +76,7 @@ export const UserSettings = () => {
 				<Pressable onPress={router.back} style={styles.backButtonBackground}>
 					<BackIcon width={sizes.xl} height={sizes.xl} />
 				</Pressable>
-			</SafeAreaView>
+			</View>
 		)
 	);
 };

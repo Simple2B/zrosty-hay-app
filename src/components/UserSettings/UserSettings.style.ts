@@ -1,12 +1,13 @@
 import { createStyleSheet } from 'react-native-unistyles';
 
 export const styleSheet = createStyleSheet((theme) => ({
-	settingsWrapper: {
-		paddingVertical: theme.size.sm,
+	settingsWrapper: (statusbarHeight: number) => ({
+		paddingTop: theme.size.sm + statusbarHeight,
+		paddingBottom: theme.size.xl,
 		gap: theme.size.xxl,
 		paddingHorizontal: theme.size.xl,
 		flex: 1,
-	},
+	}),
 	settingsTitleWrapper: {
 		flexDirection: 'row',
 	},
