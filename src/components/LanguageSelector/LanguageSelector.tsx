@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { AxiosError } from 'axios';
+import i18next from 'i18next';
 
 import { useStyles } from 'react-native-unistyles';
 import { User, UserPreferredLanguage } from '@src/api/model';
@@ -31,12 +32,18 @@ export const LanguageSelector = () => {
 					},
 				});
 
-				return { oldUser };
+				if (newLanguage.data.language) {
+					i18next.changeLanguage(newLanguage.data.language);
+				}
+				return oldUser;
 			},
 
 			onError: async (error: AxiosError, context, oldUser) => {
 				if (oldUser) {
-					queryClient.setQueryData([queryKeys.ME], oldUser);
+					queryClient.setQueryData([queryKeys.ME], {
+						...oldUser,
+					});
+					i18next.changeLanguage(oldUser.data.language);
 				}
 				Toast.show({
 					type: 'error',
