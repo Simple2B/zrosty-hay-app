@@ -1,12 +1,13 @@
 import React from 'react';
 import { Alert, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from 'react-native-unistyles';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { useLogout } from '@src/hooks/useLogout';
 import { useMe } from '@src/hooks/useMe';
-
+import { useAPIDeleteUser } from '@src/api/users/users';
 import { sizes } from '@src/styling/sizes';
 import BackIcon from '@assets/icons/leftIconBlack.svg';
 import LogoutIcon from '@assets/icons/logout.svg';
@@ -15,7 +16,6 @@ import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 import { UserSettingsPhoto } from '../UserSettingsPhoto/UserSettingsPhoto';
 import { SystemButton } from '../buttons/SystemButton/SystemButton';
 import { styleSheet } from './UserSettings.style';
-
 import { DisplayedNameChangeController } from '../DisplayedNameChangeController/DisplayedNameChangeController';
 
 export const UserSettings = () => {
@@ -26,6 +26,17 @@ export const UserSettings = () => {
 	const user = useMe();
 	const loginout = useLogout();
 
+	const { mutate: deleteAccount } = useAPIDeleteUser({
+		mutation: {
+			onError: async () => {
+				Toast.show({
+					type: 'error',
+					text1: 'Failed to delete account',
+				});
+			},
+		},
+	});
+
 	const statusBarHeight = useSafeAreaInsets().top;
 
 	const createLoginOutAlert = () =>
@@ -35,7 +46,6 @@ export const UserSettings = () => {
 				onPress: async () => {
 					if (!user) return;
 					await loginout();
-					router.push('/');
 				},
 			},
 			{
@@ -49,8 +59,8 @@ export const UserSettings = () => {
 				text: t('ok'),
 				onPress: async () => {
 					if (!user) return;
+					deleteAccount();
 					await loginout();
-					router.push('/');
 				},
 			},
 			{
