@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Link } from 'expo-router';
+import { Pressable, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useStyles } from 'react-native-unistyles';
 import FastImage from 'react-native-fast-image';
 import { useTranslation } from 'react-i18next';
@@ -12,10 +12,15 @@ export const UserProfile = () => {
 	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
 	const user = useMe();
+	const router = useRouter();
 
 	if (!user) {
 		return null;
 	}
+
+	const onPress = () => {
+		router.push('/settings');
+	};
 
 	return (
 		<View style={styles.profile}>
@@ -23,7 +28,7 @@ export const UserProfile = () => {
 				<Text style={styles.helloText}>{helloMessage(t)}</Text>
 				<Text style={styles.profileEmail}>{user.alias}</Text>
 			</View>
-			<Link href='/settings' style={styles.profileImageWrapper}>
+			<Pressable style={styles.profileImageWrapper} onPress={onPress}>
 				<FastImage
 					key={user.id}
 					style={styles.image}
@@ -33,7 +38,7 @@ export const UserProfile = () => {
 					}}
 					resizeMode={FastImage.resizeMode.contain}
 				/>
-			</Link>
+			</Pressable>
 		</View>
 	);
 };

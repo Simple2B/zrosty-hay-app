@@ -1,11 +1,13 @@
 import React from 'react';
-import { Alert, Pressable, SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, StatusBar, Text, View } from 'react-native';
+import Toast from 'react-native-toast-message';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from 'react-native-unistyles';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { useLogout } from '@src/hooks/useLogout';
 import { useMe } from '@src/hooks/useMe';
-
+import { useAPIDeleteUser } from '@src/api/users/users';
 import { sizes } from '@src/styling/sizes';
 import BackIcon from '@assets/icons/leftIconBlack.svg';
 import LogoutIcon from '@assets/icons/logout.svg';
@@ -14,7 +16,6 @@ import { LanguageSelector } from '../LanguageSelector/LanguageSelector';
 import { UserSettingsPhoto } from '../UserSettingsPhoto/UserSettingsPhoto';
 import { SystemButton } from '../buttons/SystemButton/SystemButton';
 import { styleSheet } from './UserSettings.style';
-
 import { DisplayedNameChangeController } from '../DisplayedNameChangeController/DisplayedNameChangeController';
 
 export const UserSettings = () => {
@@ -25,18 +26,45 @@ export const UserSettings = () => {
 	const user = useMe();
 	const loginout = useLogout();
 
+	const { mutate: deleteAccount } = useAPIDeleteUser({
+		mutation: {
+			onError: async () => {
+				Toast.show({
+					type: 'error',
+					text1: 'Failed to delete account',
+				});
+			},
+		},
+	});
+
+	const statusBarHeight = useSafeAreaInsets().top;
+
 	const createLoginOutAlert = () =>
 		Alert.alert(t('loginOut'), t('loginOutMessage'), [
 			{
-				text: t('loginOutOk'),
+				text: t('ok'),
 				onPress: async () => {
 					if (!user) return;
 					await loginout();
-					router.push('/');
 				},
 			},
 			{
-				text: t('loginOutCancel'),
+				text: t('cancel'),
+			},
+		]);
+
+	const createDeleteAccountAlert = () =>
+		Alert.alert(t('deleteAccount'), t('deleteAccountMessage'), [
+			{
+				text: t('ok'),
+				onPress: async () => {
+					if (!user) return;
+					deleteAccount();
+					await loginout();
+				},
+			},
+			{
+				text: t('cancel'),
 			},
 		]);
 
@@ -44,16 +72,11 @@ export const UserSettings = () => {
 		router.back();
 	}
 
-	const handleDeleteAccount = () => {
-		router.push('/');
-	};
-
 	return (
 		!!user && (
-			<SafeAreaView style={styles.filler}>
-				<StatusBar barStyle='dark-content' />
-
-				<ScrollView contentContainerStyle={styles.settingsWrapper} style={styles.filler}>
+			<View style={styles.filler}>
+				<ScrollView contentContainerStyle={styles.settingsWrapper(statusBarHeight)} style={styles.filler}>
+					<StatusBar barStyle='dark-content' />
 					<Text style={styles.settingsTitle}>{t('settings')}</Text>
 					<UserSettingsPhoto photoUrl={user.avatar_url} />
 
@@ -67,14 +90,14 @@ export const UserSettings = () => {
 					<View style={styles.filler} />
 
 					<View style={styles.buttonWrapper}>
-						<SystemButton onPress={handleDeleteAccount} Icon={<RubbishBin />} label={t('deleteAccount')} />
+						<SystemButton onPress={createDeleteAccountAlert} Icon={<RubbishBin />} label={t('deleteAccount')} />
 						<SystemButton onPress={createLoginOutAlert} Icon={<LogoutIcon />} label={t('loginOut')} />
 					</View>
 				</ScrollView>
 				<Pressable onPress={router.back} style={styles.backButtonBackground}>
 					<BackIcon width={sizes.xl} height={sizes.xl} />
 				</Pressable>
-			</SafeAreaView>
+			</View>
 		)
 	);
 };
