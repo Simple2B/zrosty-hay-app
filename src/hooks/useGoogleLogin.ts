@@ -2,6 +2,7 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import * as SecureStore from 'expo-secure-store';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 import { useAPIValidateGoogleToken } from '@src/api/o-auth/o-auth';
 import { queryKeys } from '@src/constants/queryKeys';
@@ -11,6 +12,7 @@ import Toast from 'react-native-toast-message';
 export const useGoogleLogin = () => {
 	const queryClient = useQueryClient();
 	const router = useRouter();
+	const { t } = useTranslation();
 
 	const { mutate, isPending: validateTokenLoading } = useAPIValidateGoogleToken({
 		mutation: {
@@ -29,14 +31,14 @@ export const useGoogleLogin = () => {
 				Toast.show({
 					type: 'success',
 					text1: 'Google login',
-					text2: 'You have successfully logged in',
+					text2: t('loginSuccessMessage'),
 				});
 			},
 			onError: async (error) => {
 				Toast.show({
 					type: 'error',
 					text1: 'Google login',
-					text2: `Error: Failed to login with google: ${JSON.stringify(error)} 👋`,
+					text2: `${t('loginErrorMessage')} ${JSON.stringify(error.message)} 👋`,
 				});
 				await GoogleSignin.revokeAccess();
 				GoogleSignin.signOut();
@@ -53,7 +55,7 @@ export const useGoogleLogin = () => {
 				Toast.show({
 					type: 'error',
 					text1: 'Google login',
-					text2: 'Error: Id token missin 👋',
+					text2: `${t('missingIdTokenErrorMessage')} 👋`,
 				});
 			}
 			return userInfo;
@@ -68,7 +70,7 @@ export const useGoogleLogin = () => {
 			Toast.show({
 				type: 'error',
 				text1: 'Google login',
-				text2: `Error: ${JSON.stringify(error)}👋`,
+				text2: `${t('error')}: ${JSON.stringify(error.message)}👋`,
 			});
 			if (error.code === statusCodes.SIGN_IN_CANCELLED) {
 				console.log('user cancelled the login flow');

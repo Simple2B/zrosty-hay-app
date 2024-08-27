@@ -31,7 +31,7 @@ export const UserSettings = () => {
 			onError: async () => {
 				Toast.show({
 					type: 'error',
-					text1: 'Failed to delete account',
+					text1: t('deleteAccountErrorMessage'),
 				});
 			},
 		},

@@ -44,7 +44,7 @@ export const DisplayedNameChangeController = ({ displayedName }: DisplayedNameCh
 				});
 				Toast.show({
 					type: 'error',
-					text1: 'Failed to update name',
+					text1: t('updateUsernameErrorMessage'),
 				});
 			},
 			onSettled: () => {
