@@ -34,6 +34,9 @@ export const UserSettings = () => {
 					text1: t('deleteAccountErrorMessage'),
 				});
 			},
+			onSuccess: async () => {
+				await loginout();
+			},
 		},
 	});
 
@@ -60,7 +63,6 @@ export const UserSettings = () => {
 				onPress: async () => {
 					if (!user) return;
 					deleteAccount();
-					await loginout();
 				},
 			},
 			{
