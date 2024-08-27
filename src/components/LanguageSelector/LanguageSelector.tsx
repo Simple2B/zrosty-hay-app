@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { AxiosError } from 'axios';
 import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useStyles } from 'react-native-unistyles';
 import { User, UserPreferredLanguage } from '@src/api/model';
@@ -17,6 +18,7 @@ import { styleSheet } from './LanguageSelector.style';
 export const LanguageSelector = () => {
 	const { styles } = useStyles(styleSheet);
 	const user = useMe();
+	const { t } = useTranslation();
 
 	const { mutate: updateUserInfo } = useAPIUpdateUserInfo({
 		mutation: {
@@ -47,7 +49,7 @@ export const LanguageSelector = () => {
 				}
 				Toast.show({
 					type: 'error',
-					text1: 'Failed to update language',
+					text1: t('updateLanguageErrorMessage'),
 				});
 			},
 			onSettled: () => {

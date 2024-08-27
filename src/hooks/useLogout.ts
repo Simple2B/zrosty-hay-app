@@ -3,12 +3,14 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useQueryClient } from '@tanstack/react-query';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
 import * as SecureStore from 'expo-secure-store';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { queryKeys } from '@src/constants/queryKeys';
 
 export const useLogout = () => {
 	const queryClient = useQueryClient();
+	const { t } = useTranslation();
 
 	const logout = async () => {
 		try {
@@ -35,14 +37,14 @@ export const useLogout = () => {
 			});
 			Toast.show({
 				type: 'success',
-				text1: 'Login out',
-				text2: 'You have successfully login out 👋',
+				text1: t('loginOut'),
+				text2: t('logoutSuccessMessage'),
 			});
 		} catch (error: any) {
 			Toast.show({
 				type: 'error',
-				text1: 'Login out',
-				text2: `Error: Failed to login out: ${JSON.stringify(error)} 👋`,
+				text1: `${t('loginOut')} 👋`,
+				text2: `${t('logoutErrorMessage')}: ${JSON.stringify(error.message)} 👋`,
 			});
 		}
 	};

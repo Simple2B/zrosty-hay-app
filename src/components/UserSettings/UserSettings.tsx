@@ -31,8 +31,11 @@ export const UserSettings = () => {
 			onError: async () => {
 				Toast.show({
 					type: 'error',
-					text1: 'Failed to delete account',
+					text1: t('deleteAccountErrorMessage'),
 				});
+			},
+			onSuccess: async () => {
+				await loginout();
 			},
 		},
 	});
@@ -60,7 +63,6 @@ export const UserSettings = () => {
 				onPress: async () => {
 					if (!user) return;
 					deleteAccount();
-					await loginout();
 				},
 			},
 			{
