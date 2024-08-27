@@ -1,18 +1,15 @@
 import React from 'react';
-import Toast, { BaseToast, BaseToastProps, ToastConfig } from 'react-native-toast-message';
+import { BaseToast, BaseToastProps, ToastConfig } from 'react-native-toast-message';
+import { useStyles } from 'react-native-unistyles';
+
+const { theme } = useStyles();
 
 const toastProps: BaseToastProps = {
-	text1Style: {
-		fontSize: 18,
-	},
-	text2Style: {
-		fontSize: 14,
-	},
-	text2NumberOfLines: 0,
+	text2NumberOfLines: theme.size.zero,
 	style: {
 		height: 'auto',
-		paddingVertical: 10,
-		paddingHorizontal: 0,
+		paddingVertical: theme.size.sm + theme.size.xxs,
+		paddingHorizontal: theme.size.zero,
 	},
 };
 
@@ -24,7 +21,7 @@ export const toastConfig: ToastConfig = {
 			style={[
 				toastProps.style,
 				{
-					borderLeftColor: '#69C779',
+					borderLeftColor: theme.colors.card,
 				},
 			]}
 		/>
@@ -36,7 +33,7 @@ export const toastConfig: ToastConfig = {
 			style={[
 				toastProps.style,
 				{
-					borderLeftColor: '#FE6301',
+					borderLeftColor: theme.colors.error,
 				},
 			]}
 		/>
@@ -48,7 +45,7 @@ export const toastConfig: ToastConfig = {
 			style={[
 				toastProps.style,
 				{
-					borderLeftColor: '#FFC107',
+					borderLeftColor: theme.colors.warning,
 				},
 			]}
 		/>
