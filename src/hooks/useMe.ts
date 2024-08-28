@@ -1,5 +1,7 @@
 import { queryKeys } from '@src/constants/queryKeys';
 import { useAPIGetCurrentUserProfile } from '@src/api/users/users';
+import i18next from 'i18next';
+import { useEffect } from 'react';
 
 export const useMe = () => {
 	const { data, isLoading, isError } = useAPIGetCurrentUserProfile({
@@ -8,8 +10,17 @@ export const useMe = () => {
 			retry: false,
 		},
 	});
+
+	useEffect(() => {
+		if (data?.data) {
+			const user = data.data;
+			i18next.changeLanguage(user.language);
+		}
+	}, [data]);
+
 	if (!data?.data || isLoading || isError) {
 		return;
 	}
+
 	return data.data;
 };
