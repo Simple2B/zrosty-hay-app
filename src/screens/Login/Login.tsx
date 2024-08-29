@@ -1,18 +1,19 @@
+import { useEffect } from 'react';
 import { useStyles } from 'react-native-unistyles';
-
-import { Link, SplashScreen } from 'expo-router';
+import { router, SplashScreen } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 import { SafeAreaView, View, Text, StatusBar, Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AuthButton } from '@src/components/buttons/AuthButton/AuthButton';
-import { AuthBtnType } from '@src/components/buttons/AuthButton/AuthButton.constans';
 import TopLeaf from '@assets/icons/topLeaf.svg';
 import ButtonLeaf from '@assets/icons/buttonLeaf.svg';
-
-import { styleSheet } from './Login.style';
 import { useGoogleLogin } from '@src/hooks/useGoogleLogin';
-import { useEffect } from 'react';
 import { useAppleLogin } from '@src/hooks/useAppleLogin';
+import { LOGGED_AS_GUEST } from '@src/constants/storage';
+import { AuthButton } from '@src/components/buttons/AuthButton/AuthButton';
+import { AuthBtnType } from '@src/components/buttons/AuthButton/AuthButton.constans';
+import { styleSheet } from './Login.style';
 
 const isIos = Platform.OS === 'ios';
 export default function LoginScreen() {
@@ -25,6 +26,19 @@ export default function LoginScreen() {
 	useEffect(() => {
 		SplashScreen.hideAsync();
 	}, []);
+
+	const handleLoginAsGuestPress = async () => {
+		try {
+			await AsyncStorage.setItem(LOGGED_AS_GUEST, 'true');
+			router.push('/plants');
+		} catch (error) {
+			Toast.show({
+				type: 'error',
+				text1: 'Error',
+				text2: t('loginErrorMessage'),
+			});
+		}
+	};
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -46,9 +60,10 @@ export default function LoginScreen() {
 				</View>
 			</View>
 
-			<Link style={styles.link} href='/plants' disabled={isLoading}>
+			<Text style={styles.link} onPress={handleLoginAsGuestPress}>
 				{t('login.linkText')}
-			</Link>
+			</Text>
+
 			<TopLeaf style={styles.topLeaf} />
 			<ButtonLeaf style={styles.buttonLeaf} />
 		</SafeAreaView>
