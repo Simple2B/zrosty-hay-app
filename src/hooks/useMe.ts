@@ -12,11 +12,8 @@ export const useMe = () => {
 	});
 
 	useEffect(() => {
-		if (data?.data) {
-			const user = data.data;
-			i18next.changeLanguage(user.language);
-		}
-	}, [data]);
+		i18next.changeLanguage(data?.data.language);
+	}, [data?.data.language]);
 
 	if (!data?.data || isLoading || isError) {
 		return;
