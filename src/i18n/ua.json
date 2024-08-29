@@ -6,7 +6,7 @@
 		"linkText": "Увійти як гість"
 	},
 	"components": {
-		"authBotton": "Увійти з",
+		"authButton": "Увійти з",
 		"categoryButton": {
 			"rooms": "Кімнатні",
 			"gardens": "Садові",
