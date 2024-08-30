@@ -9,10 +9,12 @@ import * as SecureStore from 'expo-secure-store';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { queryKeys } from '@src/constants/queryKeys';
 import { LOGGED_AS_GUEST } from '@src/constants/storage';
+import { useAppStore } from '@src/storage/storage';
 
 export const useLogout = () => {
 	const queryClient = useQueryClient();
 	const { t } = useTranslation();
+	const { setGuest } = useAppStore();
 
 	const logout = async () => {
 		try {
@@ -37,7 +39,9 @@ export const useLogout = () => {
 				queryKey: [queryKeys.ME],
 				refetchType: 'all',
 			});
-			await AsyncStorage.removeItem(LOGGED_AS_GUEST);
+
+			setGuest(false);
+
 			Toast.show({
 				type: 'success',
 				text1: t('loginOut'),

@@ -4,13 +4,12 @@ import { router, SplashScreen } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
 import { SafeAreaView, View, Text, StatusBar, Platform } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import TopLeaf from '@assets/icons/topLeaf.svg';
 import ButtonLeaf from '@assets/icons/buttonLeaf.svg';
+import { useAppStore } from '@src/storage/storage';
 import { useGoogleLogin } from '@src/hooks/useGoogleLogin';
 import { useAppleLogin } from '@src/hooks/useAppleLogin';
-import { LOGGED_AS_GUEST } from '@src/constants/storage';
 import { AuthButton } from '@src/components/buttons/AuthButton/AuthButton';
 import { AuthBtnType } from '@src/components/buttons/AuthButton/AuthButton.constans';
 import { styleSheet } from './Login.style';
@@ -22,6 +21,7 @@ export default function LoginScreen() {
 	const { handleGoogleLogin, loading: googleAuthLoading } = useGoogleLogin();
 	const { handleAppleLogin, isPending: appleAuthLoading } = useAppleLogin();
 	const isLoading = googleAuthLoading || appleAuthLoading;
+	const { setGuest } = useAppStore();
 
 	useEffect(() => {
 		SplashScreen.hideAsync();
@@ -29,7 +29,7 @@ export default function LoginScreen() {
 
 	const handleLoginAsGuestPress = async () => {
 		try {
-			await AsyncStorage.setItem(LOGGED_AS_GUEST, 'true');
+			setGuest(true);
 			router.push('/plants');
 		} catch (error) {
 			Toast.show({

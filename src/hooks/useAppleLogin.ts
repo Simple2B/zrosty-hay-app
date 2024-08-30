@@ -9,11 +9,12 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import { queryKeys } from '@src/constants/queryKeys';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { useAPIValidateAppleToken } from '@src/api/o-auth/o-auth';
-import { LOGGED_AS_GUEST } from '@src/constants/storage';
+import { useAppStore } from '@src/storage/storage';
 
 export const useAppleLogin = () => {
 	const queryClient = useQueryClient();
 	const router = useRouter();
+	const { setGuest } = useAppStore();
 
 	const [credential, setCredential] = useState<AppleAuthentication.AppleAuthenticationCredential | null>(null);
 
@@ -30,7 +31,9 @@ export const useAppleLogin = () => {
 					queryKey: [queryKeys.ME],
 					refetchType: 'all',
 				});
-				await AsyncStorage.removeItem(LOGGED_AS_GUEST);
+
+				setGuest(false);
+
 				router.replace('/plants');
 				Toast.show({
 					type: 'success',

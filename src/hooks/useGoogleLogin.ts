@@ -4,17 +4,17 @@ import * as SecureStore from 'expo-secure-store';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useAPIValidateGoogleToken } from '@src/api/o-auth/o-auth';
 import { queryKeys } from '@src/constants/queryKeys';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
-import { LOGGED_AS_GUEST } from '@src/constants/storage';
+import { useAppStore } from '@src/storage/storage';
 
 export const useGoogleLogin = () => {
 	const queryClient = useQueryClient();
 	const router = useRouter();
 	const { t } = useTranslation();
+	const { setGuest } = useAppStore();
 
 	const { mutate, isPending: validateTokenLoading } = useAPIValidateGoogleToken({
 		mutation: {
@@ -28,7 +28,8 @@ export const useGoogleLogin = () => {
 					queryKey: [queryKeys.ME],
 					refetchType: 'all',
 				});
-				await AsyncStorage.removeItem(LOGGED_AS_GUEST);
+
+				setGuest(false);
 
 				router.replace('/plants');
 				Toast.show({

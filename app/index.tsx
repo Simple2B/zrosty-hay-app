@@ -3,12 +3,12 @@ import { OnboardingScreen } from '@src/components/Onboarding/Onboarding';
 import { useMe } from '@src/hooks/useMe';
 import LoginScreen from '@src/screens/Login/Login';
 import PlantsScreen from '@src/screens/Plants/Plants';
-import { useGuestStatus } from '@src/hooks/useGuestStatus';
+import { useAppStore } from '@src/storage/storage';
 
 export default function Onboarding() {
 	const { hasOnboardingSeen } = useOnboardingStatus();
+	const { isGuest } = useAppStore();
 	const user = useMe();
-	const isGuest = useGuestStatus();
 
 	if (!hasOnboardingSeen) {
 		return <OnboardingScreen />;
