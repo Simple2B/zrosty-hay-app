@@ -3,15 +3,18 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-toast-message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { queryKeys } from '@src/constants/queryKeys';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { useAPIValidateAppleToken } from '@src/api/o-auth/o-auth';
+import { useAppStore } from '@src/storage/storage';
 
 export const useAppleLogin = () => {
 	const queryClient = useQueryClient();
 	const router = useRouter();
+	const { setGuest } = useAppStore();
 
 	const [credential, setCredential] = useState<AppleAuthentication.AppleAuthenticationCredential | null>(null);
 
@@ -28,6 +31,9 @@ export const useAppleLogin = () => {
 					queryKey: [queryKeys.ME],
 					refetchType: 'all',
 				});
+
+				setGuest(false);
+
 				router.replace('/plants');
 				Toast.show({
 					type: 'success',

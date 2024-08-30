@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
+import { useTranslation } from 'react-i18next';
 import { AuthBtnType, ICONS } from './AuthButton.constans';
 import { styleSheet } from './AuthButton.style';
 
@@ -12,11 +13,14 @@ type AuthButtonProps = {
 
 export const AuthButton = ({ disabled, onPress, type = AuthBtnType.google }: AuthButtonProps) => {
 	const { styles } = useStyles(styleSheet);
+	const { t } = useTranslation();
 
 	return (
 		<TouchableOpacity style={styles.container} onPress={onPress} disabled={disabled}>
 			{ICONS[type]}
-			<Text style={styles.text}>Увійти з {type}</Text>
+			<Text style={styles.text}>
+				{t('components.authButton')} {type}
+			</Text>
 		</TouchableOpacity>
 	);
 };

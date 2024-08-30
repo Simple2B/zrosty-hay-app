@@ -6,7 +6,7 @@
 		"linkText": "Log in as a guest"
 	},
 	"components": {
-		"authBotton": "Log in with",
+		"authButton": "Log in with",
 		"categoryButton": {
 			"rooms": "Rooms",
 			"gardens": "Gardens",
@@ -93,7 +93,7 @@
 	"missingIdTokenErrorMessage": "Missing id token",
 	"updateUsernameErrorMessage": "Failed to update username",
 	"updateLanguageErrorMessage": "Failed to update language",
-  "deleteAccountErrorMessage": "Failed to delete account",
+	"deleteAccountErrorMessage": "Failed to delete account",
 	"error": "Error",
 	"ok": "Ok",
 	"cancel": "cancel",

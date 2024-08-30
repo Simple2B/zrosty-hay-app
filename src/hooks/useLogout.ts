@@ -1,16 +1,20 @@
 import { Platform } from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useQueryClient } from '@tanstack/react-query';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import Toast from 'react-native-toast-message';
 import { useTranslation } from 'react-i18next';
 import * as SecureStore from 'expo-secure-store';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { queryKeys } from '@src/constants/queryKeys';
+import { LOGGED_AS_GUEST } from '@src/constants/storage';
+import { useAppStore } from '@src/storage/storage';
 
 export const useLogout = () => {
 	const queryClient = useQueryClient();
 	const { t } = useTranslation();
+	const { setGuest } = useAppStore();
 
 	const logout = async () => {
 		try {
@@ -35,6 +39,9 @@ export const useLogout = () => {
 				queryKey: [queryKeys.ME],
 				refetchType: 'all',
 			});
+
+			setGuest(false);
+
 			Toast.show({
 				type: 'success',
 				text1: t('loginOut'),

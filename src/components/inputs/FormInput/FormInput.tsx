@@ -37,7 +37,6 @@ export const FormInput = ({ label, defaultValue, placeholder, onChange, isPendin
 						placeholderTextColor={theme.colors.borderGrey}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
-						editable={!isPending}
 						style={styles.textInput}
 					/>
 					<View style={styles.spinnerWrapper}>
