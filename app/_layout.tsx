@@ -7,7 +7,6 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import Toast from 'react-native-toast-message';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useStyles } from 'react-native-unistyles';
 import * as SecureStore from 'expo-secure-store';
@@ -16,7 +15,7 @@ import { StatusBar } from 'react-native';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { toastConfig } from '@src/components/Toast/Toast';
+import ToastConfigProvider from '@src/components/Toast/Toast';
 import { secureStorageKeys } from '@src/constants/secureStorageKeys';
 import { StackScreenName } from '@src/navigation/navigators.types';
 import '@src/i18n/i18n';
@@ -95,7 +94,7 @@ function RootLayoutNav() {
 						<Stack.Screen name='settings/index' />
 					</Stack>
 				</SafeAreaProvider>
-				<Toast config={toastConfig} />
+				<ToastConfigProvider />
 			</ThemeProvider>
 		</QueryClientProvider>
 	);
