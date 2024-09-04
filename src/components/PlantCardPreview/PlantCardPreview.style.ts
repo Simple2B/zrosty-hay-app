@@ -19,6 +19,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 		fontSize: theme.size.lg,
 		fontWeight: theme.fontWeight.bold,
 		lineHeight: theme.size.lg + theme.size.xs,
+		paddingRight: theme.size.md,
 	},
 	infoBlock: {
 		flex: 1,
@@ -27,7 +28,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	},
 	plantImage: {
 		width: 142,
-		height: 170,
+		height: '100%',
 		borderBottomLeftRadius: theme.size.xxl,
 		borderTopLeftRadius: theme.size.xxl,
 	},
