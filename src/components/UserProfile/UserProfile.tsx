@@ -8,10 +8,12 @@ import { useMe } from '@src/hooks/useMe';
 import { helloMessage } from '@src/utils';
 import { DEFAULT_USER_AVATAR } from '@src/constants/userSettings';
 import { styleSheet } from './UserProfile.style';
+import { useAppStore } from '@src/storage/storage';
 
 export const UserProfile = () => {
 	const { t } = useTranslation();
 	const { styles } = useStyles(styleSheet);
+	const { setGuest } = useAppStore();
 	const user = useMe();
 	const router = useRouter();
 
@@ -20,7 +22,8 @@ export const UserProfile = () => {
 
 	const onPress = () => {
 		if (!user) {
-			router.push('/login');
+			setGuest(false);
+			router.replace('/login');
 		}
 		router.push('/settings');
 	};

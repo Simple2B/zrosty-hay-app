@@ -25,7 +25,7 @@ export const OnboardingScreen = () => {
 	const onDone = () => {
 		setOnboardingStatus(true);
 
-		router.push('/login/');
+		router.replace('/login/');
 	};
 
 	const onboardData = useMemo(

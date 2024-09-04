@@ -30,7 +30,7 @@ export default function LoginScreen() {
 	const handleLoginAsGuestPress = async () => {
 		try {
 			setGuest(true);
-			router.push('/plants');
+			router.replace('/plants');
 		} catch (error) {
 			Toast.show({
 				type: 'error',
