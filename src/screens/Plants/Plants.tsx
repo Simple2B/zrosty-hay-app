@@ -74,7 +74,7 @@ export default function PlantsScreen() {
 	};
 
 	return (
-		<SafeAreaView style={styles.wrapper} edges={['bottom']}>
+		<SafeAreaView style={styles.wrapper} edges={['left', 'right']}>
 			<PlantsHeader value={searchInput} onChangeText={setSearchInput} />
 			<Categories categoryUuids={categoryUuids} handleSelectCategory={handleSelectCategory} />
 			{isLoading && <Spinner size={64} />}
@@ -91,6 +91,7 @@ export default function PlantsScreen() {
 					onEndReached={onEndReached}
 					ListFooterComponent={renderLoader}
 					renderItem={renderItemPlantCardPreview}
+					ListFooterComponentStyle={{ marginBottom: 20 }}
 				/>
 			)}
 		</SafeAreaView>
