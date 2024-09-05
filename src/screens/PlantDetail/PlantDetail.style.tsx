@@ -4,7 +4,7 @@ export const styleSheet = createStyleSheet((theme) => ({
 	wrapper: {
 		flex: 1,
 		paddingTop: theme.size.lg,
-		paddingBottom: theme.size.xxl
+		paddingBottom: theme.size.xxl,
 	},
 
 	infoWrapper: {
@@ -49,5 +49,6 @@ export const styleSheet = createStyleSheet((theme) => ({
 
 	infoRow: {
 		gap: theme.size.lg,
+		flex: 1,
 	},
 }));
